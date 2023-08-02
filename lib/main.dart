@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:neerp/screens/Dashboard/dashboard_view.dart';
+import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
+import 'package:neerp/utils/constants.dart';
+import 'package:neerp/utils/scrollBehaviour.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +15,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: DashboardView(),
+      scrollBehavior: MyBehavior(),
+      title: 'Neerp',
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFEEF1F8),
+        primarySwatch: Colors.blue,
+        fontFamily: "SFNSDisplay",
+        inputDecorationTheme: const InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          errorStyle: TextStyle(height: 0),
+          border: defaultInputBorder,
+          enabledBorder: defaultInputBorder,
+          focusedBorder: defaultInputBorder,
+          errorBorder: defaultInputBorder,
+        ),
+      ),
+      home: LiftList(),
     );
   }
 }

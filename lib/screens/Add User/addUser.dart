@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:neerp/utils/components/appBar.dart';
 import 'package:neerp/utils/dropDown.dart';
 import 'package:neerp/utils/inputText.dart';
 import 'package:neerp/utils/colors.dart';
@@ -29,17 +30,14 @@ class _AddUserState extends State<AddUser> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 2.0.wp, vertical: 2.0.hp),
+        child: SafeArea(
+          bottom: false,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Add User",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+              MyAppBar(
+                width: 40.0.wp,
+                title: "Add User",
               ),
               SizedBox(
                 height: 4.0.hp,
@@ -89,81 +87,6 @@ class _AddUserState extends State<AddUser> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-
-                    //   height: textHt,
-                    //   width: textWt,
-                    //   // decoration: BoxDecoration(
-                    //   //   color: Colors.white,
-                    //   //   borderRadius: BorderRadius.all(
-                    //   //     Radius.circular(20),
-                    //   //   ),
-                    //   // ),
-                    //   child: DropdownButtonFormField(
-                    //     decoration: InputDecoration(
-                    //       prefixIcon: Container(
-                    //         margin: EdgeInsets.symmetric(
-                    //           horizontal: 2.0.wp,
-                    //         ),
-                    //         height: textWt / 8,
-                    //         width: textWt / 8,
-                    //         child: Stack(
-                    //           children: [
-                    //             Positioned.fill(
-                    //                 child: Image.asset("assets/images/bg.png")),
-                    //             Positioned.fill(
-                    //               child: Icon(
-                    //                 Icons.list_outlined,
-                    //                 color: kPrimaryColor,
-                    //                 size: 32.0, /*Color(0xff224597)*/
-                    //               ),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //       labelText: "Amc type",
-                    //       labelStyle:
-                    //           TextStyle(color: Colors.black54, fontSize: 18.0),
-                    //       hintText: '',
-                    //       enabledBorder: OutlineInputBorder(
-                    //         borderSide: BorderSide(color: Colors.grey),
-                    //         borderRadius: BorderRadius.all(
-                    //           Radius.circular(20),
-                    //         ),
-                    //       ),
-                    //       focusedBorder: OutlineInputBorder(
-                    //         borderSide: BorderSide(color: kPrimaryColor),
-                    //         borderRadius: BorderRadius.all(
-                    //           Radius.circular(20),
-                    //         ),
-                    //       ),
-                    //       border: OutlineInputBorder(
-                    //         borderRadius: BorderRadius.all(
-                    //           Radius.circular(20),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     items: [
-                    //       DropdownMenuItem(
-                    //         child: Text("Comprehensive"),
-                    //         value: "menuone",
-                    //         //make true to take width of parent widget
-                    //       ),
-                    //       DropdownMenuItem(
-                    //         child: Text("Non-Comprehensive"),
-                    //         value: "menutwo",
-                    //         //make true to take width of parent widget
-                    //       ),
-                    //       DropdownMenuItem(
-                    //         child: Text("Semi-Comprehensive"),
-                    //         value: "menuthree",
-                    //       ),
-                    //     ],
-                    //     onChanged: (value) {},
-                    //     isExpanded: false,
-                    //     style: TextStyle(fontSize: 18, color: Colors.black54),
-                    //     iconEnabledColor: kPrimaryColor, //Icon color
-                    //   ),
-                    // ),
                     SizedBox(
                       height: 3.0.hp,
                     ),

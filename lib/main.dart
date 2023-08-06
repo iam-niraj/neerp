@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:neerp/screens/Add%20Lift/addLift.dart';
 import 'package:neerp/screens/CompletedActivity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/dashboard_view.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: DashboardView(),
+      home: AddLift(),
     );
   }
 }

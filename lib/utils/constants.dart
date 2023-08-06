@@ -1,24 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/extensions.dart';
 
 final bigText = TextStyle(
-  fontFamily: 'SFNFDisplay',
+  fontFamily: 'Intel',
   fontSize: 12.0.sp,
-  color: Color(0xff000000),
+  color: black,
 );
+
 final description = TextStyle(
-  fontFamily: 'SFNFDisplay',
+  fontFamily: 'Intel',
   fontSize: 12.0.sp,
 );
 
 final mediumText = TextStyle(
-  fontFamily: 'SFNFDisplay',
-  fontSize: 18.0.sp,
+  fontFamily: 'Intel',
+  fontSize: 10.0.sp,
 );
 
 final smallText = TextStyle(
-  fontFamily: 'SFNFDisplay',
+  fontFamily: 'Intel',
   fontSize: 14.0.sp,
 );
 

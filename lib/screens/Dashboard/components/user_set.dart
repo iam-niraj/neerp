@@ -24,33 +24,33 @@ class UserSet extends StatelessWidget {
       width: iconWidth,
       child: Stack(
         children: [
-          Positioned(
-            left: 0.0.wp,
-            bottom: -3.0.hp,
-            height: 25.0.hp,
-            width: 25.0.wp,
+          Align(
+            alignment: Alignment.center,
             child: Image.asset(
               icon,
             ),
           ),
           icon2 != null
               ? Positioned(
-                  right: 2.0.hp,
-                  bottom: 3.4.hp,
-                  height: iconHeight / 2.8,
-                  width: iconHeight / 2.8,
-                  child: Image.asset(
-                    icon2!,
+                  left: -0.5.wp,
+                  bottom: 3.5.hp,
+                  child: Opacity(
+                    opacity: 0.9,
+                    child: Image.asset(
+                      icon2!,
+                      height: iconHeight / 3,
+                      width: iconHeight / 3,
+                    ),
                   ),
                 )
               : Container(),
-          Positioned.fill(
-            top: 12.5.hp,
-            left: -4.0.wp,
-            child: Center(
+          Padding(
+            padding: EdgeInsets.only(bottom: 1.0.hp),
+            child: Align(
+              alignment: Alignment.bottomCenter,
               child: Text(
                 title,
-                style: bigText.copyWith(fontWeight: FontWeight.w500),
+                style: bigText.copyWith(fontWeight: FontWeight.w700),
                 textAlign: TextAlign.center,
               ),
             ),

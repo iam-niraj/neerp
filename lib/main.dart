@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neerp/screens/CompletedActivity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/dashboard_view.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/constants.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFEEF1F8),
         primarySwatch: Colors.blue,
-        fontFamily: "SFNSDisplay",
+        fontFamily: "Poppins",
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,
           fillColor: Colors.white,
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: LiftList(),
+      home: DashboardView(),
     );
   }
 }

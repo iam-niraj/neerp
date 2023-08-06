@@ -246,6 +246,7 @@ class _AddLiftState extends State<AddLift> {
         ),
         child: child,
       );
+      
     };
     if (pickerDate != null) {
       setState(() {

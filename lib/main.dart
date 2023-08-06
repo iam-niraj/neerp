@@ -1,4 +1,8 @@
+// ignore_for_file: unused_import, prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:neerp/screens/Add%20Lift/addLift.dart';
+import 'package:neerp/screens/Add%20User/addUser.dart';
 import 'package:neerp/screens/Dashboard/dashboard_view.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/constants.dart';
@@ -20,7 +24,6 @@ class MyApp extends StatelessWidget {
       title: 'Neerp',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFEEF1F8),
-        primarySwatch: Colors.blue,
         fontFamily: "SFNSDisplay",
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: LiftList(),
+      home: AddLift(),
     );
   }
 }

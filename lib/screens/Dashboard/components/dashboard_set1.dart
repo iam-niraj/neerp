@@ -1,7 +1,10 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
+import 'package:rive/rive.dart';
+
 import 'package:neerp/utils/constants.dart';
 import 'package:neerp/utils/extensions.dart';
-import 'package:rive/rive.dart';
 
 class DashboardSet1 extends StatelessWidget {
   const DashboardSet1(

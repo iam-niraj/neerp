@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_set1.dart';
@@ -86,7 +88,7 @@ class DashboardView extends StatelessWidget {
                 height: 4.0.hp,
               ),
               Padding(
-                padding:  EdgeInsets.only(left: 2.0.wp),
+                padding: EdgeInsets.only(left: 2.0.wp),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

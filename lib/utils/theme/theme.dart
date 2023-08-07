@@ -19,17 +19,24 @@ ThemeData theme(ThemeMode mode, ThemeSettings settings) {
       mode == ThemeMode.light ? schemeLight : schemeDark;
 
   return ThemeData(
-    scaffoldBackgroundColor: const Color(0xFFeef1f8),
-    dividerTheme: DividerThemeData(color: kPrimaryColor, space: 0),
-    fontFamily: "Poppins",
-    colorScheme: colorScheme,
-    useMaterial3: settings.useMaterial3,
-    visualDensity: VisualDensity.standard,
-    datePickerTheme: settings.useCustomTheme
-        ? DatePickerThemeData(
-            headerBackgroundColor: kPrimaryColor,
-            headerForegroundColor: colorScheme.onTertiaryContainer,
-          )
-        : null,
-  );
+      scaffoldBackgroundColor: const Color(0xFFEEF1F8),
+      fontFamily: "Intel",
+      colorScheme: colorScheme,
+      useMaterial3: settings.useMaterial3,
+      visualDensity: VisualDensity.standard,
+      dividerTheme: settings.useCustomTheme
+          ? const DividerThemeData(color: kPrimaryColor, space: 0)
+          : null,
+      datePickerTheme: settings.useCustomTheme
+          ? const DatePickerThemeData(
+              headerBackgroundColor: kPrimaryColor,
+              headerForegroundColor: white,
+              backgroundColor: white)
+          : null,
+      inputDecorationTheme: settings.useCustomTheme
+          ? const InputDecorationTheme(
+              filled: true,
+              fillColor: Colors.white,
+            )
+          : null);
 }

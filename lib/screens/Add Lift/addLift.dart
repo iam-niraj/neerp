@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, prefer_const_constructors, avoid_unnecessary_containers, curly_braces_in_flow_control_structures, sized_box_for_whitespace, deprecated_member_use, unused_local_variable, sort_child_properties_last, unused_field, unused_import, avoid_print, unused_label, unnecessary_const, prefer_final_fields
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +10,7 @@ import 'package:neerp/utils/components/date_text_field.dart';
 import 'package:neerp/utils/components/text_field.dart';
 
 class AddLift extends StatefulWidget {
-  AddLift() : super();
+  const AddLift({super.key});
 
   @override
   _AddLiftState createState() => _AddLiftState();
@@ -183,43 +181,29 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 3.0.hp,
                     ),
-                    Container(
-                      height: 55.0,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {}
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: kSecondaryColor,
-                          elevation: 0.0,
-                          minimumSize: Size(screenWidth, 150),
-                          padding: EdgeInsets.symmetric(horizontal: 30),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(0)),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height: 7.0.hp,
+                        width: textWt,
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
                           ),
                         ),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                    color: kPrimaryColor,
-                                    offset: const Offset(1.1, 1.1),
-                                    blurRadius: 10.0),
-                              ],
-                              color: kPrimaryColor,
-                              borderRadius: BorderRadius.circular(12.0)),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Continue",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 25),
-                            ),
+                        child: Center(
+                          child: Text(
+                            "Continue",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontSize: 25),
                           ),
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 5.0.hp,
+                    )
                   ],
                 ),
               ),
@@ -236,24 +220,6 @@ class _AddLiftState extends State<AddLift> {
         initialDate: DateTime.now(),
         firstDate: DateTime(2015),
         lastDate: DateTime(2121));
-    builder:
-    (BuildContext context, Widget? child) {
-      return Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme: ColorScheme.light(
-            primary: kPrimaryColor, // header background color
-            onPrimary: Colors.black, // header text color
-            onSurface:kPrimaryColor, // body text color
-          ),
-          textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-              foregroundColor: kPrimaryColor, // button text color
-            ),
-          ),
-        ),
-        child: child!,
-      );
-    };
 
     if (pickerDate != null) {
       setState(() {

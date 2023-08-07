@@ -47,6 +47,7 @@ class MyAppBar extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
+                          fontFamily: "Poppins"
                         ),
                   ),
                 ),

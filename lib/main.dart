@@ -1,8 +1,7 @@
+// ignore_for_file: must_be_immutable, prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:neerp/screens/CompletedActivity/completed_activity.dart';
-import 'package:neerp/screens/Dashboard/dashboard_view.dart';
-import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
-import 'package:neerp/utils/constants.dart';
+import 'package:neerp/screens/Add%20Lift/addLift.dart';
 import 'package:neerp/utils/scrollBehaviour.dart';
 import 'package:neerp/utils/theme/theme.dart';
 import 'package:neerp/utils/theme/theme_settings.dart';
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
       themeMode: themeMode,
       theme: theme(ThemeMode.light, settings),
       darkTheme: theme(ThemeMode.dark, settings),
-      home: DatePickerDialogShowcase(),
+      home: AddLift(),
     );
   }
 }

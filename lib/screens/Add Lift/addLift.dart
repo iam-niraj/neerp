@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, prefer_const_constructors, avoid_unnecessary_containers, curly_braces_in_flow_control_structures, sized_box_for_whitespace, deprecated_member_use, unused_local_variable, sort_child_properties_last, unused_field, unused_import, avoid_print, unused_label, unnecessary_const
+// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, prefer_const_constructors, avoid_unnecessary_containers, curly_braces_in_flow_control_structures, sized_box_for_whitespace, deprecated_member_use, unused_local_variable, sort_child_properties_last, unused_field, unused_import, avoid_print, unused_label, unnecessary_const, prefer_final_fields
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -237,16 +237,24 @@ class _AddLiftState extends State<AddLift> {
         firstDate: DateTime(2015),
         lastDate: DateTime(2121));
     builder:
-    (BuildContext context, Widget child) {
+    (BuildContext context, Widget? child) {
       return Theme(
-        data: ThemeData.light().copyWith(
-          colorScheme: ColorScheme.light().copyWith(
-            primary: Colors.red, //Background color
+        data: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.light(
+            primary: kPrimaryColor, // header background color
+            onPrimary: Colors.black, // header text color
+            onSurface:kPrimaryColor, // body text color
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              foregroundColor: kPrimaryColor, // button text color
+            ),
           ),
         ),
-        child: child,
+        child: child!,
       );
     };
+
     if (pickerDate != null) {
       setState(() {
         _selectedDate = pickerDate;
@@ -258,4 +266,16 @@ class _AddLiftState extends State<AddLift> {
       }
     }
   }
+
+  // Future<void> _openDialog(BuildContext context) async {
+  //   await showDialog<void>(
+  //     context: context,
+  //     useRootNavigator: false,
+  //     builder: (BuildContext context) => DatePickerDialog(
+  //       initialDate: DateTime.now(),
+  //       firstDate: DateTime(1930),
+  //       lastDate: DateTime(2050),
+  //     ),
+  //   );
+  // }
 }

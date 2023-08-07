@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/extensions.dart';
 
-class InputField extends StatelessWidget {
+class DateTextField extends StatelessWidget {
   final String title;
   final String hint;
   final TextEditingController? controller;
@@ -14,7 +14,7 @@ class InputField extends StatelessWidget {
   final textWt = Get.width - 10.0.wp;
   final Function() onTap;
 
-  InputField(
+  DateTextField(
       {Key? key,
       required this.title,
       required this.hint,

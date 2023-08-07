@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/extensions.dart';
 
-class DropDownWidget extends StatelessWidget {
+class DropDownTextField extends StatelessWidget {
   final textHt = Get.height - 90.0.hp;
   final textWt = Get.width - 10.0.wp;
   final String labelText;
   final IconData icon;
   final List<String> values;
 
-  DropDownWidget(
+  DropDownTextField(
       {required this.labelText, required this.icon, required this.values})
       : super();
 

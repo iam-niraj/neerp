@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/extensions.dart';
 
-class InputTextWidget extends StatelessWidget {
+class MyTextField extends StatelessWidget {
   final textHt = Get.height - 90.0.hp;
   final textWt = Get.width - 10.0.wp;
   final String labelText;
@@ -14,7 +14,7 @@ class InputTextWidget extends StatelessWidget {
   final keyboardType;
   final controller;
 
-  InputTextWidget(
+  MyTextField(
       {required this.labelText,
       required this.icon,
       required this.obscureText,

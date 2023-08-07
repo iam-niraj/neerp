@@ -1,19 +1,26 @@
-// ignore_for_file: unused_import, prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:neerp/screens/Add%20Lift/addLift.dart';
 import 'package:neerp/screens/CompletedActivity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/dashboard_view.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/constants.dart';
 import 'package:neerp/utils/scrollBehaviour.dart';
+import 'package:neerp/utils/theme/theme.dart';
+import 'package:neerp/utils/theme/theme_settings.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  ThemeMode themeMode = ThemeMode.light;
+  bool longLabel = false;
+  TextDirection textDirection = TextDirection.ltr;
+  ThemeSettings settings = const ThemeSettings(
+    useMaterial3: true,
+    useCustomTheme: true,
+  );
 
   // This widget is the root of your application.
   @override
@@ -22,21 +29,48 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyBehavior(),
       title: 'Neerp',
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFEEF1F8),
-        primarySwatch: Colors.blue,
-        fontFamily: "Poppins",
-        inputDecorationTheme: const InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          errorStyle: TextStyle(height: 0),
-          border: defaultInputBorder,
-          enabledBorder: defaultInputBorder,
-          focusedBorder: defaultInputBorder,
-          errorBorder: defaultInputBorder,
-        ),
+      themeMode: themeMode,
+      theme: theme(ThemeMode.light, settings),
+      darkTheme: theme(ThemeMode.dark, settings),
+      home: DatePickerDialogShowcase(),
+    );
+  }
+}
+
+class DatePickerDialogShowcase extends StatelessWidget {
+  const DatePickerDialogShowcase({super.key});
+
+  Future<void> _openDialog(BuildContext context) async {
+    await showDialog<void>(
+      context: context,
+      useRootNavigator: false,
+      builder: (BuildContext context) => DatePickerDialog(
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1930),
+        lastDate: DateTime(2050),
       ),
-      home: AddLift(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        AbsorbPointer(
+          child: DatePickerDialog(
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1930),
+            lastDate: DateTime(2050),
+          ),
+        ),
+        TextButton(
+          child: const Text(
+            'Show DatePickerDialog',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          onPressed: () async => _openDialog(context),
+        ),
+      ],
     );
   }
 }

@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neerp/utils/components/appBar.dart';
-import 'package:neerp/utils/dropDown.dart';
-import 'package:neerp/utils/inputText.dart';
+import 'package:neerp/utils/components/drop_down_text_field.dart';
+import 'package:neerp/utils/components/text_field.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/extensions.dart';
 
@@ -46,7 +46,7 @@ class _AddUserState extends State<AddUser> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    InputTextWidget(
+                    MyTextField(
                         labelText: "Full name",
                         icon: Icons.person,
                         obscureText: false,
@@ -54,7 +54,7 @@ class _AddUserState extends State<AddUser> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                         controller: _emailController,
                         labelText: "Email",
                         icon: Icons.email,
@@ -63,7 +63,7 @@ class _AddUserState extends State<AddUser> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                         labelText: "Phone number",
                         icon: Icons.phone,
                         obscureText: false,
@@ -71,7 +71,7 @@ class _AddUserState extends State<AddUser> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                         labelText: "Username",
                         icon: Icons.person_pin_rounded,
                         obscureText: false,
@@ -79,7 +79,7 @@ class _AddUserState extends State<AddUser> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                         labelText: "Password",
                         icon: Icons.lock,
                         obscureText: true,

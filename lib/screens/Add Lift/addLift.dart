@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/appBar.dart';
-import 'package:neerp/utils/dropDown.dart';
+import 'package:neerp/utils/components/drop_down_text_field.dart';
 import 'package:neerp/utils/extensions.dart';
-import 'package:neerp/utils/inputField.dart';
-import 'package:neerp/utils/inputText.dart';
+import 'package:neerp/utils/components/date_text_field.dart';
+import 'package:neerp/utils/components/text_field.dart';
 
 class AddLift extends StatefulWidget {
   AddLift() : super();
@@ -50,7 +50,7 @@ class _AddLiftState extends State<AddLift> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    InputTextWidget(
+                    MyTextField(
                       labelText: "Site name",
                       icon: Icons.home,
                       obscureText: false,
@@ -59,7 +59,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                       labelText: "Site address",
                       icon: Icons.location_pin,
                       obscureText: false,
@@ -68,7 +68,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                       labelText: "Customer name",
                       icon: Icons.person,
                       obscureText: false,
@@ -77,7 +77,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                       controller: _emailController,
                       labelText: "Email",
                       icon: Icons.email,
@@ -87,7 +87,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                       labelText: "Phone number",
                       icon: Icons.phone,
                       obscureText: false,
@@ -96,7 +96,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                       labelText: "Number of lifts",
                       icon: Icons.format_list_numbered,
                       obscureText: false,
@@ -105,7 +105,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                       labelText: "Number of floors",
                       icon: Icons.house,
                       obscureText: false,
@@ -114,7 +114,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    DropDownWidget(
+                    DropDownTextField(
                       labelText: "AMC type",
                       icon: Icons.list_alt,
                       values: [
@@ -126,7 +126,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    DropDownWidget(
+                    DropDownTextField(
                       labelText: "Lift type",
                       icon: Icons.elevator_sharp,
                       values: [
@@ -140,7 +140,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputField(
+                    DateTextField(
                       title: "Start Date",
                       icon: Icons.calendar_month_outlined,
                       hint: DateFormat.yMd().format(_selectedDate),
@@ -151,7 +151,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputField(
+                    DateTextField(
                       title: "Expire Date",
                       icon: Icons.calendar_month_sharp,
                       hint: DateFormat.yMd().format(_selectedDate),
@@ -162,7 +162,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                       labelText: "Number of services",
                       icon: Icons.miscellaneous_services_sharp,
                       obscureText: false,
@@ -171,7 +171,7 @@ class _AddLiftState extends State<AddLift> {
                     SizedBox(
                       height: 2.0.hp,
                     ),
-                    InputTextWidget(
+                    MyTextField(
                       labelText: "Amount",
                       icon: Icons.attach_money_sharp,
                       obscureText: false,
@@ -246,7 +246,6 @@ class _AddLiftState extends State<AddLift> {
         ),
         child: child,
       );
-      
     };
     if (pickerDate != null) {
       setState(() {

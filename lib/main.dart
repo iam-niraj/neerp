@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, must_be_immutable, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';

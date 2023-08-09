@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neerp/utils/constants.dart';
-import 'package:neerp/utils/extensions.dart';
 
 class UserSet extends StatelessWidget {
   const UserSet(
@@ -32,8 +31,6 @@ class UserSet extends StatelessWidget {
           ),
           icon2 != null
               ? Positioned(
-                  left: -0.5.wp,
-                  bottom: 3.5.hp,
                   child: Opacity(
                     opacity: 0.9,
                     child: Image.asset(
@@ -45,7 +42,7 @@ class UserSet extends StatelessWidget {
                 )
               : Container(),
           Padding(
-            padding: EdgeInsets.only(bottom: 1.0.hp),
+            padding: EdgeInsets.only(bottom: 1.0),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Text(

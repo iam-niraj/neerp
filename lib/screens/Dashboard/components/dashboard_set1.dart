@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 import 'package:neerp/utils/constants.dart';
-import 'package:neerp/utils/extensions.dart';
 
 class DashboardSet1 extends StatelessWidget {
   const DashboardSet1(
@@ -23,21 +22,19 @@ class DashboardSet1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: iconHeight,
       width: iconWidth,
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.center,
+            alignment: Alignment.topCenter,
             child: Image.asset(
               icon,
             ),
           ),
           icon2 != null
               ? Positioned(
-                  left: 1.0.wp,
-                  bottom: 3.2.hp,
                   child: Opacity(
                     opacity: 0.9,
                     child: Image.asset(
@@ -48,15 +45,12 @@ class DashboardSet1 extends StatelessWidget {
                   ),
                 )
               : Container(),
-          Padding(
-            padding: EdgeInsets.only(bottom: 1.0.hp),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                title,
-                style: bigText.copyWith(fontWeight: FontWeight.w700),
-                textAlign: TextAlign.center,
-              ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              title,
+              style: bigText,
+              textAlign: TextAlign.center,
             ),
           )
         ],

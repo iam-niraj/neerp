@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neerp/screens/Add%20Lift/addLift.dart';
-import 'package:neerp/screens/Dashboard/dashboard_view.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/scrollBehaviour.dart';
 import 'package:neerp/utils/theme/theme.dart';
@@ -24,14 +23,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      scrollBehavior: MyBehavior(),
-      title: 'Neerp',
-      themeMode: themeMode,
-      theme: theme(ThemeMode.light, settings),
-      darkTheme: theme(ThemeMode.dark, settings),
-      home: AddLift(),
+    return ScreenUtilInit(
+      designSize: const Size(428, 882),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        scrollBehavior: MyBehavior(),
+        title: 'Neerp',
+        themeMode: themeMode,
+        theme: theme(ThemeMode.light, settings),
+        darkTheme: theme(ThemeMode.dark, settings),
+        home: LiftList(),
+      ),
     );
   }
 }

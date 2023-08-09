@@ -1,17 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, non_constant_identifier_names, must_be_immutable, file_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
-import 'package:neerp/utils/extensions.dart';
 
 class DateTextField extends StatelessWidget {
   final String title;
   final String hint;
   final TextEditingController? controller;
   final IconData icon;
-  final textHt = Get.height - 91.0.hp;
-  final textWt = Get.width - 10.0.wp;
   final Function() onTap;
 
   DateTextField(
@@ -25,8 +22,8 @@ class DateTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: textWt,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
       child: TextFormField(
         readOnly: true,
         autofocus: false,
@@ -35,10 +32,10 @@ class DateTextField extends StatelessWidget {
         decoration: InputDecoration(
           prefixIcon: Container(
             margin: EdgeInsets.symmetric(
-              horizontal: 2.0.wp,
+              horizontal: 20.w,
             ),
-            height: textWt / 8,
-            width: textWt / 8,
+            height: 40,
+            width: 40,
             child: Stack(
               children: [
                 Positioned.fill(child: Image.asset("assets/images/bg.png")),

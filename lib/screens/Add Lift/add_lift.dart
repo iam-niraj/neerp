@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/appBar.dart';
 import 'package:neerp/utils/components/drop_down_text_field.dart';
-import 'package:neerp/utils/extensions.dart';
 import 'package:neerp/utils/components/date_text_field.dart';
 import 'package:neerp/utils/components/text_field.dart';
 
@@ -18,31 +18,28 @@ class AddLift extends StatefulWidget {
 
 class _AddLiftState extends State<AddLift> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _pass = TextEditingController();
-  final TextEditingController _confirmPass = TextEditingController();
+  /* final TextEditingController _pass = TextEditingController();
+  final TextEditingController _confirmPass = TextEditingController(); */
   final TextEditingController _emailController = TextEditingController();
-  final textHt = Get.height - 90.0.hp;
-  final textWt = Get.width - 10.0.wp;
+  final textHt = Get.height - 90.0.h;
+  final textWt = Get.width - 10.0.w;
   DateTime _selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          bottom: false,
+      body: SafeArea(
+        bottom: false,
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MyAppBar(
-                width: 40.0.wp,
+              const MyAppBar(
                 title: "Add Lift",
               ),
               SizedBox(
-                height: 4.0.hp,
+                height: 24.h,
               ),
               Form(
                 key: _formKey,
@@ -54,26 +51,17 @@ class _AddLiftState extends State<AddLift> {
                       obscureText: false,
                       keyboardType: TextInputType.text,
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
                     MyTextField(
                       labelText: "Site address",
                       icon: Icons.location_pin,
                       obscureText: false,
                       keyboardType: TextInputType.text,
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
                     MyTextField(
                       labelText: "Customer name",
                       icon: Icons.person,
                       obscureText: false,
                       keyboardType: TextInputType.text,
-                    ),
-                    SizedBox(
-                      height: 2.0.hp,
                     ),
                     MyTextField(
                       controller: _emailController,
@@ -82,17 +70,11 @@ class _AddLiftState extends State<AddLift> {
                       obscureText: false,
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
                     MyTextField(
                       labelText: "Phone number",
                       icon: Icons.phone,
                       obscureText: false,
                       keyboardType: TextInputType.number,
-                    ),
-                    SizedBox(
-                      height: 2.0.hp,
                     ),
                     MyTextField(
                       labelText: "Number of lifts",
@@ -100,43 +82,31 @@ class _AddLiftState extends State<AddLift> {
                       obscureText: false,
                       keyboardType: TextInputType.number,
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
                     MyTextField(
                       labelText: "Number of floors",
                       icon: Icons.house,
                       obscureText: false,
                       keyboardType: TextInputType.number,
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
                     DropDownTextField(
                       labelText: "AMC type",
                       icon: Icons.list_alt,
-                      values: [
+                      values: const [
                         "Comprehensive",
                         "Non-Comprehensive",
                         "Semi-Comprehensive"
                       ],
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
                     DropDownTextField(
                       labelText: "Lift type",
                       icon: Icons.elevator_sharp,
-                      values: [
+                      values: const [
                         "Passenger Lift",
                         "Goods Lift",
                         "Capsule Lift",
                         "Dumbwaiter Lift",
                         "Hospital Lift"
                       ],
-                    ),
-                    SizedBox(
-                      height: 2.0.hp,
                     ),
                     DateTextField(
                       title: "Start Date",
@@ -146,9 +116,6 @@ class _AddLiftState extends State<AddLift> {
                         _getDateFromUser();
                       },
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
                     DateTextField(
                       title: "Expire Date",
                       icon: Icons.calendar_month_sharp,
@@ -157,17 +124,11 @@ class _AddLiftState extends State<AddLift> {
                         _getDateFromUser();
                       },
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
                     MyTextField(
                       labelText: "Number of services",
                       icon: Icons.miscellaneous_services_sharp,
                       obscureText: false,
                       keyboardType: TextInputType.number,
-                    ),
-                    SizedBox(
-                      height: 2.0.hp,
                     ),
                     MyTextField(
                       labelText: "Amount",
@@ -175,34 +136,33 @@ class _AddLiftState extends State<AddLift> {
                       obscureText: false,
                       keyboardType: TextInputType.number,
                     ),
-                    SizedBox(
-                      height: 2.0.hp,
-                    ),
-                    SizedBox(
-                      height: 3.0.hp,
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        height: 7.0.hp,
-                        width: textWt,
-                        decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 24.w, vertical: 12.h),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          height: 58.h,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Continue",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                          child: const Center(
+                            child: Text(
+                              "Continue",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 25),
+                            ),
                           ),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 5.0.hp,
+                      height: 5.0.h,
                     )
                   ],
                 ),

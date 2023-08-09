@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/model/lift_model.dart';
 import 'package:neerp/screens/Lift%20List/components/button.dart';
 import 'package:neerp/utils/colors.dart';
-import 'package:neerp/utils/extensions.dart';
 
 import 'lift_data_card.dart';
 
 class LiftCard extends StatelessWidget {
-  LiftCard({super.key, required this.lift});
+  const LiftCard({super.key, required this.lift});
 
   final LiftModel lift;
-
-  final cardHeight = Get.height - 80.0.hp;
-  final cardWidth = Get.width;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 2.0.hp),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
       child: Container(
-        height: cardHeight,
-        width: cardWidth,
+        height: 190.h,
+        width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(color: kPrimaryColor, width: 1.5),
+          border: Border.all(color: kPrimaryColor, width: 2.w),
           borderRadius: const BorderRadius.all(Radius.circular(24)),
           color: white,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.0.wp, ),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -37,40 +33,31 @@ class LiftCard extends StatelessWidget {
                 title: 'Site Name:',
                 subTitle: lift.siteName,
               ),
-              SizedBox(
-                height: 0.5.hp,
-              ),
               LiftDtata(
                 title: 'Customer Name:',
                 subTitle: lift.customerName,
               ),
-              SizedBox(
-                height: 0.5.hp,
-              ),
               LiftDtata(
                 title: 'Email:',
                 subTitle: lift.email,
-              ),
-              SizedBox(
-                height: 0.5.hp,
               ),
               LiftDtata(
                 title: 'Phone: ',
                 subTitle: lift.phoneNo,
               ),
               SizedBox(
-                height: 1.5.hp,
+                height: 10.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Button(
+                  const Button(
                     title: 'View Lift',
                   ),
                   SizedBox(
-                    width: 3.0.wp,
+                    width: 20.w,
                   ),
-                  Button(
+                  const Button(
                     title: 'Edit Lift',
                   ),
                 ],

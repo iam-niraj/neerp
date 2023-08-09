@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/constants.dart';
-import 'package:neerp/utils/extensions.dart';
 
 class LiftDtata extends StatelessWidget {
   const LiftDtata({
@@ -19,14 +19,14 @@ class LiftDtata extends StatelessWidget {
       children: [
         Text(
           title,
-          style: bigText.copyWith(fontWeight: FontWeight.bold),
+          style: mediumText.copyWith(fontWeight: FontWeight.bold),
         ),
         SizedBox(
-          width: 1.0.wp,
+          width: 10.w,
         ),
         Text(
           subTitle,
-          style: bigText.copyWith(fontWeight: FontWeight.w500),
+          style: mediumText,
         ),
       ],
     );

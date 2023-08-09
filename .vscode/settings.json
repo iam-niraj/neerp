@@ -1,0 +1,5 @@
+{
+    "css.lint.argumentsInColorFunction": "ignore",
+    "dart.normalizeFileCasing": false,
+    "editor.unusualLineTerminators": "prompt"
+}

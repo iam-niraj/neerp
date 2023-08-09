@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/constants.dart';
-import 'package:neerp/utils/extensions.dart';
 
 class Button extends StatelessWidget {
-  Button({super.key, required this.title});
+  const Button({super.key, required this.title});
 
   final String title;
-  final buttonHeight = Get.height - 80.0.hp;
-  final buttonWidth = Get.width - 80.0.wp;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: buttonHeight / 5,
-      width: buttonHeight / 2,
       decoration: BoxDecoration(
         color: kPrimaryColor,
         borderRadius: BorderRadius.circular(100),
@@ -29,10 +24,12 @@ class Button extends StatelessWidget {
         ],
       ),
       child: Center(
-        child: Text(
-          title,
-          style: mediumText.copyWith(color: white),
-          textAlign: TextAlign.center,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+          child: Text(
+            title,
+            style: smallText.copyWith(color: white),
+          ),
         ),
       ),
     );

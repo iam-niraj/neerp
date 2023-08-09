@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/appBar.dart';
-import 'package:neerp/utils/extensions.dart';
 
 class CompletedActivityView extends StatelessWidget {
   const CompletedActivityView({super.key});
@@ -10,8 +10,8 @@ class CompletedActivityView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(slivers: [
-        SliverToBoxAdapter(
-            child: MyAppBar(width: 40.0.wp, title: "Completed Activities")),
+        const SliverToBoxAdapter(
+            child: MyAppBar(title: "Completed Activities")),
         SliverList(
           delegate: SliverChildBuilderDelegate(
             childCount: 5,
@@ -22,9 +22,9 @@ class CompletedActivityView extends StatelessWidget {
               return index % 2 == 0
                   ? Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 4.0.wp, vertical: 2.0.hp),
+                          horizontal: 24.w, vertical: 12.h),
                       child: Container(
-                        height: MediaQuery.of(context).size.height - 80.0.hp,
+                        height: MediaQuery.of(context).size.height / 3,
                         decoration: BoxDecoration(
                             borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(80)),
@@ -40,20 +40,21 @@ class CompletedActivityView extends StatelessWidget {
                     )
                   : Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 4.0.wp, vertical: 2.0.hp),
+                          horizontal: 24.w, vertical: 12.h),
                       child: Container(
-                        height: MediaQuery.of(context).size.height - 80.0.hp,
+                        height: 100.h,
                         decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(80)),
-                            border: Border.all(color: kPrimaryColor),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: kSecondaryColor,
-                                  offset: Offset(-10.0, 0.0),
-                                  blurRadius: 20.0,
-                                  spreadRadius: 4.0),
-                            ]),
+                          borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(80)),
+                          border: Border.all(color: kPrimaryColor),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: kSecondaryColor,
+                                offset: Offset(-10.0, 0.0),
+                                blurRadius: 20.0,
+                                spreadRadius: 4.0),
+                          ],
+                        ),
                       ),
                     );
             },

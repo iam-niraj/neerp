@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neerp/utils/constants.dart';
-import 'package:neerp/utils/extensions.dart';
 
 class DashboardSet2 extends StatelessWidget {
   const DashboardSet2(
@@ -25,7 +24,7 @@ class DashboardSet2 extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: 4.5.hp),
+            padding: EdgeInsets.only(bottom: 4.5),
             child: Align(
               alignment: Alignment.center,
               child: Image.asset(
@@ -36,8 +35,8 @@ class DashboardSet2 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: -0.0.hp,
-            bottom: 6.0.hp,
+            right: -0.0,
+            bottom: 6.0,
             height: iconHeight / 3.5,
             width: iconHeight / 3.5,
             child: Image.asset(
@@ -56,7 +55,7 @@ class DashboardSet2 extends StatelessWidget {
             ),
           ) */
           Padding(
-            padding: EdgeInsets.only(bottom: 1.0.hp),
+            padding: EdgeInsets.only(bottom: 1.0),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Column(

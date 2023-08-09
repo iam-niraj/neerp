@@ -1,18 +1,11 @@
-// ignore_for_file: unused_import, must_be_immutable
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_set1.dart';
-import 'package:neerp/screens/Dashboard/components/dashboard_set2.dart';
 import 'package:neerp/screens/Dashboard/components/user_set.dart';
 import 'package:neerp/utils/components/appBar.dart';
-import 'package:neerp/utils/extensions.dart';
 
 class DashboardView extends StatelessWidget {
   DashboardView({super.key});
-
-  final double iconHeight = Get.height - 65.0.hp;
-  final double iconWidth = Get.width - 40.0.wp;
 
   @override
   Widget build(BuildContext context) {
@@ -25,38 +18,37 @@ class DashboardView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MyAppBar(
-                  width: 25.0.wp,
+                const MyAppBar(
                   title: 'Dashboard',
                 ),
                 SizedBox(
-                  height: 4.0.hp,
+                  height: 24.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     DashboardSet1(
-                      iconHeight: iconHeight / 2,
-                      iconWidth: iconWidth / 2,
+                      iconHeight: 130.h,
+                      iconWidth: 130.w,
                       icon: "assets/images/lift.png",
                       title: 'Add Lift',
                     ),
                     UserSet(
-                      iconHeight: iconHeight / 2,
-                      iconWidth: iconWidth / 2,
+                      iconHeight: 130.h,
+                      iconWidth: 130.w,
                       icon: "assets/images/users.png",
                       title: 'Add User',
                     ),
                     DashboardSet1(
-                      iconHeight: iconHeight / 2,
-                      iconWidth: iconWidth / 2,
+                      iconHeight: 130.h,
+                      iconWidth: 130.w,
                       icon: "assets/images/lift.png",
                       title: 'Lift List',
                       icon2: "assets/images/list.png",
                     ),
                   ],
                 ),
-                SizedBox(
+                /* SizedBox(
                   height: 4.0.hp,
                 ),
                 Row(
@@ -103,7 +95,7 @@ class DashboardView extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ) */
               ],
             ),
           ],

@@ -9,7 +9,7 @@ class DropDownTextField extends StatelessWidget {
   final IconData icon;
   final List<String> values;
 
-  DropDownTextField(
+  const DropDownTextField(
       {required this.labelText, required this.icon, required this.values})
       : super();
 
@@ -34,8 +34,8 @@ class DropDownTextField extends StatelessWidget {
               margin: EdgeInsets.symmetric(
                 horizontal: 10.w,
               ),
-              height: 40,
-              width: 40,
+              height: 40.h,
+              width: 40.w,
               child: Stack(
                 children: [
                   Positioned.fill(child: Image.asset("assets/images/bg.png")),
@@ -55,22 +55,22 @@ class DropDownTextField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey),
               borderRadius: BorderRadius.all(
-                Radius.circular(20),
+                Radius.circular(20.r),
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: kPrimaryColor),
               borderRadius: BorderRadius.all(
-                Radius.circular(20),
+                Radius.circular(20.r),
               ),
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(20),
+                Radius.circular(20.r),
               ),
             ),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          borderRadius: BorderRadius.all(Radius.circular(20.r)),
           validator: (val) {
             if (val == null) {
               return 'Please choose one option !!!';

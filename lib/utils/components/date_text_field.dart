@@ -11,7 +11,7 @@ class DateTextField extends StatelessWidget {
   final IconData icon;
   final Function() onTap;
 
-  DateTextField(
+  const DateTextField(
       {Key? key,
       required this.title,
       required this.hint,
@@ -37,10 +37,10 @@ class DateTextField extends StatelessWidget {
         decoration: InputDecoration(
           prefixIcon: Container(
             margin: EdgeInsets.symmetric(
-              horizontal: 20.w,
+              horizontal: 20.r.w,
             ),
-            height: 40,
-            width: 40,
+            height: 40.h,
+            width: 40.w,
             child: Stack(
               children: [
                 Positioned.fill(child: Image.asset("assets/images/bg.png")),
@@ -60,18 +60,18 @@ class DateTextField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(20.r),
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: kPrimaryColor),
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(20.r),
             ),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(20.r),
             ),
           ),
         ),

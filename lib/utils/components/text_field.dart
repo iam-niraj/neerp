@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
+import 'package:neerp/utils/constants.dart';
 
 class MyTextField extends StatelessWidget {
   final String labelText;
@@ -25,6 +26,7 @@ class MyTextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
       child: TextFormField(
         controller: controller,
+        style: mediumText,
         obscureText: obscureText,
         autofocus: false,
         keyboardType: keyboardType,
@@ -37,20 +39,24 @@ class MyTextField extends StatelessWidget {
             width: 40.w,
             child: Stack(
               children: [
-                Positioned.fill(child: Image.asset("assets/images/bg.png")),
+                Positioned.fill(
+                    child: Image.asset(
+                  "assets/images/bg.png",
+                )),
                 Positioned.fill(
                   child: Icon(
                     icon,
                     color: kPrimaryColor,
-                    size: 32.0, /*Color(0xff224597)*/
+                    size: 30.0, /*Color(0xff224597)*/
                   ),
                 ),
               ],
             ),
           ),
           labelText: labelText,
-          labelStyle: TextStyle(color: Colors.black54, fontSize: 18.0),
+          labelStyle: mediumText.copyWith(color: Colors.black54),
           hintText: '',
+          contentPadding: EdgeInsets.symmetric(vertical: 16.h),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
             borderRadius: BorderRadius.all(

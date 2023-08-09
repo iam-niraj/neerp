@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, unused_field, library_private_types_in_public_api, file_names, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,19 +46,19 @@ class _AddLiftState extends State<AddLift> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    MyTextField(
+                    const MyTextField(
                       labelText: "Site name",
                       icon: Icons.home,
                       obscureText: false,
                       keyboardType: TextInputType.text,
                     ),
-                    MyTextField(
+                    const MyTextField(
                       labelText: "Site address",
                       icon: Icons.location_pin,
                       obscureText: false,
                       keyboardType: TextInputType.text,
                     ),
-                    MyTextField(
+                    const MyTextField(
                       labelText: "Customer name",
                       icon: Icons.person,
                       obscureText: false,
@@ -73,37 +71,37 @@ class _AddLiftState extends State<AddLift> {
                       obscureText: false,
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    MyTextField(
+                    const MyTextField(
                       labelText: "Phone number",
                       icon: Icons.phone,
                       obscureText: false,
                       keyboardType: TextInputType.number,
                     ),
-                    MyTextField(
+                    const MyTextField(
                       labelText: "Number of lifts",
                       icon: Icons.format_list_numbered,
                       obscureText: false,
                       keyboardType: TextInputType.number,
                     ),
-                    MyTextField(
+                    const MyTextField(
                       labelText: "Number of floors",
                       icon: Icons.house,
                       obscureText: false,
                       keyboardType: TextInputType.number,
                     ),
-                    DropDownTextField(
+                    const DropDownTextField(
                       labelText: "AMC type",
                       icon: Icons.list_alt,
-                      values: const [
+                      values: [
                         "Comprehensive",
                         "Non-Comprehensive",
                         "Semi-Comprehensive"
                       ],
                     ),
-                    DropDownTextField(
+                    const DropDownTextField(
                       labelText: "Lift type",
                       icon: Icons.elevator_sharp,
-                      values: const [
+                      values: [
                         "Passenger Lift",
                         "Goods Lift",
                         "Capsule Lift",
@@ -127,13 +125,13 @@ class _AddLiftState extends State<AddLift> {
                         _getDateFromUser(false);
                       },
                     ),
-                    MyTextField(
+                    const MyTextField(
                       labelText: "Number of services",
                       icon: Icons.miscellaneous_services_sharp,
                       obscureText: false,
                       keyboardType: TextInputType.number,
                     ),
-                    MyTextField(
+                    const MyTextField(
                       labelText: "Amount",
                       icon: Icons.attach_money_sharp,
                       obscureText: false,

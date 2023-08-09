@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
+import 'package:neerp/utils/constants.dart';
 
 class DateTextField extends StatelessWidget {
   final String title;
@@ -29,15 +30,12 @@ class DateTextField extends StatelessWidget {
         autofocus: false,
         controller: controller,
         onTap: onTap,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-          fontFamily: "Intel",
-        ),
+        style: mediumText,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 16.h),
           prefixIcon: Container(
             margin: EdgeInsets.symmetric(
-              horizontal: 20.r.w,
+              horizontal: 10.w,
             ),
             height: 40.h,
             width: 40.w,
@@ -54,7 +52,7 @@ class DateTextField extends StatelessWidget {
               ],
             ),
           ),
-          labelStyle: TextStyle(color: Colors.black54, fontSize: 18.0),
+          labelStyle: mediumText.copyWith(color: Colors.black54),
           hintText: hint,
           labelText: title,
           enabledBorder: OutlineInputBorder(

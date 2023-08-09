@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:neerp/screens/Add%20Lift/add_lift.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
+import 'package:neerp/screens/Login/login_screen.dart';
 import 'package:neerp/utils/scrollBehaviour.dart';
 import 'package:neerp/utils/theme/theme.dart';
 import 'package:neerp/utils/theme/theme_settings.dart';
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
         themeMode: themeMode,
         theme: theme(ThemeMode.light, settings),
         darkTheme: theme(ThemeMode.dark, settings),
-        home: LiftList(),
+        home: LoginScreen(),
       ),
     );
   }

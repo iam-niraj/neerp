@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
+import 'package:neerp/utils/constants.dart';
 
 class DropDownTextField extends StatelessWidget {
   final String labelText;
@@ -24,12 +25,9 @@ class DropDownTextField extends StatelessWidget {
           autofocus: false,
           iconDisabledColor: Colors.grey,
           iconEnabledColor: kPrimaryColor,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontFamily: "Intel",
-          ),
+          style: mediumText,
           decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 16.h),
             prefixIcon: Container(
               margin: EdgeInsets.symmetric(
                 horizontal: 10.w,
@@ -50,7 +48,7 @@ class DropDownTextField extends StatelessWidget {
               ),
             ),
             labelText: labelText,
-            labelStyle: TextStyle(color: Colors.black54, fontSize: 18.0),
+            labelStyle: mediumText.copyWith(color: Colors.black54),
             hintText: '',
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey),

@@ -28,56 +28,61 @@ class MyTextField extends StatelessWidget {
       //height: textHt,
       width: textWt,
       child: TextFormField(
-          controller: controller,
-          obscureText: obscureText,
-          autofocus: false,
-          keyboardType: keyboardType,
-          decoration: InputDecoration(
-            prefixIcon: Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 2.0.wp,
-              ),
-              height: textWt / 8,
-              width: textWt / 8,
-              child: Stack(
-                children: [
-                  Positioned.fill(child: Image.asset("assets/images/bg.png")),
-                  Positioned.fill(
-                    child: Icon(
-                      icon,
-                      color: kPrimaryColor,
-                      size: 32.0, /*Color(0xff224597)*/
-                    ),
+        controller: controller,
+        obscureText: obscureText,
+        autofocus: false,
+        keyboardType: keyboardType,
+        // style: TextStyle(
+        //   color: Colors.black,
+        //   fontFamily: "Intel",
+        // ),
+        decoration: InputDecoration(
+          prefixIcon: Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 2.0.wp,
+            ),
+            height: textWt / 8,
+            width: textWt / 8,
+            child: Stack(
+              children: [
+                Positioned.fill(child: Image.asset("assets/images/bg.png")),
+                Positioned.fill(
+                  child: Icon(
+                    icon,
+                    color: kPrimaryColor,
+                    size: 32.0, /*Color(0xff224597)*/
                   ),
-                ],
-              ),
-            ),
-            labelText: labelText,
-            labelStyle: TextStyle(color: Colors.black54, fontSize: 18.0),
-            hintText: '',
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey),
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: kPrimaryColor),
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
-              ),
+                ),
+              ],
             ),
           ),
-          validator: (val) {
-            if (val!.isEmpty) {
-              return 'Please enter details properly !!!';
-            }
-          }),
+          labelText: labelText,
+          labelStyle: TextStyle(color: Colors.black54, fontSize: 18.0),
+          hintText: '',
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+        ),
+        validator: (val) {
+          if (val!.isEmpty) {
+            return 'Please enter details properly !!!';
+          }
+        },
+      ),
     );
   }
 }

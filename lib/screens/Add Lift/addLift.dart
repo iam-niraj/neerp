@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, unused_local_variable, unused_field, library_private_types_in_public_api, file_names, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +25,8 @@ class _AddLiftState extends State<AddLift> {
   final TextEditingController _emailController = TextEditingController();
   final textHt = Get.height - 90.0.hp;
   final textWt = Get.width - 10.0.wp;
-  DateTime _selectedDate = DateTime.now();
+  DateTime _startDate = DateTime.now();
+  DateTime _expireDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -141,9 +144,9 @@ class _AddLiftState extends State<AddLift> {
                     DateTextField(
                       title: "Start Date",
                       icon: Icons.calendar_month_outlined,
-                      hint: DateFormat.yMd().format(_selectedDate),
+                      hint: DateFormat.yMd().format(_startDate),
                       onTap: () {
-                        _getDateFromUser();
+                        _getDateFromUser(true);
                       },
                     ),
                     SizedBox(
@@ -152,9 +155,9 @@ class _AddLiftState extends State<AddLift> {
                     DateTextField(
                       title: "Expire Date",
                       icon: Icons.calendar_month_sharp,
-                      hint: DateFormat.yMd().format(_selectedDate),
+                      hint: DateFormat.yMd().format(_expireDate),
                       onTap: () {
-                        _getDateFromUser();
+                        _getDateFromUser(false);
                       },
                     ),
                     SizedBox(
@@ -214,7 +217,7 @@ class _AddLiftState extends State<AddLift> {
     );
   }
 
-  _getDateFromUser() async {
+  _getDateFromUser(bool isStartDate) async {
     DateTime? pickerDate = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
@@ -223,8 +226,7 @@ class _AddLiftState extends State<AddLift> {
 
     if (pickerDate != null) {
       setState(() {
-        _selectedDate = pickerDate;
-        print(_selectedDate);
+        isStartDate ? _startDate = pickerDate : _expireDate = pickerDate;
       });
     } else {
       if (kDebugMode) {

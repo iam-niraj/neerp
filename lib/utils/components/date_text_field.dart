@@ -32,6 +32,11 @@ class DateTextField extends StatelessWidget {
         autofocus: false,
         controller: controller,
         onTap: onTap,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontFamily: "Intel",
+        ),
         decoration: InputDecoration(
           prefixIcon: Container(
             margin: EdgeInsets.symmetric(
@@ -73,6 +78,12 @@ class DateTextField extends StatelessWidget {
             ),
           ),
         ),
+        validator: (val) {
+          if (val!.isEmpty) {
+            return 'Please choose date properly !!!';
+          }
+          return null;
+        },
       ),
     );
   }

@@ -28,6 +28,11 @@ class DropDownTextField extends StatelessWidget {
           autofocus: false,
           iconDisabledColor: Colors.grey,
           iconEnabledColor: kPrimaryColor,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontFamily: "Intel",
+          ),
           decoration: InputDecoration(
             prefixIcon: Container(
               margin: EdgeInsets.symmetric(

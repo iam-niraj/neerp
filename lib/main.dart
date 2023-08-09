@@ -1,5 +1,9 @@
+// ignore_for_file: unused_import, must_be_immutable, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:neerp/screens/Add%20Lift/addLift.dart';
+import 'package:neerp/screens/Add%20User/addUser.dart';
+import 'package:neerp/screens/CompletedActivity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/dashboard_view.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/scrollBehaviour.dart';

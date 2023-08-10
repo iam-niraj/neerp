@@ -22,7 +22,7 @@ class DashboardSet1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: iconHeight,
       width: iconWidth,
       child: Stack(

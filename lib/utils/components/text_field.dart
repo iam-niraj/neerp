@@ -31,6 +31,7 @@ class MyTextField extends StatelessWidget {
         autofocus: false,
         keyboardType: keyboardType,
         decoration: InputDecoration(
+          alignLabelWithHint: true,
           prefixIcon: Container(
             margin: EdgeInsets.symmetric(
               horizontal: 10.0.w,
@@ -40,9 +41,10 @@ class MyTextField extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned.fill(
-                    child: Image.asset(
-                  "assets/images/bg.png",
-                )),
+                  child: Image.asset(
+                    "assets/images/bg.png",
+                  ),
+                ),
                 Positioned.fill(
                   child: Icon(
                     icon,

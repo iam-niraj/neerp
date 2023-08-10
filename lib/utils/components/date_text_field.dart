@@ -32,6 +32,7 @@ class DateTextField extends StatelessWidget {
         onTap: onTap,
         style: mediumText,
         decoration: InputDecoration(
+          alignLabelWithHint: true,
           contentPadding: EdgeInsets.symmetric(vertical: 16.h),
           prefixIcon: Container(
             margin: EdgeInsets.symmetric(

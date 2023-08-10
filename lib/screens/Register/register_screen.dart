@@ -1,20 +1,25 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/screens/Register/register_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:neerp/screens/Login/login_screen.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/textButton.dart';
 import 'package:neerp/utils/components/text_field.dart';
 import 'package:neerp/utils/constants.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  bool isPasswordVisible = true;
+class _RegisterScreenState extends State<RegisterScreen> {
+  bool passwordVisibility = true;
+  final TextEditingController _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,33 +39,47 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: SafeArea(
         child: CustomScrollView(
-          reverse: true,
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Flexible(
-                      fit: FlexFit.loose,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Welcome back.",
+                            "Register",
                             style: kHeadline,
                           ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
                           Text(
-                            "You've been missed!",
+                            "Create new account to get started.",
                             style: kBodyText2,
                           ),
                           SizedBox(
-                            height: 60.h,
+                            height: 50.h,
+                          ),
+                          MyTextField(
+                              labelText: "Full name",
+                              icon: Icons.person,
+                              obscureText: false,
+                              keyboardType: TextInputType.text),
+                          MyTextField(
+                            controller: _emailController,
+                            labelText: "Email",
+                            icon: Icons.email,
+                            obscureText: false,
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          MyTextField(
+                            labelText: "Phone number",
+                            icon: Icons.phone,
+                            obscureText: false,
+                            keyboardType: TextInputType.number,
                           ),
                           MyTextField(
                             labelText: "Username",
@@ -74,14 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             obscureText: true,
                             keyboardType: TextInputType.text,
                           ),
-                          // MyPasswordField(
-                          //   isPasswordVisible: isPasswordVisible,
-                          //   onTap: () {
-                          //     setState(() {
-                          //       isPasswordVisible = !isPasswordVisible;
-                          //     });
-                          //   },
-                          // ),
                         ],
                       ),
                     ),
@@ -89,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Dont't have an account? ",
+                          "Already have an account? ",
                           style: kBodyText,
                         ),
                         GestureDetector(
@@ -97,12 +108,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) => RegisterScreen(),
+                                builder: (context) => LoginScreen(),
                               ),
                             );
                           },
                           child: Text(
-                            'Register',
+                            "Log In",
                             style: kBodyText.copyWith(
                               color: Colors.black54,
                             ),
@@ -111,17 +122,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 20,
                     ),
                     MyTextButton(
-                      buttonName: 'Sign In',
+                      buttonName: 'Register',
                       onTap: () {},
                       bgColor: kPrimaryColor,
                       textColor: white,
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
+                    )
                   ],
                 ),
               ),

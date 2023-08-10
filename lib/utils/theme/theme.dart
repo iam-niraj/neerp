@@ -39,23 +39,23 @@ ThemeData theme(ThemeMode mode, ThemeSettings settings) {
             fillColor: Colors.white,
           )
         : null,
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontFamily: "Intel",
-        ),
-        foregroundColor: Colors.white, // color of button's letters
-        backgroundColor: kPrimaryColor, // Background color
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            color: Colors.transparent,
-            width: 1,
-            style: BorderStyle.solid,
-          ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-    ),
+    // textButtonTheme: TextButtonThemeData(
+    //   style: TextButton.styleFrom(
+    //     textStyle: const TextStyle(
+    //       fontWeight: FontWeight.bold,
+    //       fontFamily: "Intel",
+    //     ),
+    //     foregroundColor: Colors.white, // color of button's letters
+    //     backgroundColor: kPrimaryColor, // Background color
+    //     shape: RoundedRectangleBorder(
+    //       side: const BorderSide(
+    //         color: Colors.transparent,
+    //         width: 1,
+    //         style: BorderStyle.solid,
+    //       ),
+    //       borderRadius: BorderRadius.circular(20),
+    //     ),
+    //   ),
+    // ),
   );
 }

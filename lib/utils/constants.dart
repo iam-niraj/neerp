@@ -30,3 +30,20 @@ const defaultInputBorder = OutlineInputBorder(
     width: 1,
   ),
 );
+
+const kHeadline = TextStyle(
+  color: Colors.black,
+  fontSize: 34,
+  fontWeight: FontWeight.bold,
+);
+
+const kBodyText = TextStyle(
+  color: Colors.black54,
+  fontSize: 15,
+);
+
+const kBodyText2 = TextStyle(
+  fontSize: 28,
+  fontWeight: FontWeight.w500,
+  color: Colors.black54,
+);

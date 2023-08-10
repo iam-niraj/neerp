@@ -27,6 +27,7 @@ class DropDownTextField extends StatelessWidget {
           iconEnabledColor: kPrimaryColor,
           style: mediumText,
           decoration: InputDecoration(
+            alignLabelWithHint: true,
             contentPadding: EdgeInsets.symmetric(vertical: 16.h),
             prefixIcon: Container(
               margin: EdgeInsets.symmetric(
@@ -81,6 +82,7 @@ class DropDownTextField extends StatelessWidget {
                 child: Container(
                   child: Text(
                     value.toString(),
+                    style: mediumText.copyWith(color: Colors.black),
                   ),
                 ),
                 value: value.toString(),

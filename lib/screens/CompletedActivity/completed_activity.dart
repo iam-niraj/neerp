@@ -1,66 +1,116 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:neerp/utils/colors.dart';
+import 'package:neerp/utils/components/activity_list_dialog.dart';
 import 'package:neerp/utils/components/appBar.dart';
+import 'package:neerp/utils/components/date_text_field.dart';
+import 'package:neerp/utils/components/drop_down_text_field.dart';
 
-class CompletedActivityView extends StatelessWidget {
+class CompletedActivityView extends StatefulWidget {
   const CompletedActivityView({super.key});
+
+  @override
+  State<CompletedActivityView> createState() => _CompletedActivityViewState();
+}
+
+class _CompletedActivityViewState extends State<CompletedActivityView> {
+  DateTime _fromDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(slivers: [
-        const SliverToBoxAdapter(
-            child: MyAppBar(title: "Completed Activities")),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            childCount: 5,
-            (
-              context,
-              index,
-            ) {
-              return index % 2 == 0
-                  ? Padding(
+      body: SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              const MyAppBar(title: "Completed Activities"),
+              SizedBox(
+                height: 50.h,
+              ),
+              Column(
+                children: [
+                  DateTextField(
+                    title: "From Date",
+                    icon: Icons.calendar_month_outlined,
+                    hint: DateFormat.yMd().format(_fromDate),
+                    onTap: () => _getDateFromUser(),
+                  ),
+                  DateTextField(
+                    title: "To Date",
+                    icon: Icons.calendar_month_outlined,
+                    hint: DateFormat.yMd().format(_fromDate),
+                    onTap: () => _getDateFromUser(),
+                  ),
+                  const DropDownTextField(
+                    labelText: "Employee",
+                    icon: Icons.supervised_user_circle,
+                    values: [
+                      "Passenger Lift",
+                      "Goods Lift",
+                      "Capsule Lift",
+                      "Dumbwaiter Lift",
+                      "Hospital Lift"
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Future.delayed(
+                        const Duration(milliseconds: 800),
+                        () {
+                          showCustomDialog(
+                            context,
+                            onValue: (_) {},
+                          );
+                        },
+                      );
+                    },
+                    child: Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: 24.w, vertical: 12.h),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 3,
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(80)),
-                            border: Border.all(color: kPrimaryColor),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: kSecondaryColor,
-                                  offset: Offset(-10.0, 0.0),
-                                  blurRadius: 20.0,
-                                  spreadRadius: 4.0),
-                            ]),
-                      ),
-                    )
-                  : Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 24.w, vertical: 12.h),
-                      child: Container(
-                        height: 100.h,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(80)),
-                          border: Border.all(color: kPrimaryColor),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: kSecondaryColor,
-                                offset: Offset(-10.0, 0.0),
-                                blurRadius: 20.0,
-                                spreadRadius: 4.0),
-                          ],
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          height: 58.h,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "Search",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 25),
+                            ),
+                          ),
                         ),
                       ),
-                    );
-            },
-          ),
-        ),
-      ]),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          )),
     );
+  }
+
+  _getDateFromUser() async {
+    DateTime? pickerDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2121));
+
+    if (pickerDate != null) {
+      setState(() {
+        // isStartDate ? _startDate = pickerDate : _expireDate = pickerDate;
+      });
+    } else {
+      print("Please select Valid date !!!");
+    }
   }
 }

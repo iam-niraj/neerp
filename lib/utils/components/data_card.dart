@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/constants.dart';
 
-class LiftDtata extends StatelessWidget {
-  const LiftDtata({
+class DataCard extends StatelessWidget {
+  const DataCard({
     super.key,
     required this.subTitle,
     required this.title,

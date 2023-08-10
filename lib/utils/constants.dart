@@ -4,7 +4,7 @@ import 'package:neerp/utils/colors.dart';
 
 final bigText = TextStyle(
   fontFamily: 'Intel',
-  fontSize: 24.0.sp,
+  fontSize: 30.0.sp,
   color: black,
 );
 

@@ -4,7 +4,7 @@ import 'package:neerp/model/lift_model.dart';
 import 'package:neerp/screens/Lift%20List/components/button.dart';
 import 'package:neerp/utils/colors.dart';
 
-import 'lift_data_card.dart';
+import '../../../utils/components/data_card.dart';
 
 class LiftCard extends StatelessWidget {
   const LiftCard({super.key, required this.lift});
@@ -14,34 +14,32 @@ class LiftCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.h),
       child: Container(
-        height: 190.h,
-        width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(color: kPrimaryColor, width: 2.w),
           borderRadius: const BorderRadius.all(Radius.circular(24)),
           color: white,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LiftDtata(
-                title: 'Site Name:',
+              DataCard(
+                title: 'Site Name: ',
                 subTitle: lift.siteName,
               ),
-              LiftDtata(
-                title: 'Customer Name:',
+              DataCard(
+                title: 'Customer Name: ',
                 subTitle: lift.customerName,
               ),
-              LiftDtata(
-                title: 'Email:',
+              DataCard(
+                title: 'Email: ',
                 subTitle: lift.email,
               ),
-              LiftDtata(
+              DataCard(
                 title: 'Phone: ',
                 subTitle: lift.phoneNo,
               ),

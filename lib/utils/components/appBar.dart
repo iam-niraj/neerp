@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
+import 'package:neerp/utils/constants.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({
@@ -39,13 +40,14 @@ class MyAppBar extends StatelessWidget {
                 padding: EdgeInsets.only(left: 40.0.w),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  child: Text(title,
+                      style: bigText.copyWith(
+                          fontFamily:
+                              "Poppins") /* Theme.of(context).textTheme.headlineMedium!.copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontFamily: "Poppins"),
-                  ),
+                        fontFamily: "Poppins"), */
+                      ),
                 ),
               ),
             ),

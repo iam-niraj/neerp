@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/models/activity_model.dart';
+import 'package:neerp/models/activity/activity_model.dart';
 import 'package:neerp/utils/components/activity_card.dart';
 
 void showCustomDialog(BuildContext context, {required ValueChanged onValue}) {

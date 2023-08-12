@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:neerp/config/services/shared_service.dart';
-import 'package:neerp/models/customer_model.dart';
+import 'package:neerp/utils/config/services/shared_service.dart';
+import 'package:neerp/models/customer/customer_model.dart';
 
 class UserRepository {
   Customer? _customer;

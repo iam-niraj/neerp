@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:neerp/models/customer_model.dart';
-import 'package:neerp/models/login_request_model.dart';
-import 'package:neerp/models/login_response_model.dart';
-import 'package:neerp/models/sign_up_request_model.dart';
-import 'package:neerp/models/sign_up_response_model.dart';
+import 'package:neerp/models/customer/customer_model.dart';
+import 'package:neerp/models/login/login_request_model.dart';
+import 'package:neerp/models/login/login_response_model.dart';
+import 'package:neerp/models/signup/sign_up_request_model.dart';
+import 'package:neerp/models/signup/sign_up_response_model.dart';
 
 import 'shared_service.dart';
 

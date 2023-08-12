@@ -1,21 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:neerp/config/services/api_service.dart';
+import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/screens/Login/cubit/login_cubit.dart';
 import 'package:neerp/screens/Register/register_screen.dart';
-import 'package:neerp/utils/colors.dart';
-import 'package:neerp/utils/components/textButton.dart';
-import 'package:neerp/utils/components/text_field.dart';
-import 'package:neerp/utils/constants.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-
-  //static page() => MaterialPage(child: LoginScreen());
 
   static Route<void> route() {
     return MaterialPageRoute<void>(builder: (_) => LoginScreen());
@@ -178,7 +168,7 @@ class LoginForm extends StatelessWidget {
       ), */
         );
   }
-}
+},
 
 class _UsernameInput extends StatelessWidget {
   const _UsernameInput({super.key});

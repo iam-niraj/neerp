@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:neerp/models/login_response_model.dart';
 
 class Customer extends Equatable {
   final String id;

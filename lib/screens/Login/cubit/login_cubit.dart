@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
-import 'package:neerp/config/services/api_service.dart';
-import 'package:neerp/models/login_request_model.dart';
+import 'package:neerp/utils/config/services/api_service.dart';
+import 'package:neerp/models/login/login_request_model.dart';
 
 part 'login_state.dart';
 

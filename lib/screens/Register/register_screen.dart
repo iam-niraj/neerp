@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:neerp/config/services/api_service.dart';
+import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/screens/Login/login_screen.dart';
 import 'package:neerp/screens/Register/cubit/signup_cubit.dart';
 import 'package:neerp/utils/colors.dart';

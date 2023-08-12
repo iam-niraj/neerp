@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:neerp/config/services/api_service.dart';
-import 'package:neerp/models/sign_up_request_model.dart';
+import 'package:neerp/utils/config/services/api_service.dart';
+import 'package:neerp/models/signup/sign_up_request_model.dart';
 
 part 'signup_state.dart';
 

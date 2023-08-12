@@ -9,6 +9,12 @@ import 'package:neerp/utils/components/appBar.dart';
 class DashboardView extends StatelessWidget {
   DashboardView({super.key});
 
+  //static Page page() => MaterialPage(child: DashboardView());
+
+  static Route<void> route() {
+    return MaterialPageRoute<void>(builder: (_) => DashboardView());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

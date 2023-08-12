@@ -1,8 +1,6 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/utils/colors.dart';
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({
@@ -43,28 +41,5 @@ class MyTextButton extends StatelessWidget {
         ),
       ),
     );
-    // return Padding(
-    //   padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
-    //   child: Align(
-    //     alignment: Alignment.bottomCenter,
-    //     child: Container(
-    //       height: 58.h,
-    //       width: double.infinity,
-    //       decoration: const BoxDecoration(
-    //         color: kPrimaryColor,
-    //         borderRadius: BorderRadius.all(
-    //           Radius.circular(20),
-    //         ),
-    //       ),
-    //       child: const Center(
-    //         child: Text(
-    //           "Continue",
-    //           textAlign: TextAlign.center,
-    //           style: TextStyle(color: Colors.white, fontSize: 25),
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }

@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+SignUpResponseModel registerResponseJson(String str) =>
+    SignUpResponseModel.fromJson(json.decode(str));
+
 class SignUpResponseModel {
   int? success;
   Result? result;

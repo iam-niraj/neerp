@@ -2,27 +2,64 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:neerp/config/services/api_service.dart';
 import 'package:neerp/screens/Login/login_screen.dart';
+import 'package:neerp/screens/Register/cubit/signup_cubit.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/textButton.dart';
 import 'package:neerp/utils/components/text_field.dart';
 import 'package:neerp/utils/constants.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  RegisterScreen({super.key});
 
-  @override
-  _RegisterScreenState createState() => _RegisterScreenState();
-}
+  static Route route() {
+    return MaterialPageRoute(builder: (_) => RegisterScreen());
+  }
 
-class _RegisterScreenState extends State<RegisterScreen> {
   bool passwordVisibility = true;
   final TextEditingController _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        body: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: BlocProvider<SignupCubit>(
+        create: (context) => SignupCubit(context.read<APIService>()),
+        child: RegisterForm(),
+      ),
+    ));
+  }
+}
+
+class RegisterForm extends StatelessWidget {
+  const RegisterForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<SignupCubit, SignupState>(
+      listener: (context, state) {
+        if (state.status == SignUpStatus.error) {}
+      },
+      child: Column(
+        children: [
+          _UsernameInput(),
+          SizedBox(
+            height: 50,
+          ),
+          _PasswordInput(),
+          SizedBox(
+            height: 50,
+          ),
+          _SignUpButton(),
+        ],
+      ),
+    );
+
+    /* Scaffold(
       appBar: AppBar(
         backgroundColor: kSecondaryColor,
         elevation: 0,
@@ -137,6 +174,66 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ],
         ),
       ),
+    ); */
+  }
+}
+
+class _UsernameInput extends StatelessWidget {
+  const _UsernameInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.username != current.username,
+      builder: (context, state) {
+        return TextField(
+          onChanged: (email) {
+            context.read<SignupCubit>().emailChanged(email);
+          },
+          decoration: const InputDecoration(labelText: "Username"),
+        );
+      },
+    );
+  }
+}
+
+class _PasswordInput extends StatelessWidget {
+  const _PasswordInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return TextField(
+          onChanged: (password) {
+            context.read<SignupCubit>().passwordChanged(password);
+          },
+          decoration: const InputDecoration(labelText: "Password"),
+        );
+      },
+    );
+  }
+}
+
+class _SignUpButton extends StatelessWidget {
+  const _SignUpButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return state.status == SignUpStatus.submitting
+            ? CircularProgressIndicator()
+            : ElevatedButton(
+                onPressed: () {
+                  context.read<SignupCubit>().signUpFormSubmitted();
+                },
+                child: Text("Signup"),
+                style: ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
+              );
+      },
     );
   }
 }

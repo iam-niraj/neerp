@@ -1,4 +1,11 @@
-class LoginResponseModel {
+import 'dart:convert';
+
+import 'package:equatable/equatable.dart';
+
+LoginResponseModel loginResponseJson(String str) =>
+    LoginResponseModel.fromJson(json.decode(str));
+
+class LoginResponseModel extends Equatable {
   Result? result;
   int? success;
   String? fcm;
@@ -20,6 +27,9 @@ class LoginResponseModel {
     data['fcm'] = fcm;
     return data;
   }
+
+  @override
+  List<Object?> get props => [result, success, fcm];
 }
 
 class Result {

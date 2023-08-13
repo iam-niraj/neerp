@@ -168,7 +168,7 @@ class LoginForm extends StatelessWidget {
       ), */
         );
   }
-},
+}
 
 class _UsernameInput extends StatelessWidget {
   const _UsernameInput({super.key});

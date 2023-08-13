@@ -45,7 +45,19 @@ class RegisterForm extends StatelessWidget {
         if (state.status == SignUpStatus.error) {}
       },
       child: Column(
-        children: [
+        children: const [
+          _FullnameInput(),
+          SizedBox(
+            height: 50,
+          ),
+          _EmailInput(),
+          SizedBox(
+            height: 50,
+          ),
+          _PhoneInput(),
+          SizedBox(
+            height: 50,
+          ),
           _UsernameInput(),
           SizedBox(
             height: 50,
@@ -178,6 +190,63 @@ class RegisterForm extends StatelessWidget {
   }
 }
 
+class _FullnameInput extends StatelessWidget {
+  const _FullnameInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.fullname != current.fullname,
+      builder: (context, state) {
+        return TextField(
+          onChanged: (fullname) {
+            context.read<SignupCubit>().fullnameChanged(fullname);
+          },
+          decoration: const InputDecoration(labelText: "Fullname"),
+        );
+      },
+    );
+  }
+}
+
+class _EmailInput extends StatelessWidget {
+  const _EmailInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return TextField(
+          onChanged: (email) {
+            context.read<SignupCubit>().emailChanged(email);
+          },
+          decoration: const InputDecoration(labelText: "Email"),
+        );
+      },
+    );
+  }
+}
+
+class _PhoneInput extends StatelessWidget {
+  const _PhoneInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.phone != current.phone,
+      builder: (context, state) {
+        return TextField(
+          onChanged: (phone) {
+            context.read<SignupCubit>().phoneChanged(phone);
+          },
+          decoration: const InputDecoration(labelText: "Phone"),
+        );
+      },
+    );
+  }
+}
+
 class _UsernameInput extends StatelessWidget {
   const _UsernameInput({super.key});
 
@@ -187,8 +256,8 @@ class _UsernameInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.username != current.username,
       builder: (context, state) {
         return TextField(
-          onChanged: (email) {
-            context.read<SignupCubit>().emailChanged(email);
+          onChanged: (username) {
+            context.read<SignupCubit>().usernameChanged(username);
           },
           decoration: const InputDecoration(labelText: "Username"),
         );
@@ -230,7 +299,7 @@ class _SignUpButton extends StatelessWidget {
                 onPressed: () {
                   context.read<SignupCubit>().signUpFormSubmitted();
                 },
-                child: Text("Signup"),
+                child: Text("Register"),
                 style: ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
               );
       },

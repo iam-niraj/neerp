@@ -98,7 +98,9 @@ class APIService {
       headers: requestHeaders,
       body: jsonEncode(model.toJson()),
     );
-
+    print(registerResponseJson(
+      response.body,
+    ));
     return registerResponseJson(
       response.body,
     );

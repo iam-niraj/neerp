@@ -13,6 +13,7 @@ class UserRepository {
         const Duration(milliseconds: 300),
         () => _customer = Customer(
               id: loginDetails!.result!.id!,
+              token: loginDetails.result!.token,
             ));
   }
 }

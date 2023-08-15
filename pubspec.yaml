@@ -43,6 +43,8 @@ dependencies:
   equatable:
   flow_builder:
   api_cache_manager: ^1.0.2
+  stream_transform: ^2.1.0
+  bloc_concurrency: ^0.2.2
 
 dev_dependencies:
   flutter_test:

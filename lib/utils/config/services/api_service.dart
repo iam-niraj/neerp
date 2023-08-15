@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:neerp/models/customer/customer_model.dart';
+import 'package:neerp/models/lift_list/lift_request_model.dart';
+import 'package:neerp/models/lift_list/lift_response_model.dart';
 import 'package:neerp/models/login/login_request_model.dart';
 import 'package:neerp/models/login/login_response_model.dart';
 import 'package:neerp/models/signup/sign_up_request_model.dart';
@@ -106,27 +108,24 @@ class APIService {
     );
   }
 
-  void dispose() => _controller.close();
-
-/*   static Future<String> getUserProfile() async {
-    var loginDetails = await SharedService.loginDetails();
-
+  Future<LiftListResponseModel> getLiftList(
+    LiftListRequestModel model,
+  ) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'Authorization': 'Basic ${loginDetails!.data.token}'
     };
 
-    var url = Uri.http(Config.apiURL, Config.userProfileAPI);
+    var url =
+        Uri.parse("https://onlinenes.co.in/webservice.php?action=lead_list");
 
-    var response = await client.get(
+    var response = await client.post(
       url,
       headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
     );
+    print(liftListResponseJson(response.body));
+    return liftListResponseJson(response.body);
+  }
 
-    if (response != null /* response.statusCode == 200 */) {
-      return response.body;
-    } else {
-      return "";
-    }
-  } */
+  void dispose() => _controller.close();
 }

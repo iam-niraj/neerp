@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/screens/Dashboard/components/dashboard_set1.dart';
-import 'package:neerp/screens/Dashboard/components/user_set.dart';
+import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
+import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/components/appBar.dart';
 
 class DashboardView extends StatelessWidget {
@@ -22,6 +22,14 @@ class DashboardView extends StatelessWidget {
         bottom: false,
         child: Stack(
           children: [
+            /*  Builder(
+              builder: (context) {
+                final userId = context.select(
+                  (AuthBlocBloc bloc) => bloc.state.customer.id,
+                );
+                return Text('UserID: $userId');
+              },
+            ), */
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,80 +38,68 @@ class DashboardView extends StatelessWidget {
                   title: 'Dashboard',
                 ),
                 SizedBox(
-                  height: 24.h,
+                  height: 70.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    DashboardSet1(
-                      iconHeight: 130.h,
-                      iconWidth: 130.w,
-                      icon: "assets/images/lift.png",
-                      title: 'Add Lift',
+                    Item(
+                      icon: 'assets/images/lift.svg',
+                      title: "Add Lift",
+                      isTextTopPadding: true,
                     ),
-                    UserSet(
-                      iconHeight: 130.h,
-                      iconWidth: 130.w,
-                      icon: "assets/images/users.png",
-                      title: 'Add User',
+                    SizedBox(
+                      width: 10.w,
                     ),
-                    DashboardSet1(
-                      iconHeight: 130.h,
-                      iconWidth: 130.w,
-                      icon: "assets/images/lift.png",
-                      title: 'Lift List',
-                      icon2: "assets/images/list.png",
+                    Item(
+                      icon: "assets/images/add_user.svg",
+                      title: "Add User",
+                      isTextTopPadding: true,
                     ),
-                  ],
-                ),
-                /* SizedBox(
-                  height: 4.0.hp,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    DashboardSet2(
-                      iconHeight: iconHeight / 2,
-                      iconWidth: iconWidth / 2,
-                      icon: "assets/images/ongoing.png",
-                      title1: 'Pending',
-                      title2: 'Activity',
+                    SizedBox(
+                      width: 10.w,
                     ),
-                    DashboardSet2(
-                      iconHeight: iconHeight / 2,
-                      iconWidth: iconWidth / 2,
-                      icon: "assets/images/completed.png",
-                      title1: 'Completed',
-                      title2: 'Activity',
-                    ),
-                    DashboardSet2(
-                      iconHeight: iconHeight / 2,
-                      iconWidth: iconWidth / 2,
-                      icon: "assets/images/assign_icon.png",
-                      title1: 'Assign',
-                      title2: 'Activity',
-                    ),
+                    Item(
+                      icon: "assets/images/lift.svg",
+                      title: "Lift List",
+                      isTextTopPadding: true,
+                      onTap: () =>
+                          Navigator.push(context, LiftListScreen.route()),
+                    )
                   ],
                 ),
                 SizedBox(
-                  height: 2.0.hp,
+                  height: 10.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 2.0.wp),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      UserSet(
-                        iconHeight: iconHeight / 2,
-                        iconWidth: iconWidth / 2,
-                        icon: "assets/images/users.png",
-                        title: "User List",
-                        icon2: "assets/images/list.png",
-                      ),
-                    ],
-                  ),
-                ) */
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Item(
+                      icon: 'assets/images/job.svg',
+                      icon2: 'assets/images/timer.svg',
+                      title: "Ongoing Activities",
+                      isTextTopPadding: false,
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Item(
+                      icon: "assets/images/job.svg",
+                      icon2: 'assets/images/assign.svg',
+                      title: "Assign Activities",
+                      isTextTopPadding: false,
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Item(
+                      icon: "assets/images/job.svg",
+                      icon2: 'assets/images/completed.svg',
+                      title: "Completed Activities",
+                      isTextTopPadding: false,
+                    )
+                  ],
+                ),
               ],
             ),
           ],

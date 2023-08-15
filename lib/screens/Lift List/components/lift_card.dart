@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/models/lift/lift_model.dart';
+import 'package:neerp/models/lift_list/lift_response_model.dart';
 import 'package:neerp/screens/Lift%20List/components/button.dart';
 import 'package:neerp/utils/colors.dart';
 
@@ -9,7 +9,7 @@ import '../../../utils/components/data_card.dart';
 class LiftCard extends StatelessWidget {
   const LiftCard({super.key, required this.lift});
 
-  final LiftModel lift;
+  final Result lift;
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +29,19 @@ class LiftCard extends StatelessWidget {
             children: [
               DataCard(
                 title: 'Site Name: ',
-                subTitle: lift.siteName,
+                subTitle: lift.siteName!,
               ),
               DataCard(
                 title: 'Customer Name: ',
-                subTitle: lift.customerName,
+                subTitle: lift.customerName!,
               ),
               DataCard(
                 title: 'Email: ',
-                subTitle: lift.email,
+                subTitle: lift.email!,
               ),
               DataCard(
                 title: 'Phone: ',
-                subTitle: lift.phoneNo,
+                subTitle: lift.phone!,
               ),
               SizedBox(
                 height: 10.h,

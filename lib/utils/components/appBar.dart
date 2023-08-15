@@ -14,14 +14,8 @@ class MyAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 170.h,
-      decoration: BoxDecoration(
-        color: kPrimaryColor,
-        borderRadius: BorderRadius.only(
-          bottomRight: Radius.circular(50.r),
-        ),
-      ),
+    return Padding(
+      padding: EdgeInsets.only(top: 20.h),
       child: Stack(
         children: [
           Align(
@@ -30,14 +24,14 @@ class MyAppBar extends StatelessWidget {
               height: 80.h,
               width: 250.w,
               decoration: BoxDecoration(
-                color: white,
+                color: kPrimaryColor,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(50.r),
                   topRight: Radius.circular(50.r),
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 40.0.w),
+                padding: EdgeInsets.only(left: 20.0.w),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(title,

@@ -9,9 +9,7 @@ final bigText = TextStyle(
 );
 
 final description = TextStyle(
-  fontFamily: 'Intel',
-  fontSize: 12.0.sp,
-);
+    fontFamily: 'Intel', fontSize: 18.0.sp, fontWeight: FontWeight.w500);
 
 final mediumText = TextStyle(
   fontFamily: 'Intel',

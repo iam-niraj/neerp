@@ -18,7 +18,7 @@ class LiftCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: kPrimaryColor, width: 2.w),
-          borderRadius: const BorderRadius.all(Radius.circular(24)),
+          borderRadius: BorderRadius.all(Radius.circular(20.r)),
           color: white,
         ),
         child: Padding(

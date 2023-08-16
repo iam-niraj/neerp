@@ -13,7 +13,7 @@ final description = TextStyle(
 
 final mediumText = TextStyle(
   fontFamily: 'Intel',
-  fontSize: 20.0.sp,
+  fontSize: 18.0.sp,
 );
 
 final smallText = TextStyle(

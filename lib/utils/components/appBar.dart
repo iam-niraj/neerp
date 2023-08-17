@@ -34,14 +34,16 @@ class MyAppBar extends StatelessWidget {
                 padding: EdgeInsets.only(left: 20.0.w),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(title,
-                      style: bigText.copyWith(
-                          fontFamily:
-                              "Poppins") /* Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Poppins"), */
-                      ),
+                  child: Text(
+                    title,
+                    style: /* bigText.copyWith(
+                          color: Colors
+                              .white) */
+                        Theme.of(context).textTheme.headlineLarge!.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Poppins"),
+                  ),
                 ),
               ),
             ),

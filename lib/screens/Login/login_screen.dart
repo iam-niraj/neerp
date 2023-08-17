@@ -41,23 +41,6 @@ class LoginForm extends StatelessWidget {
       listener: (context, state) {
         if (state.status == LoginStatus.error) {}
       },
-      // child: const Column(
-      //   children: [
-      //     _UsernameInput(),
-      //     SizedBox(
-      //       height: 50,
-      //     ),
-      //     _PasswordInput(),
-      //     SizedBox(
-      //       height: 50,
-      //     ),
-      //     _LoginButton(),
-      //     SizedBox(
-      //       height: 50,
-      //     ),
-      //     _SignUpButton(),
-      //   ],
-      // )
       child: Expanded(
         child: Container(
           decoration: const BoxDecoration(
@@ -72,35 +55,11 @@ class LoginForm extends StatelessWidget {
                 const PageHeading(
                   title: 'Log in',
                 ),
-                _UsernameInput(),
-                // CustomInputField(
-                //   labelText: 'Username',
-                //   hintText: 'Enter your username',
-                //   prefix: const Icon(Icons.person_pin_outlined),
-                //   validator: (textValue) {
-                //     if (textValue == null || textValue.isEmpty) {
-                //       return 'Username is required !!!';
-                //     }
-                //     return null;
-                //   },
-                // ),
+                const _UsernameInput(),
                 const SizedBox(
                   height: 16,
                 ),
-                // CustomInputField(
-                //   labelText: 'Password',
-                //   hintText: 'Enter your password',
-                //   obscureText: true,
-                //   suffixIcon: true,
-                //   prefix: const Icon(Icons.lock_outline_rounded),
-                //   validator: (textValue) {
-                //     if (textValue == null || textValue.isEmpty) {
-                //       return 'Password is required !!!';
-                //     }
-                //     return null;
-                //   },
-                // ),
-                _PasswordInput(),
+                const _PasswordInput(),
                 const SizedBox(
                   height: 16,
                 ),
@@ -128,7 +87,7 @@ class LoginForm extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                _LoginButton(),
+                const _LoginButton(),
                 const SizedBox(
                   height: 18,
                 ),

@@ -14,12 +14,20 @@ class LiftCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.h),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: kPrimaryColor, width: 2.w),
+          // border: Border.all(color: kPrimaryColor, width: 2.w),
           borderRadius: BorderRadius.all(Radius.circular(20.r)),
           color: white,
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xffC4C4C4).withOpacity(0.25),
+              spreadRadius: 0,
+              blurRadius: 8,
+              offset: const Offset(0, 4), // changes position of shadow
+            ),
+          ],
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),

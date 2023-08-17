@@ -17,6 +17,7 @@ class LiftListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffEEF1F3),
       body: Builder(builder: (context) {
         final userId = context.select(
           (AuthBlocBloc bloc) => bloc.state.customer.id,
@@ -50,92 +51,27 @@ class LiftList extends StatelessWidget {
               title: 'Lift List',
             ),
             SizedBox(
-              height: 24.h,
+              height: 30.h,
             ),
-            BlocBuilder<LiftListBloc, LiftListState>(builder: (context, state) {
-              switch (state.status) {
-                case LiftFetchedStatus.failure:
-                  return const Center(child: Text('failed to fetch posts'));
-                case LiftFetchedStatus.success:
-                  if (state.result.isEmpty) {
-                    return const Center(child: Text('no posts'));
-                  }
-                  return Column(
-                    children: [
-                      ...state.result.map((lift) => LiftCard(lift: lift))
-                    ],
-                  );
-                case LiftFetchedStatus.initial:
-                  return const Center(child: CircularProgressIndicator());
-              }
-            })
-            /* Column(
-              children: [
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-                LiftCard(
-                  lift: LiftModel(
-                      siteName: "Society",
-                      customerName: "Shruti",
-                      email: "email.com",
-                      phoneNo: "9898989898"),
-                ),
-              ],
-            ), */
+            BlocBuilder<LiftListBloc, LiftListState>(
+              builder: (context, state) {
+                switch (state.status) {
+                  case LiftFetchedStatus.failure:
+                    return const Center(child: Text('failed to fetch posts'));
+                  case LiftFetchedStatus.success:
+                    if (state.result.isEmpty) {
+                      return const Center(child: Text('no posts'));
+                    }
+                    return Column(
+                      children: [
+                        ...state.result.map((lift) => LiftCard(lift: lift))
+                      ],
+                    );
+                  case LiftFetchedStatus.initial:
+                    return const Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
           ],
         ),
       ),

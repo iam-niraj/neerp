@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:neerp/models/add_lift/add_lift_request_model.dart';
+import 'package:neerp/models/add_lift/add_lift_response_model.dart';
 import 'package:neerp/models/customer/customer_model.dart';
 import 'package:neerp/models/lift_list/lift_request_model.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
@@ -103,6 +105,10 @@ class APIService {
     print(registerResponseJson(
       response.body,
     ));
+    var r = registerResponseJson(
+      response.body,
+    );
+    print(r.success);
     return registerResponseJson(
       response.body,
     );
@@ -125,6 +131,25 @@ class APIService {
     );
     print(liftListResponseJson(response.body));
     return liftListResponseJson(response.body);
+  }
+
+  Future<AddLiftResponseModel> addLift(
+    AddLiftRequestModel model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url =
+        Uri.parse("https://onlinenes.co.in/webservice.php?action=add_new_lead");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    print(addLiftResponseJson(response.body));
+    return addLiftResponseJson(response.body);
   }
 
   void dispose() => _controller.close();

@@ -10,7 +10,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit(this._apiService) : super(LoginState.initial());
 
-  void emailChanged(String value) {
+  void usernameChanged(String value) {
     emit(state.copyWith(username: value, status: LoginStatus.initial));
   }
 

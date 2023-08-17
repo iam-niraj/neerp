@@ -104,13 +104,8 @@ class LoginForm extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       GestureDetector(
-                        onTap: () => {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             const SignupPage()))
-                        },
+                        onTap: () => Navigator.of(context)
+                            .push<void>(RegisterScreen.route()),
                         child: const Text(
                           'Sign up',
                           style: TextStyle(
@@ -157,8 +152,8 @@ class _UsernameInput extends StatelessWidget {
               hintText: "Enter your username",
               contentPadding: EdgeInsets.zero,
             ),
-            onChanged: (email) {
-              context.read<LoginCubit>().emailChanged(email);
+            onChanged: (username) {
+              context.read<LoginCubit>().usernameChanged(username);
             },
           );
         },
@@ -230,19 +225,6 @@ class _LoginButton extends StatelessWidget {
                 },
               );
       },
-    );
-  }
-}
-
-class _SignUpButton extends StatelessWidget {
-  const _SignUpButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => Navigator.of(context).push<void>(RegisterScreen.route()),
-      style: ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
-      child: const Text("Signup"),
     );
   }
 }

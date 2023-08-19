@@ -95,6 +95,7 @@ class AddLiftCubit extends Cubit<AddLiftState> {
           token: state.token,
           liftType: state.liftType,
           doorOpening: state.doorOpening));
+
       result.fold(
           (l) => emit(state.copyWith(status: AddLiftStatus.success)),
           (r) => emit(state.copyWith(

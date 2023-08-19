@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,22 +19,26 @@ class LiftListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFe7eefb),
-      body: Builder(builder: (context) {
-        final userId = context.select(
-          (AuthBlocBloc bloc) => bloc.state.customer.id,
-        );
-        final token = context.select(
-          (AuthBlocBloc bloc) => bloc.state.customer.token,
-        );
-        return BlocProvider(
-          create: (_) => LiftListBloc(
-              apiService: RepositoryProvider.of<APIService>(context))
-            ..add(LiftsFetched(id: userId, token: token!)),
-          child: const LiftList(),
-        );
-      }),
+    return CupertinoPageScaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: const Color(0xFFf3f8fe),
+      child: SafeArea(
+        top: false,
+        child: Builder(builder: (context) {
+          final userId = context.select(
+            (AuthBlocBloc bloc) => bloc.state.customer.id,
+          );
+          final token = context.select(
+            (AuthBlocBloc bloc) => bloc.state.customer.token,
+          );
+          return BlocProvider(
+            create: (_) => LiftListBloc(
+                apiService: RepositoryProvider.of<APIService>(context))
+              ..add(LiftsFetched(id: userId, token: token!)),
+            child: const LiftList(),
+          );
+        }),
+      ),
     );
   }
 }
@@ -43,59 +48,74 @@ class LiftList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: false,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: SizedBox(
-                    height: 30.h,
-                    width: 30.w,
-                    child: SvgPicture.asset('assets/images/back.svg'),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Lift List',
-                    style: bigText.copyWith(fontFamily: "Poppins"),
-                  ),
-                ),
-              ],
-            ),
+    return CustomScrollView(
+      slivers: [
+        CupertinoSliverNavigationBar(
+          largeTitle: Text(
+            'Lift List',
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(0, 28.h, 0, 0),
-              child: BlocBuilder<LiftListBloc, LiftListState>(
-                builder: (context, state) {
-                  switch (state.status) {
-                    case LiftFetchedStatus.failure:
-                      return const Center(child: Text('failed to fetch posts'));
-                    case LiftFetchedStatus.success:
-                      if (state.result.isEmpty) {
-                        return const Center(child: Text('no posts'));
-                      }
-                      return Column(
+          alwaysShowMiddle: false,
+          middle: Text(
+            'Lift List',
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
+          ),
+          backgroundColor: const Color(0xFFf3f8fe),
+          leading: SvgPicture.asset(
+            "assets/images/back.svg",
+            height: 30.h,
+            width: 30.h,
+          ),
+        ),
+        BlocBuilder<LiftListBloc, LiftListState>(
+          builder: (context, state) {
+            switch (state.status) {
+              case LiftFetchedStatus.failure:
+                return const SliverToBoxAdapter(
+                  child: Center(
+                    child: Text('failed to fetch posts'),
+                  ),
+                );
+              case LiftFetchedStatus.success:
+                if (state.result.isEmpty) {
+                  return const SliverToBoxAdapter(
+                    child: Center(
+                      child: Text('no posts'),
+                    ),
+                  );
+                }
+                return SliverPadding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 30.h, horizontal: 26.w),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return Material(
+                          type: MaterialType.transparency,
+                          child: LiftCard(
+                            lift: state.result[index],
+                          ),
+                        );
+                      },
+                      childCount: state.result.length,
+                    ),
+                  ),
+                );
+              /* return Column(
                         children: [
                           ...state.result.map((lift) => LiftCard(lift: lift))
                         ],
-                      );
-                    case LiftFetchedStatus.initial:
-                      return const Center(child: CircularProgressIndicator());
-                  }
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
+                      ); */
+              case LiftFetchedStatus.initial:
+                return const SliverToBoxAdapter(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+            }
+          },
+        ),
+      ],
     );
   }
 }

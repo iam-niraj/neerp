@@ -19,7 +19,7 @@ ThemeData theme(ThemeMode mode, ThemeSettings settings) {
       mode == ThemeMode.light ? schemeLight : schemeDark;
 
   return ThemeData(
-    scaffoldBackgroundColor: const Color(0xFFEEF1F8),
+    scaffoldBackgroundColor: const Color(0xFFe7eefb),
     fontFamily: "Intel",
     colorScheme: colorScheme,
     useMaterial3: settings.useMaterial3,

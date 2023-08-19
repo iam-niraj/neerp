@@ -49,8 +49,30 @@ class AddLift extends StatelessWidget {
       return BlocListener<AddLiftCubit, AddLiftState>(
         listener: (context, state) {
           if (state.status == AddLiftStatus.error) {
-            ErrorDialog(
+            /*  ErrorDialog(
               errorObject: state.errorResponse,
+            ); */
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Row(
+                  children: [
+                    const Icon(
+                      Icons.warning_amber_rounded,
+                      color: Color(0xFFff4667),
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(state.errorResponse,
+                        style: bigText.copyWith(
+                          color: const Color(0xFFff4667),
+                        ))
+                  ],
+                ),
+                backgroundColor: Colors.white,
+                behavior: SnackBarBehavior.floating,
+              ),
             );
           }
         },

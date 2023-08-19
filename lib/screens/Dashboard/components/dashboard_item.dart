@@ -42,7 +42,8 @@ class Item extends StatelessWidget {
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: description,
+                    style: smallText.copyWith(
+                        fontFamily: "Poppins", fontSize: 16.sp),
                   )
                 ],
               ),

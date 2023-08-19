@@ -20,7 +20,6 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFe7eefb),
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -39,104 +38,111 @@ class DashboardView extends StatelessWidget {
               children: [
                 ListTile(
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.h),
+                      EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
                   title: Text('Welcome',
-                      style: mediumText.copyWith(fontSize: 16.sp)),
+                      style: mediumText.copyWith(
+                        fontSize: 20.sp,
+                      )),
                   subtitle: Text('Amelia Barlow',
-                      style: mediumText.copyWith(fontSize: 20.sp)),
+                      style: mediumText.copyWith(
+                          fontSize: 25.sp, fontFamily: "Poppins")),
                   leading: CircleAvatar(
-                    radius: 30.r,
+                    radius: 40.r,
                     backgroundColor: const Color(0xFF1A3848),
                     child: ClipOval(
                       child: Align(
-                        alignment: Alignment.center,
+                        alignment: Alignment.bottomCenter,
                         child: Image.asset("assets/images/avatar.png"),
                       ),
                     ),
                   ),
                 ),
-                Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Item(
-                      icon: 'assets/images/lift.svg',
-                      title: "Add Lift",
-                      isTextTopPadding: true,
-                      onTap: () =>
-                          Navigator.push(context, AddLiftScreen.route()),
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Item(
-                      icon: "assets/images/add_user.svg",
-                      title: "Add User",
-                      isTextTopPadding: true,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Item(
-                      icon: "assets/images/lift.svg",
-                      title: "Lift List",
-                      isTextTopPadding: true,
-                      onTap: () =>
-                          Navigator.push(context, LiftListScreen.route()),
-                    )
-                  ],
+                const Spacer(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Item(
+                            icon: 'assets/images/lift.svg',
+                            title: "Add Lift",
+                            isTextTopPadding: true,
+                            onTap: () =>
+                                Navigator.push(context, AddLiftScreen.route()),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Item(
+                            icon: "assets/images/add_user.svg",
+                            title: "Add User",
+                            isTextTopPadding: true,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Item(
+                            icon: "assets/images/lift.svg",
+                            title: "Lift List",
+                            isTextTopPadding: true,
+                            onTap: () =>
+                                Navigator.push(context, LiftListScreen.route()),
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Item(
+                            icon: 'assets/images/job.svg',
+                            icon2: 'assets/images/timer.svg',
+                            title: "Ongoing Activities",
+                            isTextTopPadding: false,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Item(
+                            icon: "assets/images/job.svg",
+                            icon2: 'assets/images/assign.svg',
+                            title: "Assign Activities",
+                            isTextTopPadding: false,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Item(
+                            icon: "assets/images/job.svg",
+                            icon2: 'assets/images/completed.svg',
+                            title: "Completed Activities",
+                            isTextTopPadding: false,
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Spacer(),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Item(
+                            icon: 'assets/images/user_list.svg',
+                            title: "User List",
+                            isTextTopPadding: true,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Item(
-                      icon: 'assets/images/job.svg',
-                      icon2: 'assets/images/timer.svg',
-                      title: "Ongoing Activities",
-                      isTextTopPadding: false,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Item(
-                      icon: "assets/images/job.svg",
-                      icon2: 'assets/images/assign.svg',
-                      title: "Assign Activities",
-                      isTextTopPadding: false,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Item(
-                      icon: "assets/images/job.svg",
-                      icon2: 'assets/images/completed.svg',
-                      title: "Completed Activities",
-                      isTextTopPadding: false,
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Spacer(),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Item(
-                      icon: 'assets/images/user_list.svg',
-                      title: "User List",
-                      isTextTopPadding: true,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Spacer(),
-                  ],
-                ),
-                Spacer(
+                const Spacer(
                   flex: 5,
                 ),
               ],

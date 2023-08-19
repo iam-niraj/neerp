@@ -8,7 +8,6 @@ import 'package:neerp/utils/components/custom_input_field.dart';
 import 'package:neerp/utils/components/page_header.dart';
 import 'package:neerp/utils/components/page_heading.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
-import 'package:neerp/screens/Login/login_screen.dart';
 import 'package:neerp/screens/Register/cubit/signup_cubit.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -236,7 +235,7 @@ class RegisterForm extends StatelessWidget {
 }
 
 class _FullnameInput extends StatelessWidget {
-  const _FullnameInput({super.key});
+  const _FullnameInput();
 
   @override
   Widget build(BuildContext context) {
@@ -268,7 +267,7 @@ class _FullnameInput extends StatelessWidget {
 }
 
 class _EmailInput extends StatelessWidget {
-  const _EmailInput({super.key});
+  const _EmailInput();
 
   @override
   Widget build(BuildContext context) {
@@ -301,7 +300,7 @@ class _EmailInput extends StatelessWidget {
 }
 
 class _PhoneInput extends StatelessWidget {
-  const _PhoneInput({super.key});
+  const _PhoneInput();
 
   @override
   Widget build(BuildContext context) {
@@ -334,7 +333,7 @@ class _PhoneInput extends StatelessWidget {
 }
 
 class _UsernameInput extends StatelessWidget {
-  const _UsernameInput({super.key});
+  const _UsernameInput();
 
   @override
   Widget build(BuildContext context) {
@@ -367,7 +366,7 @@ class _UsernameInput extends StatelessWidget {
 }
 
 class _PasswordInput extends StatelessWidget {
-  const _PasswordInput({super.key});
+  const _PasswordInput();
 
   @override
   Widget build(BuildContext context) {
@@ -401,7 +400,7 @@ class _PasswordInput extends StatelessWidget {
 }
 
 class _SignUpButton extends StatelessWidget {
-  const _SignUpButton({super.key});
+  const _SignUpButton();
 
   @override
   Widget build(BuildContext context) {

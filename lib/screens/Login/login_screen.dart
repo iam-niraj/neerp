@@ -130,13 +130,13 @@ class LoginForm extends StatelessWidget {
 }
 
 class _UsernameInput extends StatelessWidget {
-  const _UsernameInput({super.key});
+  const _UsernameInput();
 
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
       labelText: "Username",
-      prefix: const Icon(Icons.person_pin_outlined),
+      // prefix: const Icon(Icons.person_pin_outlined),
       widget: BlocBuilder<LoginCubit, LoginState>(
         buildWhen: (previous, current) => previous.username != current.username,
         builder: (context, state) {
@@ -163,7 +163,7 @@ class _UsernameInput extends StatelessWidget {
 }
 
 class _PasswordInput extends StatelessWidget {
-  const _PasswordInput({super.key});
+  const _PasswordInput();
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +197,7 @@ class _PasswordInput extends StatelessWidget {
 }
 
 class _LoginButton extends StatelessWidget {
-  const _LoginButton({super.key});
+  const _LoginButton();
 
   @override
   Widget build(BuildContext context) {

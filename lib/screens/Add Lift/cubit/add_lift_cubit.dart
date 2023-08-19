@@ -78,7 +78,7 @@ class AddLiftCubit extends Cubit<AddLiftState> {
     if (state.status == AddLiftStatus.submitting) return;
     emit(state.copyWith(status: AddLiftStatus.submitting));
     try {
-      await _apiService.addLift(AddLiftRequestModel(
+      var result = await _apiService.addLift(AddLiftRequestModel(
           siteName: state.siteName,
           siteAddress: state.siteAddress,
           customerName: state.customerName,
@@ -95,7 +95,10 @@ class AddLiftCubit extends Cubit<AddLiftState> {
           token: state.token,
           liftType: state.liftType,
           doorOpening: state.doorOpening));
-      emit(state.copyWith(status: AddLiftStatus.success));
+      result.fold(
+          (l) => emit(state.copyWith(status: AddLiftStatus.success)),
+          (r) => emit(state.copyWith(
+              status: AddLiftStatus.error, errorResponse: r.errorMsg)));
     } catch (_) {}
   }
 }

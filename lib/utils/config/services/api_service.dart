@@ -1,6 +1,10 @@
+// ignore_for_file: avoid_print, depend_on_referenced_packages
+
 import 'dart:async';
 import 'dart:convert';
+import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:neerp/models/add_lift/add_lift_error_response_model.dart';
 import 'package:neerp/models/add_lift/add_lift_request_model.dart';
 import 'package:neerp/models/add_lift/add_lift_response_model.dart';
 import 'package:neerp/models/customer/customer_model.dart';
@@ -133,7 +137,7 @@ class APIService {
     return liftListResponseJson(response.body);
   }
 
-  Future<AddLiftResponseModel> addLift(
+  Future<Either<AddLiftResponseModel, AddLiftErrorResponseModel>> addLift(
     AddLiftRequestModel model,
   ) async {
     Map<String, String> requestHeaders = {
@@ -149,7 +153,14 @@ class APIService {
       body: jsonEncode(model.toJson()),
     );
     print(addLiftResponseJson(response.body));
-    return addLiftResponseJson(response.body);
+    final res = addLiftResponseJson(response.body);
+    if (res.success == 1) {
+      print(addLiftResponseJson(response.body));
+      return Left(addLiftResponseJson(response.body));
+    } else {
+      print(addLiftErrorResponseJson(response.body));
+      return Right(addLiftErrorResponseJson(response.body));
+    }
   }
 
   void dispose() => _controller.close();

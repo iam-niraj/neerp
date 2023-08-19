@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -15,7 +17,7 @@ class CompletedActivityView extends StatefulWidget {
 }
 
 class _CompletedActivityViewState extends State<CompletedActivityView> {
-  DateTime _fromDate = DateTime.now();
+  final DateTime _fromDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {

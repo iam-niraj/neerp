@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/constants.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -14,7 +13,24 @@ class MyAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 24.w),
+      title: Text('Welcome', style: mediumText.copyWith(fontSize: 16.sp)),
+      subtitle:
+          Text('Amelia Barlow', style: mediumText.copyWith(fontSize: 20.sp)),
+      leading: CircleAvatar(
+        radius: 30.r,
+        backgroundColor: const Color(0xFF1A3848),
+        child: ClipOval(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Image.asset("assets/images/avatar.png"),
+          ),
+        ),
+      ),
+    );
+
+    /* Padding(
       padding: EdgeInsets.only(top: 20.h),
       child: Stack(
         children: [
@@ -50,6 +66,6 @@ class MyAppBar extends StatelessWidget {
           )
         ],
       ),
-    );
+    ); */
   }
 }

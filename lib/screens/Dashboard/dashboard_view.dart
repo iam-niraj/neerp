@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/components/appBar.dart';
+import 'package:neerp/utils/constants.dart';
 
 class DashboardView extends StatelessWidget {
   DashboardView({super.key});
@@ -18,6 +19,7 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFe7eefb),
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -34,12 +36,25 @@ class DashboardView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const MyAppBar(
-                  title: 'Dashboard',
+                ListTile(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.h),
+                  title: Text('Welcome',
+                      style: mediumText.copyWith(fontSize: 16.sp)),
+                  subtitle: Text('Amelia Barlow',
+                      style: mediumText.copyWith(fontSize: 20.sp)),
+                  leading: CircleAvatar(
+                    radius: 30.r,
+                    backgroundColor: const Color(0xFF1A3848),
+                    child: ClipOval(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Image.asset("assets/images/avatar.png"),
+                      ),
+                    ),
+                  ),
                 ),
-                SizedBox(
-                  height: 70.h,
-                ),
+                Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -99,6 +114,27 @@ class DashboardView extends StatelessWidget {
                       isTextTopPadding: false,
                     )
                   ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Spacer(),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Item(
+                      icon: 'assets/images/user_list.svg',
+                      title: "User List",
+                      isTextTopPadding: true,
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Spacer(),
+                  ],
+                ),
+                Spacer(
+                  flex: 5,
                 ),
               ],
             ),

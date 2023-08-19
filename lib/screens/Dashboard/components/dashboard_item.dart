@@ -36,7 +36,7 @@ class Item extends StatelessWidget {
                   ),
                   isTextTopPadding
                       ? SizedBox(
-                          height: 5.0.h,
+                          height: 10.0.h,
                         )
                       : Container(),
                   Text(

@@ -20,7 +20,8 @@ class AddLiftState extends Equatable {
       required this.token,
       required this.liftType,
       required this.doorOpening,
-      required this.status});
+      required this.status,
+      required this.errorResponse, });
 
   final String siteName;
   final String siteAddress;
@@ -38,6 +39,7 @@ class AddLiftState extends Equatable {
   final String token;
   final String liftType;
   final String doorOpening;
+  final String errorResponse;
   final AddLiftStatus status;
 
   factory AddLiftState.initial() {
@@ -58,7 +60,8 @@ class AddLiftState extends Equatable {
       token: '',
       liftType: '',
       doorOpening: '',
-      status: AddLiftStatus.initial,
+      errorResponse: '',
+      status: AddLiftStatus.initial
     );
   }
 
@@ -79,7 +82,8 @@ class AddLiftState extends Equatable {
     String? token,
     String? liftType,
     String? doorOpening,
-    AddLiftStatus? status,
+    String? errorResponse,
+    AddLiftStatus? status
   }) {
     return AddLiftState(
       siteName: siteName ?? this.siteName,
@@ -98,7 +102,8 @@ class AddLiftState extends Equatable {
       token: token ?? this.token,
       liftType: liftType ?? this.liftType,
       doorOpening: doorOpening ?? this.doorOpening,
-      status: status ?? this.status,
+      status: status ?? this.status, 
+      errorResponse: errorResponse ?? this.errorResponse
     );
   }
 
@@ -120,6 +125,7 @@ class AddLiftState extends Equatable {
         token,
         liftType,
         doorOpening,
+        errorResponse,
         status
       ];
 }

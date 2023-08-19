@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
@@ -34,7 +36,12 @@ class SignupCubit extends Cubit<SignupState> {
     emit(state.copyWith(status: SignUpStatus.submitting));
 
     try {
-      await _apiService.register(SignUpRequestModel(fullname: state.fullname, email: state.email, phone: state.phone, username: state.username, password: state.password));
+      await _apiService.register(SignUpRequestModel(
+          fullname: state.fullname,
+          email: state.email,
+          phone: state.phone,
+          username: state.username,
+          password: state.password));
       emit(state.copyWith(status: SignUpStatus.success));
     } catch (_) {}
   }

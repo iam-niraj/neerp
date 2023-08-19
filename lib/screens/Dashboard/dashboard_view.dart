@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:neerp/screens/Add%20Lift/add_lift.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/components/appBar.dart';
@@ -62,6 +63,8 @@ class DashboardView extends StatelessWidget {
                       icon: 'assets/images/lift.svg',
                       title: "Add Lift",
                       isTextTopPadding: true,
+                      onTap: () =>
+                          Navigator.push(context, AddLiftScreen.route()),
                     ),
                     SizedBox(
                       width: 10.w,

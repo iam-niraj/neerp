@@ -5,7 +5,7 @@ class CustomInputField extends StatelessWidget {
   final Widget? prefix;
   final Widget widget;
 
-  CustomInputField({
+  const CustomInputField({
     Key? key,
     required this.labelText,
     this.prefix,
@@ -15,51 +15,30 @@ class CustomInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * 0.9,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-      child: Column(
-        children: [
-          // if (prefix != null) ...[
-          //   prefix!,
-          //   const SizedBox(width: 10),
-          // ],
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              labelText,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+    return Material(
+      type: MaterialType.transparency,
+      child: UnconstrainedBox(
+        child: Container(
+          width: size.width * 0.9,
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
+          child: Column(
+            children: [
+              // if (prefix != null) ...[
+              //   prefix!,
+              //   const SizedBox(width: 10),
+              // ],
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  labelText,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              widget,
+            ],
           ),
-          widget,
-          // TextFormField(
-          //   obscureText: (widget.obscureText && _obscureText),
-          //   decoration: InputDecoration(
-          //     isDense: (widget.isDense != null) ? widget.isDense : false,
-          //     hintText: widget.hintText,
-          //     suffixIcon: widget.suffixIcon
-          //         ? IconButton(
-          //             icon: Icon(
-          //               _obscureText
-          //                   ? Icons.remove_red_eye
-          //                   : Icons.visibility_off_outlined,
-          //               color: Colors.black54,
-          //             ),
-          //             onPressed: () {
-          //               setState(() {
-          //                 _obscureText = !_obscureText;
-          //               });
-          //             },
-          //           )
-          //         : null,
-          //     suffixIconConstraints: (widget.isDense != null)
-          //         ? const BoxConstraints(maxHeight: 33)
-          //         : null,
-          //   ),
-          //   autovalidateMode: AutovalidateMode.onUserInteraction,
-          //   validator: widget.validator,
-          // ),
-        ],
+        ),
       ),
     );
   }

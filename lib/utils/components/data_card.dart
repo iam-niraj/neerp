@@ -20,10 +20,12 @@ class DataCard extends StatelessWidget {
           title,
           style: mediumText.copyWith(fontWeight: FontWeight.bold),
         ),
-        Text(
-          subTitle,
-          style: mediumText,
-          overflow: TextOverflow.fade,
+        Flexible(
+          child: Text(
+            subTitle,
+            style: mediumText,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     );

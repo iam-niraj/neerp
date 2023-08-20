@@ -68,19 +68,19 @@ class LiftCard extends StatelessWidget {
       child: Column(
         children: [
           DataCard(
-            title: 'Site Name: ',
+            title: 'Site Name:',
             subTitle: lift.siteName!,
           ),
           DataCard(
-            title: 'Customer Name: ',
+            title: 'Customer Name:',
             subTitle: lift.customerName!,
           ),
           DataCard(
-            title: 'Email: ',
+            title: 'Email:',
             subTitle: lift.email!,
           ),
           DataCard(
-            title: 'Phone: ',
+            title: 'Phone:',
             subTitle: lift.phone!,
           ),
           /*  SizedBox(

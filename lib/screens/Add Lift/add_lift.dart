@@ -1,8 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api, unused_field, must_be_immutable
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Add%20Lift/cubit/add_lift_cubit.dart';
@@ -23,12 +25,15 @@ class AddLiftScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: white,
+    return CupertinoPageScaffold(
+      backgroundColor: const Color(0xFFf3f8fe),
       resizeToAvoidBottomInset: false,
-      body: BlocProvider(
-        create: (context) => AddLiftCubit(context.read<APIService>()),
-        child: const AddLift(),
+      child: SafeArea(
+        top: false,
+        child: BlocProvider(
+          create: (context) => AddLiftCubit(context.read<APIService>()),
+          child: const AddLift(),
+        ),
       ),
     );
   }
@@ -49,12 +54,125 @@ class AddLift extends StatelessWidget {
       return BlocListener<AddLiftCubit, AddLiftState>(
         listener: (context, state) {
           if (state.status == AddLiftStatus.error) {
-            ErrorDialog(
+            /*  ErrorDialog(
               errorObject: state.errorResponse,
+            ); */
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Row(
+                  children: [
+                    const Icon(
+                      Icons.warning_amber_rounded,
+                      color: Color(0xFFff4667),
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(state.errorResponse,
+                        style: bigText.copyWith(
+                          color: const Color(0xFFff4667),
+                        ))
+                  ],
+                ),
+                backgroundColor: Colors.white,
+                behavior: SnackBarBehavior.floating,
+              ),
             );
           }
         },
-        child: SafeArea(
+        child: CustomScrollView(
+          primary: true,
+          slivers: [
+            CupertinoSliverNavigationBar(
+              largeTitle: Text(
+                'Add Lift',
+                style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+              ),
+              alwaysShowMiddle: false,
+              middle: Text(
+                'Add Lift',
+                style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
+              ),
+              backgroundColor: const Color(0xFFf3f8fe),
+              leading: SvgPicture.asset(
+                "assets/images/back.svg",
+                height: 30.h,
+                width: 30.h,
+              ),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(vertical: 30.h),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    const _SiteNameInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const _SiteAddressInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const _CustomerNameInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const _EmailInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const _PhoneInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const _NoOfLiftsInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const _FloorDesignationInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    _AMCTypeInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    _LiftTypeInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    _StartDateInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    _EndDateInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const _NoOfServicesInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const _AmountInput(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    _DoorOpeningInput(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const _SubmitButton(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+        /* child: SafeArea(
           bottom: false,
           child: SingleChildScrollView(
             child: Column(
@@ -125,7 +243,7 @@ class AddLift extends StatelessWidget {
               ],
             ),
           ),
-        ),
+        ), */
       );
     });
   }

@@ -14,24 +14,20 @@ class DataCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: mediumText.copyWith(fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-          Text(
+    return Row(
+      children: [
+        Text(
+          title,
+          style: mediumText.copyWith(fontWeight: FontWeight.bold),
+        ),
+        Flexible(
+          child: Text(
             subTitle,
             style: mediumText,
+            overflow: TextOverflow.ellipsis,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

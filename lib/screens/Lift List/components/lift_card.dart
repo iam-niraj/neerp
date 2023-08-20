@@ -13,45 +13,77 @@ class LiftCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
-      child: Container(
-        decoration: BoxDecoration(
-          // border: Border.all(color: kPrimaryColor, width: 2.w),
-          borderRadius: BorderRadius.all(Radius.circular(20.r)),
-          color: white,
+    return /* Container(
+      margin: const EdgeInsets.only(bottom: 18),
+      padding: const EdgeInsets.symmetric(
+        vertical: 18,
+        horizontal: 23,
+      ),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(26),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xffC4C4C4).withOpacity(0.25),
-              spreadRadius: 0,
-              blurRadius: 8,
-              offset: const Offset(0, 4), // changes position of shadow
+              offset: const Offset(0, 25),
+              blurRadius: 40,
+              spreadRadius: -5,
+              color: const Color(0xFF3d4785).withOpacity(.1),
             ),
-          ],
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DataCard(
-                title: 'Site Name: ',
-                subTitle: lift.siteName!,
-              ),
-              DataCard(
-                title: 'Customer Name: ',
-                subTitle: lift.customerName!,
-              ),
-              DataCard(
-                title: 'Email: ',
-                subTitle: lift.email!,
-              ),
-              DataCard(
-                title: 'Phone: ',
-                subTitle: lift.phone!,
-              ),
-              SizedBox(
+          ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          DataCard(
+            title: 'Site Name:',
+            subTitle: lift.siteName!,
+          ),
+          DataCard(
+            title: 'Customer Name:',
+            subTitle: lift.customerName!,
+          ),
+          DataCard(
+            title: 'Email:',
+            subTitle: lift.email!,
+          ),
+          DataCard(
+            title: 'Phone:',
+            subTitle: lift.phone!,
+          ),
+        ],
+      ),
+    ); */
+
+        Container(
+      margin: EdgeInsets.only(bottom: 18.h),
+      padding: EdgeInsets.symmetric(
+        vertical: 10.h,
+        horizontal: 15.w,
+      ),
+      //width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        border: Border.all(color: Color(0xFF797F8A), width: 1.w),
+        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+      ),
+      child: Column(
+        children: [
+          DataCard(
+            title: 'Site Name:',
+            subTitle: lift.siteName!,
+          ),
+          DataCard(
+            title: 'Customer Name:',
+            subTitle: lift.customerName!,
+          ),
+          DataCard(
+            title: 'Email:',
+            subTitle: lift.email!,
+          ),
+          DataCard(
+            title: 'Phone:',
+            subTitle: lift.phone!,
+          ),
+          /*  SizedBox(
                 height: 10.h,
               ),
               Row(
@@ -67,10 +99,8 @@ class LiftCard extends StatelessWidget {
                     title: 'Edit Lift',
                   ),
                 ],
-              ),
-            ],
-          ),
-        ),
+              ), */
+        ],
       ),
     );
   }

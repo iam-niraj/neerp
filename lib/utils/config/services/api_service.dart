@@ -155,13 +155,18 @@ class APIService {
       headers: requestHeaders,
       body: jsonEncode(model.toJson()),
     );
-    print(addLiftResponseJson(response.body));
-    final res = addLiftResponseJson(response.body);
-    if (res.success == 1) {
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
       print(addLiftResponseJson(response.body));
+      print("here after 1");
       return Left(addLiftResponseJson(response.body));
     } else {
       print(addLiftErrorResponseJson(response.body));
+      print("here after 2");
       return Right(addLiftErrorResponseJson(response.body));
     }
   }

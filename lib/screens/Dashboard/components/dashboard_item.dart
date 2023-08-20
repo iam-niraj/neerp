@@ -36,13 +36,14 @@ class Item extends StatelessWidget {
                   ),
                   isTextTopPadding
                       ? SizedBox(
-                          height: 5.0.h,
+                          height: 10.0.h,
                         )
                       : Container(),
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: description,
+                    style: smallText.copyWith(
+                        fontFamily: "Poppins", fontSize: 16.sp),
                   )
                 ],
               ),

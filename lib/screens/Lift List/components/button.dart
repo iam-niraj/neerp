@@ -12,7 +12,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: kPrimaryColor,
+        color: black,
         borderRadius: BorderRadius.circular(100),
         boxShadow: const [
           BoxShadow(
@@ -25,7 +25,7 @@ class Button extends StatelessWidget {
       ),
       child: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
           child: Text(
             title,
             style: smallText.copyWith(color: white),

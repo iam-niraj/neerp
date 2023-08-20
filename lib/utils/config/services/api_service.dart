@@ -7,6 +7,9 @@ import 'package:http/http.dart' as http;
 import 'package:neerp/models/add_lift/add_lift_error_response_model.dart';
 import 'package:neerp/models/add_lift/add_lift_request_model.dart';
 import 'package:neerp/models/add_lift/add_lift_response_model.dart';
+import 'package:neerp/models/add_user/add_user_error_response_model.dart';
+import 'package:neerp/models/add_user/add_user_request_model.dart';
+import 'package:neerp/models/add_user/add_user_response_model.dart';
 import 'package:neerp/models/customer/customer_model.dart';
 import 'package:neerp/models/lift_list/lift_request_model.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
@@ -160,6 +163,32 @@ class APIService {
     } else {
       print(addLiftErrorResponseJson(response.body));
       return Right(addLiftErrorResponseJson(response.body));
+    }
+  }
+
+  Future<Either<AddUserResponseModel, AddUserErrorResponseModel>> addUser(
+    AddUserRequestModel model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url =
+        Uri.parse("https://onlinenes.co.in/webservice.php?action=add_new_user");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    print(addUserResponseJson(response.body));
+    final res = addUserResponseJson(response.body);
+    if (res.success == 1) {
+      print(addUserResponseJson(response.body));
+      return Left(addUserResponseJson(response.body));
+    } else {
+      print(addUserErrorResponseJson(response.body));
+      return Right(addUserErrorResponseJson(response.body));
     }
   }
 

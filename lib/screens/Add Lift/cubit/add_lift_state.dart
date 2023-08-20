@@ -21,7 +21,7 @@ class AddLiftState extends Equatable {
       required this.liftType,
       required this.doorOpening,
       required this.status,
-      required this.errorResponse, });
+      required this.errorResponse });
 
   final String siteName;
   final String siteAddress;

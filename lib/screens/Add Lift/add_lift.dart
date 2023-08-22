@@ -11,6 +11,7 @@ import 'package:neerp/screens/Add%20Lift/cubit/add_lift_cubit.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/components/custom_input_field.dart';
+import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/components/error_dialog.dart';
 import 'package:neerp/utils/components/page_heading.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
@@ -54,31 +55,8 @@ class AddLift extends StatelessWidget {
       return BlocListener<AddLiftCubit, AddLiftState>(
         listener: (context, state) {
           if (state.status == AddLiftStatus.error) {
-            /*  ErrorDialog(
-              errorObject: state.errorResponse,
-            ); */
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    const Icon(
-                      Icons.warning_amber_rounded,
-                      color: Color(0xFFff4667),
-                      size: 30,
-                    ),
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    Text(state.errorResponse,
-                        style: bigText.copyWith(
-                          color: const Color(0xFFff4667),
-                        ))
-                  ],
-                ),
-                backgroundColor: Colors.white,
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
+            showCupertinoSnackBar(
+                context: context, message: state.errorResponse);
           }
         },
         child: CustomScrollView(
@@ -172,111 +150,9 @@ class AddLift extends StatelessWidget {
             )
           ],
         ),
-        /* child: SafeArea(
-          bottom: false,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const PageHeading(
-                  title: "Add Lift",
-                ),
-                const _SiteNameInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                const _SiteAddressInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                const _CustomerNameInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                const _EmailInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                const _PhoneInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                const _NoOfLiftsInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                const _FloorDesignationInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                _AMCTypeInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                _LiftTypeInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                _StartDateInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                _EndDateInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                const _NoOfServicesInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                const _AmountInput(),
-                const SizedBox(
-                  height: 16,
-                ),
-                _DoorOpeningInput(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const _SubmitButton(),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
-          ),
-        ), */
       );
     });
   }
-
-  // _getDateFromUser(bool isStartDate) async {
-  //   DateTime? pickerDate = await showDatePicker(
-  //       context: context,
-  //       initialDate: DateTime.now(),
-  //       firstDate: DateTime(2015),
-  //       lastDate: DateTime(2121));
-
-  //   if (pickerDate != null) {
-  //     setState(() {
-  //       isStartDate ? _startDate = pickerDate : _expireDate = pickerDate;
-  //     });
-  //   } else {
-  //     if (kDebugMode) {
-  //       print("Please select Valid date !!!");
-  //     }
-  //   }
-  // }
-
-  // Future<void> _openDialog(BuildContext context) async {
-  //   await showDialog<void>(
-  //     context: context,
-  //     useRootNavigator: false,
-  //     builder: (BuildContext context) => DatePickerDialog(
-  //       initialDate: DateTime.now(),
-  //       firstDate: DateTime(1930),
-  //       lastDate: DateTime(2050),
-  //     ),
-  //   );
-  // }
 }
 
 class _SiteNameInput extends StatelessWidget {
@@ -756,7 +632,7 @@ class _SubmitButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status == AddLiftStatus.submitting
-            ? const CircularProgressIndicator()
+            ? const UnconstrainedBox(child: CircularProgressIndicator())
             : CustomFormButton(
                 innerText: 'Submit',
                 onPressed: () {

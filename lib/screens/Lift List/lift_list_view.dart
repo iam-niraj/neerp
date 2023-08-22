@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Lift%20List/bloc/lift_list_bloc.dart';
 import 'package:neerp/screens/Lift%20List/components/lift_card.dart';
-import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -92,8 +91,37 @@ class LiftList extends StatelessWidget {
                       (context, index) {
                         return Material(
                           type: MaterialType.transparency,
-                          child: LiftCard(
-                            lift: state.result[index],
+                          child: GestureDetector(
+                            onTap: () => showCupertinoModalPopup(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  CupertinoActionSheet(
+                                actions: <Widget>[
+                                  CupertinoActionSheetAction(
+                                    child: const Text('View Lift'),
+                                    onPressed: () {
+                                      Navigator.pop(context, 'One');
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
+                                    child: const Text('Edit List'),
+                                    onPressed: () {
+                                      Navigator.pop(context, 'Two');
+                                    },
+                                  ),
+                                ],
+                                cancelButton: CupertinoActionSheetAction(
+                                  isDefaultAction: true,
+                                  onPressed: () {
+                                    Navigator.pop(context, 'Cancel');
+                                  },
+                                  child: const Text('Cancel'),
+                                ),
+                              ),
+                            ),
+                            child: LiftCard(
+                              lift: state.result[index],
+                            ),
                           ),
                         );
                       },

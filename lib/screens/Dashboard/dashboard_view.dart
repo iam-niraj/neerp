@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/screens/Add%20Lift/add_lift.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
-import 'package:neerp/utils/components/appBar.dart';
 import 'package:neerp/utils/constants.dart';
 
 class DashboardView extends StatelessWidget {
@@ -37,15 +36,20 @@ class DashboardView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListTile(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
-                  title: Text('Welcome',
-                      style: mediumText.copyWith(
-                        fontSize: 20.sp,
-                      )),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 12.h,
+                  ),
+                  title: Text(
+                    'Welcome,',
+                    style: mediumText.copyWith(
+                      fontSize: 20.sp,
+                    ),
+                  ),
                   subtitle: Text('Amelia Barlow',
                       style: mediumText.copyWith(
-                          fontSize: 25.sp, fontFamily: "Poppins")),
+                        fontSize: 25.sp,
+                        fontFamily: "Poppins",
+                      )),
                   leading: CircleAvatar(
                     radius: 40.r,
                     backgroundColor: const Color(0xFF1A3848),
@@ -59,86 +63,94 @@ class DashboardView extends StatelessWidget {
                 ),
                 const Spacer(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Column(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Item(
-                            icon: 'assets/images/lift.svg',
-                            title: "Add Lift",
-                            isTextTopPadding: true,
-                            onTap: () =>
-                                Navigator.push(context, AddLiftScreen.route()),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Item(
-                            icon: "assets/images/add_user.svg",
-                            title: "Add User",
-                            isTextTopPadding: true,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Item(
-                            icon: "assets/images/lift.svg",
-                            title: "Lift List",
-                            isTextTopPadding: true,
-                            onTap: () =>
-                                Navigator.push(context, LiftListScreen.route()),
-                          )
-                        ],
+                      Item(
+                        icon: 'assets/images/lift.svg',
+                        title: "Add Lift",
+                        isTextTopPadding: true,
+                        onTap: () =>
+                            Navigator.push(context, AddLiftScreen.route()),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Item(
-                            icon: 'assets/images/job.svg',
-                            icon2: 'assets/images/timer.svg',
-                            title: "Ongoing Activities",
-                            isTextTopPadding: false,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Item(
-                            icon: "assets/images/job.svg",
-                            icon2: 'assets/images/assign.svg',
-                            title: "Assign Activities",
-                            isTextTopPadding: false,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Item(
-                            icon: "assets/images/job.svg",
-                            icon2: 'assets/images/completed.svg',
-                            title: "Completed Activities",
-                            isTextTopPadding: false,
-                          )
-                        ],
+                      SizedBox(
+                        width: 10.w,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const Spacer(),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Item(
-                            icon: 'assets/images/user_list.svg',
-                            title: "User List",
-                            isTextTopPadding: true,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          const Spacer(),
-                        ],
+                      Item(
+                        icon: "assets/images/add_user.svg",
+                        title: "Add User",
+                        isTextTopPadding: true,
                       ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Item(
+                        icon: "assets/images/lift.svg",
+                        icon2: "assets/images/list.svg",
+                        isLiftList: true,
+                        title: "Lift List",
+                        isTextTopPadding: true,
+                        onTap: () => Navigator.push(
+                          context,
+                          LiftListScreen.route(),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Item(
+                        icon: 'assets/images/job.svg',
+                        icon2: 'assets/images/timer.svg',
+                        title: "Ongoing Activities",
+                        isTextTopPadding: false,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Item(
+                        icon: "assets/images/job.svg",
+                        icon2: 'assets/images/assign.svg',
+                        title: "Assign Activities",
+                        isTextTopPadding: false,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Item(
+                        icon: "assets/images/job.svg",
+                        icon2: 'assets/images/completed.svg',
+                        title: "Completed Activities",
+                        isTextTopPadding: false,
+                      )
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Spacer(),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Item(
+                        icon: 'assets/images/user_list.svg',
+                        title: "User List",
+                        isTextTopPadding: true,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      const Spacer(),
                     ],
                   ),
                 ),

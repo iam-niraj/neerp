@@ -44,9 +44,9 @@ class AddUser extends StatelessWidget {
       return BlocListener<AddUserCubit, AddUserState>(
         listener: (context, state) {
           if (state.status == AddUserStatus.error) {
-            ErrorDialog(
+            /*  ErrorDialog(
               errorObject: state.errorResponse,
-            );
+            ); */
           }
         },
         child: SafeArea(

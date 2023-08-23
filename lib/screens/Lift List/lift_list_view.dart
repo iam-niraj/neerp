@@ -20,7 +20,6 @@ class LiftListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xFFf3f8fe),
       child: SafeArea(
         top: false,
         child: Builder(builder: (context) {
@@ -59,7 +58,6 @@ class LiftList extends StatelessWidget {
             'Lift List',
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
           ),
-          backgroundColor: const Color(0xFFf3f8fe),
           leading: SvgPicture.asset(
             "assets/images/back.svg",
             height: 30.h,

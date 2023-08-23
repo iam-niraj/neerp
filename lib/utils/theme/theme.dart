@@ -1,4 +1,5 @@
 // A seed color for the M3 ColorScheme.
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/theme/theme_settings.dart';
@@ -19,6 +20,10 @@ ThemeData theme(ThemeMode mode, ThemeSettings settings) {
       mode == ThemeMode.light ? schemeLight : schemeDark;
 
   return ThemeData(
+    cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
+      scaffoldBackgroundColor: Color(0xFFe7eefb),
+      barBackgroundColor: Color(0xFFe7eefb),
+    ),
     scaffoldBackgroundColor: const Color(0xFFe7eefb),
     fontFamily: "Intel",
     colorScheme: colorScheme,
@@ -36,7 +41,7 @@ ThemeData theme(ThemeMode mode, ThemeSettings settings) {
     inputDecorationTheme: settings.useCustomTheme
         ? const InputDecorationTheme(
             filled: true,
-            fillColor: Color(0xFFf3f8fe),
+            fillColor: Color(0xFFe7eefb),
           )
         : null,
     // textButtonTheme: TextButtonThemeData(

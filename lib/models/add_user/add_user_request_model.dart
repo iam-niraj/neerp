@@ -24,13 +24,13 @@ class AddUserRequestModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['phone'] = this.phone;
-    data['full_name'] = this.fullName;
-    data['username'] = this.username;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['parent_id'] = this.parentId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['phone'] = phone;
+    data['full_name'] = fullName;
+    data['username'] = username;
+    data['email'] = email;
+    data['password'] = password;
+    data['parent_id'] = parentId;
     return data;
   }
 }

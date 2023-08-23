@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/screens/Completed%20Activity/activity_form.dart';
+import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/constants.dart';
 
 class CompletedctivityScreen extends StatelessWidget {
@@ -10,7 +11,6 @@ class CompletedctivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: const Color(0xFFf3f8fe),
       resizeToAvoidBottomInset: false,
       child: SafeArea(
         top: false,
@@ -30,25 +30,33 @@ class CompletedActivity extends StatelessWidget {
       slivers: [
         CupertinoSliverNavigationBar(
           largeTitle: Text(
-            'Add Lift',
-            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+            'Completed Activities',
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 30.sp),
           ),
           alwaysShowMiddle: false,
           middle: Text(
-            'Add Lift',
+            'Completed Activities',
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
           ),
-          backgroundColor: const Color(0xFFf3f8fe),
           leading: SvgPicture.asset(
             "assets/images/back.svg",
-            height: 30.h,
-            width: 30.h,
+            height: 25.h,
+            width: 25.h,
+          ),
+          border: Border.fromBorderSide(
+            BorderSide(
+              color: transparent,
+              width: 0.0, // 0.0 means one physical pixel
+            ),
           ),
         ),
         SliverPersistentHeader(
           pinned: false,
           floating: true,
-          delegate: HeaderDelegate(),
+          delegate: HeaderDelegate(
+            max: MediaQuery.of(context).size.height / 2.5.h,
+            min: MediaQuery.of(context).size.height / 2.5.h,
+          ),
         ),
         SliverPadding(
           padding: EdgeInsets.symmetric(vertical: 30.h),

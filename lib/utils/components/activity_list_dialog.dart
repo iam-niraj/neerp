@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/activity/activity_model.dart';
 import 'package:neerp/utils/components/activity_card.dart';
 
-void showCustomDialog(BuildContext context, {required ValueChanged onValue}) {
+void showCustomDialog(BuildContext context, {required Widget widget}) {
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -38,33 +38,7 @@ void showCustomDialog(BuildContext context, {required ValueChanged onValue}) {
             body: Stack(
               clipBehavior: Clip.none,
               children: [
-                CustomScrollView(
-                  slivers: [
-                    SliverList.separated(
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ActivityCard(
-                          model: ActivityModel(
-                            activityNo: "Activity Service 1",
-                            activityDate: "12/10/2023",
-                            customerName: "Niraj",
-                            customerEmail: "niraj@gmail.com",
-                            customerPhone: "7894561230",
-                          ),
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 24.h),
-                          child: Divider(
-                            indent: 20.w,
-                            endIndent: 20.w,
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                widget,
                 const Positioned(
                   left: 0,
                   right: 0,

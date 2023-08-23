@@ -56,7 +56,9 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
   }
 
   void _onLogoutRequested(
-      AppLogoutRequested event, Emitter<AuthBlocState> emit) {}
+      AppLogoutRequested event, Emitter<AuthBlocState> emit) async {
+    await _apiService.logout();
+  }
 
   Future<Customer?> _tryGetUser() async {
     try {

@@ -24,11 +24,13 @@ class LoginCubit extends Cubit<LoginState> {
     if (state.status == LoginStatus.submitting) return;
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
-      await _apiService.login(LoginRequestModel(
-        username: state.username,
-        password: state.password,
-        fcm: '123456',
-      ));
+      await _apiService.login(
+        LoginRequestModel(
+          username: state.username,
+          password: state.password,
+          fcm: '123456',
+        ),
+      );
       emit(state.copyWith(status: LoginStatus.success));
     } catch (_) {}
   }

@@ -98,6 +98,11 @@ class APIService {
     }
   }
 
+  Future<void> logout() async {
+    await SharedService.logout();
+    _controller.add(AuthenticationStatus.unauthenticated);
+  }
+
   Future<SignUpResponseModel> register(
     SignUpRequestModel model,
   ) async {

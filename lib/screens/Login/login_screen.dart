@@ -19,7 +19,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffEEF1F3),
       body: Column(
         children: [
           const PageHeader(),
@@ -44,7 +43,7 @@ class LoginForm extends StatelessWidget {
       child: Expanded(
         child: Container(
           decoration: const BoxDecoration(
-            color: Colors.white,
+            //color: Colors.white,
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(20),
             ),

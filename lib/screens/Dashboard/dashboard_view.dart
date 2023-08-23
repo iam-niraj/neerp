@@ -1,14 +1,18 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Add%20Lift/add_lift.dart';
 import 'package:neerp/screens/Add%20User/add_user.dart';
 import 'package:neerp/screens/Completed%20Activity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/utils/colors.dart';
+import 'package:neerp/utils/components/activity_list_dialog.dart';
+import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/constants.dart';
 
 class DashboardView extends StatelessWidget {
@@ -39,28 +43,32 @@ class DashboardView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 12.h,
-                  ),
-                  title: Text(
-                    'Welcome,',
-                    style: mediumText.copyWith(
-                      fontSize: 20.sp,
+                GestureDetector(
+                  onTap: () =>
+                      showCustomDialog(context, widget: _SubmitButton()),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 12.h,
                     ),
-                  ),
-                  subtitle: Text('Amelia Barlow',
+                    title: Text(
+                      'Welcome,',
                       style: mediumText.copyWith(
-                        fontSize: 25.sp,
-                        fontFamily: "Poppins",
-                      )),
-                  leading: CircleAvatar(
-                    radius: 40.r,
-                    backgroundColor: const Color(0xFF1A3848),
-                    child: ClipOval(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Image.asset("assets/images/avatar.png"),
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                    subtitle: Text('Amelia Barlow',
+                        style: mediumText.copyWith(
+                          fontSize: 25.sp,
+                          fontFamily: "Poppins",
+                        )),
+                    leading: CircleAvatar(
+                      radius: 40.r,
+                      backgroundColor: const Color(0xFF1A3848),
+                      child: ClipOval(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Image.asset("assets/images/avatar.png"),
+                        ),
                       ),
                     ),
                   ),
@@ -213,6 +221,20 @@ class DashboardView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _SubmitButton extends StatelessWidget {
+  const _SubmitButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomFormButton(
+      innerText: 'Logout',
+      onPressed: () {
+        context.read<AuthBlocBloc>().add(AppLogoutRequested());
+      },
     );
   }
 }

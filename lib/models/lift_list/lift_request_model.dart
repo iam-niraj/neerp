@@ -12,13 +12,12 @@ class LiftListRequestModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['token'] = token;
     data['user_id'] = userId;
     return data;
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [token, userId];
 }

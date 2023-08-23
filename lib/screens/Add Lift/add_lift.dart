@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Add%20Lift/cubit/add_lift_cubit.dart';
@@ -19,7 +18,7 @@ class AddLiftScreen extends StatelessWidget {
   const AddLiftScreen({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const AddLiftScreen());
+    return CupertinoPageRoute<void>(builder: (_) => const AddLiftScreen());
   }
 
   @override

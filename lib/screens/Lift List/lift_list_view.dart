@@ -13,7 +13,7 @@ class LiftListScreen extends StatelessWidget {
   const LiftListScreen({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const LiftListScreen());
+    return CupertinoPageRoute<void>(builder: (_) => const LiftListScreen());
   }
 
   @override
@@ -57,11 +57,6 @@ class LiftList extends StatelessWidget {
           middle: Text(
             'Lift List',
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
-          ),
-          leading: SvgPicture.asset(
-            "assets/images/back.svg",
-            height: 30.h,
-            width: 30.h,
           ),
         ),
         BlocBuilder<LiftListBloc, LiftListState>(

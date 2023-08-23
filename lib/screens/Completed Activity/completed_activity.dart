@@ -62,17 +62,6 @@ class CompletedActivity extends StatelessWidget {
             'Completed Activities',
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
           ),
-          leading: SvgPicture.asset(
-            "assets/images/back.svg",
-            height: 25.h,
-            width: 25.h,
-          ),
-          border: Border.fromBorderSide(
-            BorderSide(
-              color: transparent,
-              width: 0.0, // 0.0 means one physical pixel
-            ),
-          ),
         ),
         /* SliverPersistentHeader(
           pinned: false,

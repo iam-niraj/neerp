@@ -43,7 +43,6 @@ ThemeData theme(ThemeMode mode, ThemeSettings settings) {
         ? const InputDecorationTheme(
             filled: true,
             fillColor: Color(0xFFe7eefb),
-            fillColor: Color(0xFFe7eefb),
           )
         : null,
     // textButtonTheme: TextButtonThemeData(

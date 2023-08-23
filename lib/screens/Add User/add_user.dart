@@ -11,6 +11,7 @@ import 'package:neerp/screens/Add%20User/cubit/add_user_cubit.dart';
 import 'package:neerp/utils/components/appBar.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/components/custom_input_field.dart';
+import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/components/drop_down_text_field.dart';
 import 'package:neerp/utils/components/error_dialog.dart';
 import 'package:neerp/utils/components/text_field.dart';
@@ -22,7 +23,7 @@ class AddUserScreen extends StatelessWidget {
   const AddUserScreen({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const AddUserScreen());
+    return CupertinoPageRoute<void>(builder: (_) => const AddUserScreen());
   }
 
   @override
@@ -55,30 +56,8 @@ class AddUser extends StatelessWidget {
             /*  ErrorDialog(
               errorObject: state.errorResponse,
             ); */
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    const Icon(
-                      Icons.warning_amber_rounded,
-                      color: Color(0xFFff4667),
-                      size: 30,
-                    ),
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    Text(
-                      state.errorResponse,
-                      style: bigText.copyWith(
-                        color: const Color(0xFFff4667),
-                      ),
-                    ),
-                  ],
-                ),
-                backgroundColor: Colors.white,
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
+            showCupertinoSnackBar(
+                context: context, message: state.errorResponse);
           }
         },
         child: CustomScrollView(
@@ -93,11 +72,6 @@ class AddUser extends StatelessWidget {
               middle: Text(
                 'Add User',
                 style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
-              ),
-              leading: SvgPicture.asset(
-                "assets/images/back.svg",
-                height: 30.h,
-                width: 30.h,
               ),
             ),
             SliverPadding(
@@ -291,7 +265,7 @@ class _SubmitButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status == AddUserStatus.submitting
-            ? const CircularProgressIndicator()
+            ? UnconstrainedBox(child: const CircularProgressIndicator())
             : CustomFormButton(
                 innerText: 'Submit',
                 onPressed: () {

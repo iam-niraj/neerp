@@ -90,8 +90,8 @@ class MyAppView extends StatelessWidget {
         themeMode: themeMode,
         theme: theme(ThemeMode.light, settings),
         darkTheme: theme(ThemeMode.dark, settings),
-        home: DashboardView(),
-        /*  builder: (context, child) {
+        // home: DashboardView(),
+        builder: (context, child) {
           return BlocListener<AuthBlocBloc, AuthBlocState>(
             listener: (context, state) {
               switch (state.status) {
@@ -114,7 +114,7 @@ class MyAppView extends StatelessWidget {
             child: child,
           );
         },
-        onGenerateRoute: (_) => SplashPage.route(), */
+        onGenerateRoute: (_) => SplashPage.route(),
       ),
     );
   }

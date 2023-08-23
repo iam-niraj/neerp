@@ -2,9 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/screens/Add%20Lift/add_lift.dart';
+import 'package:neerp/screens/Completed%20Activity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
+import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/constants.dart';
 
 class DashboardView extends StatelessWidget {
@@ -87,7 +90,11 @@ class DashboardView extends StatelessWidget {
                       ),
                       Item(
                         icon: "assets/images/lift.svg",
-                        icon2: "assets/images/list.svg",
+                        icon2: SvgPicture.asset(
+                          "assets/images/list.svg",
+                          height: 32.h,
+                          width: 32.w,
+                        ),
                         isLiftList: true,
                         title: "Lift List",
                         isTextTopPadding: true,
@@ -107,7 +114,20 @@ class DashboardView extends StatelessWidget {
                     children: [
                       Item(
                         icon: 'assets/images/job.svg',
-                        icon2: 'assets/images/timer.svg',
+                        icon2: Stack(
+                          children: [
+                            Icon(
+                              Icons.circle_sharp,
+                              color: white,
+                              size: 32.h,
+                            ),
+                            Icon(
+                              Icons.access_time_filled_rounded,
+                              color: kPrimaryColor,
+                              size: 32.h,
+                            ),
+                          ],
+                        ),
                         title: "Ongoing Activities",
                         isTextTopPadding: false,
                       ),
@@ -116,7 +136,20 @@ class DashboardView extends StatelessWidget {
                       ),
                       Item(
                         icon: "assets/images/job.svg",
-                        icon2: 'assets/images/assign.svg',
+                        icon2: Stack(
+                          children: [
+                            Icon(
+                              Icons.circle_sharp,
+                              color: white,
+                              size: 32.h,
+                            ),
+                            Icon(
+                              Icons.build_circle_rounded,
+                              color: kPrimaryColor,
+                              size: 32.h,
+                            ),
+                          ],
+                        ),
                         title: "Assign Activities",
                         isTextTopPadding: false,
                       ),
@@ -125,9 +158,24 @@ class DashboardView extends StatelessWidget {
                       ),
                       Item(
                         icon: "assets/images/job.svg",
-                        icon2: 'assets/images/completed.svg',
+                        icon2: Stack(
+                          children: [
+                            Icon(
+                              Icons.circle_sharp,
+                              color: white,
+                              size: 32.h,
+                            ),
+                            Icon(
+                              Icons.check_circle_rounded,
+                              color: kPrimaryColor,
+                              size: 32.h,
+                            ),
+                          ],
+                        ),
                         title: "Completed Activities",
                         isTextTopPadding: false,
+                        onTap: () => Navigator.push(
+                            context, CompletedctivityScreen.route()),
                       )
                     ],
                   ),

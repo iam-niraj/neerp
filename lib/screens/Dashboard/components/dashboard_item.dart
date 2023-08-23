@@ -14,7 +14,7 @@ class Item extends StatelessWidget {
       this.onTap});
 
   final String icon;
-  final String? icon2;
+  final Widget? icon2;
   final String title;
   final bool isTextTopPadding;
   final bool isLiftList;
@@ -53,29 +53,15 @@ class Item extends StatelessWidget {
             ),
             isLiftList
                 ? Positioned(
-                    bottom: 30.h,
-                    left: 10.w,
-                    child: Opacity(
-                      opacity: 0.8,
-                      child: SvgPicture.asset(
-                        icon2!,
-                        height: 32.h,
-                        width: 32.w,
-                      ),
-                    ),
+                    bottom: 32.h,
+                    left: 15.w,
+                    child: icon2!,
                   )
                 : icon2 != null
                     ? Positioned(
-                        bottom: 40.h,
-                        right: 10.w,
-                        child: Opacity(
-                          opacity: 0.7,
-                          child: SvgPicture.asset(
-                            icon2!,
-                            height: 32.h,
-                            width: 32.w,
-                          ),
-                        ),
+                        bottom: 45.h,
+                        left: 10.w,
+                        child: icon2!,
                       )
                     : Container(),
           ],

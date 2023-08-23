@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
-import 'package:neerp/screens/Lift%20List/components/button.dart';
-import 'package:neerp/utils/colors.dart';
 
 import '../../../utils/components/data_card.dart';
 

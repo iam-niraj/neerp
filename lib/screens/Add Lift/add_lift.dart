@@ -12,8 +12,6 @@ import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/components/custom_input_field.dart';
 import 'package:neerp/utils/components/custom_snackbar.dart';
-import 'package:neerp/utils/components/error_dialog.dart';
-import 'package:neerp/utils/components/page_heading.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -27,7 +25,6 @@ class AddLiftScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: const Color(0xFFf3f8fe),
       resizeToAvoidBottomInset: false,
       child: SafeArea(
         top: false,
@@ -72,12 +69,11 @@ class AddLift extends StatelessWidget {
                 'Add Lift',
                 style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
               ),
-              backgroundColor: const Color(0xFFf3f8fe),
-              leading: SvgPicture.asset(
+              /* SvgPicture.asset(
                 "assets/images/back.svg",
                 height: 30.h,
                 width: 30.h,
-              ),
+              ), */
             ),
             SliverPadding(
               padding: EdgeInsets.symmetric(vertical: 30.h),

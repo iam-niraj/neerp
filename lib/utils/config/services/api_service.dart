@@ -184,14 +184,16 @@ class APIService {
     var url =
         Uri.parse("https://onlinenes.co.in/webservice.php?action=add_new_user");
 
+    print("here");
+
     var response = await client.post(
       url,
       headers: requestHeaders,
       body: jsonEncode(model.toJson()),
     );
-    print(addUserResponseJson(response.body));
-    final res = addUserResponseJson(response.body);
-    if (res.success == 1) {
+    print("here after res");
+    Map<String, dynamic> data = jsonDecode(response.body);
+    if (data["success"] == 1) {
       print(addUserResponseJson(response.body));
       return Left(addUserResponseJson(response.body));
     } else {

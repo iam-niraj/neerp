@@ -20,7 +20,6 @@ class CompletedctivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: const Color(0xFFf3f8fe),
       resizeToAvoidBottomInset: false,
       child: SafeArea(
         top: false,
@@ -55,19 +54,24 @@ class CompletedActivity extends StatelessWidget {
       slivers: [
         CupertinoSliverNavigationBar(
           largeTitle: Text(
-            'Add Lift',
-            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+            'Completed Activities',
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 30.sp),
           ),
           alwaysShowMiddle: false,
           middle: Text(
-            'Add Lift',
+            'Completed Activities',
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
           ),
-          backgroundColor: const Color(0xFFf3f8fe),
           leading: SvgPicture.asset(
             "assets/images/back.svg",
-            height: 30.h,
-            width: 30.h,
+            height: 25.h,
+            width: 25.h,
+          ),
+          border: Border.fromBorderSide(
+            BorderSide(
+              color: transparent,
+              width: 0.0, // 0.0 means one physical pixel
+            ),
           ),
         ),
         /* SliverPersistentHeader(

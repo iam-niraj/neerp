@@ -33,7 +33,7 @@ class AddUserCubit extends Cubit<AddUserState> {
     emit(state.copyWith(parentId: value, status: AddUserStatus.initial));
   }
 
-  Future<void> addUsertWithCredentials() async {
+  Future<void> addUserWithCredentials() async {
     if (state.status == AddUserStatus.submitting) return;
     emit(state.copyWith(status: AddUserStatus.submitting));
     try {
@@ -44,6 +44,7 @@ class AddUserCubit extends Cubit<AddUserState> {
           email: state.email,
           password: state.password,
           parentId: state.parentId));
+
       result.fold(
           (l) => emit(state.copyWith(status: AddUserStatus.success)),
           (r) => emit(state.copyWith(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/screens/Add%20Lift/add_lift.dart';
+import 'package:neerp/screens/Add%20User/add_user.dart';
 import 'package:neerp/screens/Completed%20Activity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
@@ -84,6 +85,8 @@ class DashboardView extends StatelessWidget {
                         icon: "assets/images/add_user.svg",
                         title: "Add User",
                         isTextTopPadding: true,
+                        onTap: () =>
+                            Navigator.push(context, AddUserScreen.route()),
                       ),
                       SizedBox(
                         width: 10.w,

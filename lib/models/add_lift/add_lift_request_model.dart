@@ -54,23 +54,23 @@ class AddLiftRequestModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['site_name'] = this.siteName;
-    data['site_address'] = this.siteAddress;
-    data['customer_name'] = this.customerName;
-    data['email'] = this.email;
-    data['phone'] = this.phone;
-    data['no_of_lifts'] = this.noOfLifts;
-    data['floor_designation'] = this.floorDesignation;
-    data['amc_type'] = this.amcType;
-    data['start_date'] = this.startDate;
-    data['end_date'] = this.endDate;
-    data['no_of_services'] = this.noOfServices;
-    data['amount'] = this.amount;
-    data['user_id'] = this.userId;
-    data['token'] = this.token;
-    data['lift_type'] = this.liftType;
-    data['door_opening'] = this.doorOpening;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['site_name'] = siteName;
+    data['site_address'] = siteAddress;
+    data['customer_name'] = customerName;
+    data['email'] = email;
+    data['phone'] = phone;
+    data['no_of_lifts'] = noOfLifts;
+    data['floor_designation'] = floorDesignation;
+    data['amc_type'] = amcType;
+    data['start_date'] = startDate;
+    data['end_date'] = endDate;
+    data['no_of_services'] = noOfServices;
+    data['amount'] = amount;
+    data['user_id'] = userId;
+    data['token'] = token;
+    data['lift_type'] = liftType;
+    data['door_opening'] = doorOpening;
     return data;
   }
 }

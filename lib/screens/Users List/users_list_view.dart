@@ -3,20 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
-import 'package:neerp/screens/Lift%20List/bloc/lift_list_bloc.dart';
-import 'package:neerp/screens/Lift%20List/components/lift_card.dart';
-import 'package:neerp/screens/Lift%20List/components/view_lift.dart';
-import 'package:neerp/screens/Service%20Details/service_details_screen.dart';
-import 'package:neerp/utils/colors.dart';
-import 'package:neerp/utils/components/activity_list_dialog.dart';
+import 'package:neerp/screens/Users%20List/bloc/users_list_bloc.dart';
+import 'package:neerp/screens/Users%20List/components/users_card.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
-class LiftListScreen extends StatelessWidget {
-  const LiftListScreen({super.key});
+class UsersListScreen extends StatelessWidget {
+  const UsersListScreen({super.key});
 
   static Route<void> route() {
-    return CupertinoPageRoute<void>(builder: (_) => const LiftListScreen());
+    return CupertinoPageRoute<void>(builder: (_) => const UsersListScreen());
   }
 
   @override
@@ -33,10 +29,10 @@ class LiftListScreen extends StatelessWidget {
             (AuthBlocBloc bloc) => bloc.state.customer.token,
           );
           return BlocProvider(
-            create: (_) => LiftListBloc(
+            create: (_) => UsersListBloc(
                 apiService: RepositoryProvider.of<APIService>(context))
-              ..add(LiftsFetched(id: userId, token: token!)),
-            child: const LiftList(),
+              ..add(UsersFetched(id: userId, token: token!)),
+            child: const UsersList(),
           );
         }),
       ),
@@ -44,8 +40,8 @@ class LiftListScreen extends StatelessWidget {
   }
 }
 
-class LiftList extends StatelessWidget {
-  const LiftList({super.key});
+class UsersList extends StatelessWidget {
+  const UsersList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,26 +49,25 @@ class LiftList extends StatelessWidget {
       slivers: [
         CupertinoSliverNavigationBar(
           largeTitle: Text(
-            'Lift List',
+            'Users List',
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
           ),
           alwaysShowMiddle: false,
           middle: Text(
-            'Lift List',
+            'Users List',
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
           ),
-          backgroundColor: kGlassyColor,
         ),
-        BlocBuilder<LiftListBloc, LiftListState>(
+        BlocBuilder<UsersListBloc, UsersListState>(
           builder: (context, state) {
             switch (state.status) {
-              case LiftFetchedStatus.failure:
+              case UsersFetchedStatus.failure:
                 return const SliverToBoxAdapter(
                   child: Center(
                     child: Text('failed to fetch posts'),
                   ),
                 );
-              case LiftFetchedStatus.success:
+              case UsersFetchedStatus.success:
                 if (state.result.isEmpty) {
                   return const SliverToBoxAdapter(
                     child: Center(
@@ -95,31 +90,13 @@ class LiftList extends StatelessWidget {
                                   CupertinoActionSheet(
                                 actions: <Widget>[
                                   CupertinoActionSheetAction(
-                                    child: const Text('Lift Details'),
+                                    child: const Text('Activate'),
                                     onPressed: () {
-                                      showCustomDialog(
-                                        context,
-                                        widget: ViewLiftPage(
-                                          lift: state.result[index],
-                                        ),
-                                      );
-                                      // Navigator.pop(context, 'One');
+                                      Navigator.pop(context, 'One');
                                     },
                                   ),
                                   CupertinoActionSheetAction(
-                                    child: const Text('Service Details'),
-                                    onPressed: () {
-                                      showCustomDialog(
-                                        context,
-                                        widget: ServiceDetailsScreen(
-                                          lift: state.result[index],
-                                        ),
-                                      );
-                                      // Navigator.pop(context, 'One');
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text('Edit List'),
+                                    child: const Text('Edit User'),
                                     onPressed: () {
                                       Navigator.pop(context, 'Two');
                                     },
@@ -134,8 +111,8 @@ class LiftList extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            child: LiftCard(
-                              lift: state.result[index],
+                            child: UsersCard(
+                              user: state.result[index],
                             ),
                           ),
                         );
@@ -149,7 +126,7 @@ class LiftList extends StatelessWidget {
                           ...state.result.map((lift) => LiftCard(lift: lift))
                         ],
                       ); */
-              case LiftFetchedStatus.initial:
+              case UsersFetchedStatus.initial:
                 return const SliverToBoxAdapter(
                   child: Center(
                     child: CircularProgressIndicator(),

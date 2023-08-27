@@ -17,10 +17,10 @@ class AddUserErrorResponseModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['result'] = this.result;
-    data['error_msg'] = this.errorMsg;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
+    data['result'] = result;
+    data['error_msg'] = errorMsg;
     return data;
   }
 }

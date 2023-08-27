@@ -10,6 +10,7 @@ import 'package:neerp/screens/Add%20User/add_user.dart';
 import 'package:neerp/screens/Completed%20Activity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
+import 'package:neerp/screens/Users%20List/users_list_view.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/activity_list_dialog.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
@@ -45,7 +46,7 @@ class DashboardView extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () =>
-                      showCustomDialog(context, widget: _SubmitButton()),
+                      showCustomDialog(context, widget: const _SubmitButton()),
                   child: ListTile(
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 12.h,
@@ -221,7 +222,10 @@ class DashboardView extends StatelessWidget {
                         icon: 'assets/images/user_list.svg',
                         title: "User List",
                         isTextTopPadding: true,
-                        //onTap: () =>  Navigator.push(context, User.route()),
+                        onTap: () => Navigator.push(
+                          context,
+                          UsersListScreen.route(),
+                        ),
                       ),
                       SizedBox(
                         width: 10.w,

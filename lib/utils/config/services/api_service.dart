@@ -23,6 +23,8 @@ import 'package:neerp/models/login/login_request_model.dart';
 import 'package:neerp/models/login/login_response_model.dart';
 import 'package:neerp/models/signup/sign_up_request_model.dart';
 import 'package:neerp/models/signup/sign_up_response_model.dart';
+import 'package:neerp/models/users_list/users_request_model.dart';
+import 'package:neerp/models/users_list/users_response_model.dart';
 
 import 'shared_service.dart';
 
@@ -149,6 +151,25 @@ class APIService {
     );
     print(liftListResponseJson(response.body));
     return liftListResponseJson(response.body);
+  }
+
+  Future<UsersListResponseModel> getUsersList(
+    UsersListRequestModel model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url =
+        Uri.parse("https://onlinenes.co.in/webservice.php?action=user_list");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    print(usersListResponseJson(response.body));
+    return usersListResponseJson(response.body);
   }
 
   Future<Either<LeadServiceResponse, LeadServiceErrorResponse>>

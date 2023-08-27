@@ -20,7 +20,7 @@ class CompletedActivityCard extends StatelessWidget {
       //width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Colors.transparent,
-        border: Border.all(color: Color(0xFF797F8A), width: 1.w),
+        border: Border.all(color: const Color(0xFF797F8A), width: 1.w),
         borderRadius: BorderRadius.all(Radius.circular(20.r)),
       ),
       child: Column(

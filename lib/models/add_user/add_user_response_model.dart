@@ -11,15 +11,14 @@ class AddUserResponseModel {
 
   AddUserResponseModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
-    result =
-        json['result'] != null ? new Result.fromJson(json['result']) : null;
+    result = json['result'] != null ? Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    if (this.result != null) {
-      data['result'] = this.result!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
+    if (result != null) {
+      data['result'] = result!.toJson();
     }
     return data;
   }
@@ -35,8 +34,8 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_id'] = userId;
     return data;
   }
 }

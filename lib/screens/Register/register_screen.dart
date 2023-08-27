@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
@@ -11,7 +8,7 @@ import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/screens/Register/cubit/signup_cubit.dart';
 
 class RegisterScreen extends StatelessWidget {
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
   static Route route() {
     return MaterialPageRoute(builder: (_) => RegisterScreen());
@@ -26,7 +23,7 @@ class RegisterScreen extends StatelessWidget {
             const PageHeader(),
             BlocProvider<SignupCubit>(
               create: (context) => SignupCubit(context.read<APIService>()),
-              child: RegisterForm(),
+              child: const RegisterForm(),
             ),
           ],
         ));
@@ -56,27 +53,27 @@ class RegisterForm extends StatelessWidget {
                 const PageHeading(
                   title: 'Register',
                 ),
-                _FullnameInput(),
-                SizedBox(
+                const _FullnameInput(),
+                const SizedBox(
                   height: 16,
                 ),
-                _EmailInput(),
-                SizedBox(
+                const _EmailInput(),
+                const SizedBox(
                   height: 16,
                 ),
-                _PhoneInput(),
-                SizedBox(
+                const _PhoneInput(),
+                const SizedBox(
                   height: 16,
                 ),
-                _UsernameInput(),
-                SizedBox(
+                const _UsernameInput(),
+                const SizedBox(
                   height: 16,
                 ),
-                _PasswordInput(),
-                SizedBox(
+                const _PasswordInput(),
+                const SizedBox(
                   height: 18,
                 ),
-                _SignUpButton(),
+                const _SignUpButton(),
                 const SizedBox(
                   height: 18,
                 ),
@@ -241,7 +238,7 @@ class _FullnameInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomInputField(
       labelText: "Fullname",
-      prefix: Icon(Icons.person_outline_sharp),
+      prefix: const Icon(Icons.person_outline_sharp),
       widget: BlocBuilder<SignupCubit, SignupState>(
         buildWhen: (previous, current) => previous.fullname != current.fullname,
         builder: (context, state) {
@@ -408,7 +405,7 @@ class _SignUpButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return state.status == SignUpStatus.submitting
-            ? CircularProgressIndicator()
+            ? const CircularProgressIndicator()
             : /* ElevatedButton(
                 onPressed: () {
                   context.read<SignupCubit>().signUpFormSubmitted();

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/models/lift_list/lift_response_model.dart';
+import 'package:neerp/models/users_list/users_response_model.dart';
 
 import '../../../utils/components/data_card.dart';
 
-class LiftCard extends StatelessWidget {
-  const LiftCard({super.key, required this.lift});
+class UsersCard extends StatelessWidget {
+  const UsersCard({super.key, required this.user});
 
-  final Result lift;
+  final Result user;
 
   @override
   Widget build(BuildContext context) {
@@ -66,21 +66,22 @@ class LiftCard extends StatelessWidget {
       child: Column(
         children: [
           DataCard(
-            title: 'Site Name:',
-            subTitle: lift.siteName!,
-          ),
-          DataCard(
-            title: 'Customer Name:',
-            subTitle: lift.customerName!,
+            title: user.fullName!,
+            subTitle: '',
           ),
           DataCard(
             title: 'Email:',
-            subTitle: lift.email!,
+            subTitle: user.email!,
           ),
           DataCard(
             title: 'Phone:',
-            subTitle: lift.phone!,
+            subTitle: user.phone!,
           ),
+          DataCard(
+            title: 'Username:',
+            subTitle: user.username!,
+          ),
+
           /*  SizedBox(
                 height: 10.h,
               ),

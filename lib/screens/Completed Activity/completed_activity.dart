@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Completed%20Activity/bloc/completed_activity_bloc.dart';
 import 'package:neerp/screens/Completed%20Activity/components/completed_activity_card.dart';
@@ -72,7 +71,7 @@ class CompletedActivity extends StatelessWidget {
           builder: (context, state) {
             switch (state.status) {
               case CompletedActivitiesFetchedStatus.failure:
-                return SliverToBoxAdapter(child: Text("error"));
+                return const SliverToBoxAdapter(child: Text("error"));
               case CompletedActivitiesFetchedStatus.success:
                 if (state.result.isEmpty) {
                   return const SliverToBoxAdapter(

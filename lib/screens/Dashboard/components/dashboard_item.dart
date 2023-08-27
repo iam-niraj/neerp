@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/constants.dart';
 
 class Item extends StatelessWidget {
   Item(
-      {required this.icon,
+      {super.key,
+      required this.icon,
       required this.title,
       this.icon2,
       required this.isTextTopPadding,

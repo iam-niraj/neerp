@@ -19,7 +19,7 @@ class CompletedActivitiesListErrorResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['success'] = success;
     data['result'] = result;
     data['error_msg'] = errorMsg;

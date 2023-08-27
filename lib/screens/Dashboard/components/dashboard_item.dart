@@ -27,6 +27,7 @@ class Item extends StatelessWidget {
         onTap: onTap,
         child: Stack(
           children: [
+            Positioned.fill(child: Image.asset("assets/images/glass.png")),
             Column(
               children: [
                 Padding(
@@ -53,7 +54,7 @@ class Item extends StatelessWidget {
             ),
             isLiftList
                 ? Positioned(
-                    bottom: 32.h,
+                    bottom: 28.h,
                     left: 15.w,
                     child: icon2!,
                   )

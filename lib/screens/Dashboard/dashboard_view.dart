@@ -101,10 +101,26 @@ class DashboardView extends StatelessWidget {
                       ),
                       Item(
                         icon: "assets/images/lift.svg",
-                        icon2: SvgPicture.asset(
+                        icon2: /* SvgPicture.asset(
                           "assets/images/list.svg",
                           height: 32.h,
                           width: 32.w,
+                        ), */
+                            Stack(
+                          children: [
+                            Icon(
+                              Icons.circle_sharp,
+                              color: kPrimaryColor,
+                              size: 32.h,
+                            ),
+                            Positioned.fill(
+                              child: Icon(
+                                Icons.list_sharp,
+                                color: white,
+                                size: 25.h,
+                              ),
+                            ),
+                          ],
                         ),
                         isLiftList: true,
                         title: "Lift List",
@@ -205,6 +221,7 @@ class DashboardView extends StatelessWidget {
                         icon: 'assets/images/user_list.svg',
                         title: "User List",
                         isTextTopPadding: true,
+                        //onTap: () =>  Navigator.push(context, User.route()),
                       ),
                       SizedBox(
                         width: 10.w,

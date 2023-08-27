@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Service%20Details/bloc/service_details_bloc.dart';
 import 'package:neerp/screens/Service%20Details/components/service_detail_card.dart';
+import 'package:neerp/utils/components/activity_list_dialog.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 
@@ -61,18 +62,25 @@ class ServiceDetailsList extends StatelessWidget {
                   child: Column(
                     children: [
                       ...state.result.map(
-                        (service) => Container(
-                            padding: EdgeInsets.symmetric(vertical: 12.h),
-                            child: ServiceDetailCard(service: service)),
+                        (service) => Padding(
+                          padding: EdgeInsets.symmetric(vertical: 5.h),
+                          child: ServiceDetailCard(
+                              service: service,
+                              onTap: () {
+                                showCustomDialog(context, widget: Container());
+                              }),
+                        ),
                       ),
-                      const Spacer(),
+                      const Spacer(
+                        flex: 1,
+                      ),
                       CustomFormButton(
                         innerText: "Get Report",
                         onPressed: () {},
                         fontSize: 24.sp,
                       ),
                       const Spacer(
-                        flex: 6,
+                        flex: 10,
                       ),
                     ],
                   ),

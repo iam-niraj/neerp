@@ -6,6 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Lift%20List/bloc/lift_list_bloc.dart';
 import 'package:neerp/screens/Lift%20List/components/lift_card.dart';
+import 'package:neerp/screens/Lift%20List/components/view_lift.dart';
+import 'package:neerp/screens/Service%20Details/service_details_screen.dart';
+import 'package:neerp/utils/colors.dart';
+import 'package:neerp/utils/components/activity_list_dialog.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -58,6 +62,7 @@ class LiftList extends StatelessWidget {
             'Lift List',
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
           ),
+          backgroundColor: kGlassyColor,
         ),
         BlocBuilder<LiftListBloc, LiftListState>(
           builder: (context, state) {
@@ -91,9 +96,27 @@ class LiftList extends StatelessWidget {
                                   CupertinoActionSheet(
                                 actions: <Widget>[
                                   CupertinoActionSheetAction(
-                                    child: const Text('View Lift'),
+                                    child: const Text('Lift Details'),
                                     onPressed: () {
-                                      Navigator.pop(context, 'One');
+                                      showCustomDialog(
+                                        context,
+                                        widget: ViewLiftPage(
+                                          lift: state.result[index],
+                                        ),
+                                      );
+                                      // Navigator.pop(context, 'One');
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
+                                    child: const Text('Service Details'),
+                                    onPressed: () {
+                                      showCustomDialog(
+                                        context,
+                                        widget: ServiceDetailsScreen(
+                                          lift: state.result[index],
+                                        ),
+                                      );
+                                      // Navigator.pop(context, 'One');
                                     },
                                   ),
                                   CupertinoActionSheetAction(

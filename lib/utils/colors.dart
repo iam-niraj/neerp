@@ -7,3 +7,4 @@ const kSecondaryColor = Color(0xffEDEFFF);
 const white = Color(0xFFFFFFFF);
 const transparent = Colors.transparent;
 const black = Color(0xff000000);
+final kGlassyColor = Colors.black.withOpacity(0.13);

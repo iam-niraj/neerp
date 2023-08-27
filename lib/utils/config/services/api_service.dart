@@ -14,6 +14,9 @@ import 'package:neerp/models/completed_activity/completed_activities__list_error
 import 'package:neerp/models/completed_activity/completed_activities_list_response.dart';
 import 'package:neerp/models/completed_activity/request_completed_activities.dart';
 import 'package:neerp/models/customer/customer_model.dart';
+import 'package:neerp/models/lead_service/error_response_lead_service.dart';
+import 'package:neerp/models/lead_service/request_lead_service.dart';
+import 'package:neerp/models/lead_service/response_lead_service.dart';
 import 'package:neerp/models/lift_list/lift_request_model.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
 import 'package:neerp/models/login/login_request_model.dart';
@@ -150,7 +153,7 @@ class APIService {
     return liftListResponseJson(response.body);
   }
 
-   Future<UsersListResponseModel> getUsersList(
+  Future<UsersListResponseModel> getUsersList(
     UsersListRequestModel model,
   ) async {
     Map<String, String> requestHeaders = {
@@ -167,6 +170,38 @@ class APIService {
     );
     print(usersListResponseJson(response.body));
     return usersListResponseJson(response.body);
+  }
+
+  Future<Either<LeadServiceResponse, LeadServiceErrorResponse>>
+      getServicesByLead(
+    RequestLeadService model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.parse(
+        "https://onlinenes.co.in/webservice.php?action=get_services_by_lead");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
+      // print(addLiftResponseJson(response.body));
+      print("here after 1");
+      return Left(getServicesByLeadResponse(response.body));
+    } else {
+      // print(addLiftErrorResponseJson(response.body));
+      print("here after 2");
+      return Right(getServicesByLeadErrorResponse(response.body));
+    }
   }
 
   Future<Either<AddLiftResponseModel, AddLiftErrorResponseModel>> addLift(

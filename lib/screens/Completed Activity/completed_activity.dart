@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
+import 'package:neerp/screens/Completed%20Activity/activity_form.dart';
 import 'package:neerp/screens/Completed%20Activity/bloc/completed_activity_bloc.dart';
 import 'package:neerp/screens/Completed%20Activity/components/completed_activity_card.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
@@ -62,11 +63,13 @@ class CompletedActivity extends StatelessWidget {
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
           ),
         ),
-        /* SliverPersistentHeader(
+        SliverPersistentHeader(
           pinned: false,
           floating: true,
-          delegate: HeaderDelegate(),
-        ), */
+          delegate: HeaderDelegate(
+              max: MediaQuery.of(context).size.height / 2,
+              min: MediaQuery.of(context).size.height / 2),
+        ),
         BlocBuilder<CompletedActivityBloc, CompletedActivityState>(
           builder: (context, state) {
             switch (state.status) {

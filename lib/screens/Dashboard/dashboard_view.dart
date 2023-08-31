@@ -3,14 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Add%20Lift/add_lift.dart';
 import 'package:neerp/screens/Add%20User/add_user.dart';
 import 'package:neerp/screens/Completed%20Activity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
-import 'package:neerp/screens/Users%20List/users_list_view.dart';
+import 'package:neerp/screens/User%20List/user_list_view.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/activity_list_dialog.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
@@ -224,7 +223,7 @@ class DashboardView extends StatelessWidget {
                         isTextTopPadding: true,
                         onTap: () => Navigator.push(
                           context,
-                          UsersListScreen.route(),
+                          UserListScreen.route(),
                         ),
                       ),
                       SizedBox(

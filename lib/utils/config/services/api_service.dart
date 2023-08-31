@@ -14,6 +14,12 @@ import 'package:neerp/models/completed_activity/completed_activities__list_error
 import 'package:neerp/models/completed_activity/completed_activities_list_response.dart';
 import 'package:neerp/models/completed_activity/request_completed_activities.dart';
 import 'package:neerp/models/customer/customer_model.dart';
+import 'package:neerp/models/edit_lift/edit_lift_error_response.dart';
+import 'package:neerp/models/edit_lift/edit_lift_request_model.dart';
+import 'package:neerp/models/edit_lift/edit_lift_response_model.dart';
+import 'package:neerp/models/edit_user/edit_user_error_response.dart';
+import 'package:neerp/models/edit_user/edit_user_request_model.dart';
+import 'package:neerp/models/edit_user/edit_user_response_model.dart';
 import 'package:neerp/models/lead_service/error_response_lead_service.dart';
 import 'package:neerp/models/lead_service/request_lead_service.dart';
 import 'package:neerp/models/lead_service/response_lead_service.dart';
@@ -23,9 +29,8 @@ import 'package:neerp/models/login/login_request_model.dart';
 import 'package:neerp/models/login/login_response_model.dart';
 import 'package:neerp/models/signup/sign_up_request_model.dart';
 import 'package:neerp/models/signup/sign_up_response_model.dart';
-import 'package:neerp/models/users_list/users_request_model.dart';
-import 'package:neerp/models/users_list/users_response_model.dart';
-
+import 'package:neerp/models/user_list/user_request_model.dart';
+import 'package:neerp/models/user_list/user_response_model.dart';
 import 'shared_service.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
@@ -153,8 +158,8 @@ class APIService {
     return liftListResponseJson(response.body);
   }
 
-  Future<UsersListResponseModel> getUsersList(
-    UsersListRequestModel model,
+  Future<UserListResponseModel> getUsersList(
+    UserListRequestModel model,
   ) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
@@ -232,6 +237,68 @@ class APIService {
       print(addLiftErrorResponseJson(response.body));
       print("here after 2");
       return Right(addLiftErrorResponseJson(response.body));
+    }
+  }
+
+  Future<Either<EditLiftResponseModel, EditLiftErrorResponseModel>> editLift(
+    EditLiftRequestModel model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.parse(
+        "https://onlinenes.co.in/webservice.php?action=edit_customer");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
+      print(editLiftResponseJson(response.body));
+      print("here after 1");
+      return Left(editLiftResponseJson(response.body));
+    } else {
+      print(editLiftErrorResponseJson(response.body));
+      print("here after 2");
+      return Right(editLiftErrorResponseJson(response.body));
+    }
+  }
+
+  Future<Either<EditUserResponseModel, EditUserErrorResponseModel>> editUser(
+    EditUserRequestModel model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.parse(
+        "https://onlinenes.co.in/webservice.php?action=edit_user");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
+      print(editUserResponseJson(response.body));
+      print("here after 1");
+      return Left(editUserResponseJson(response.body));
+    } else {
+      print(editUserErrorResponseJson(response.body));
+      print("here after 2");
+      return Right(editUserErrorResponseJson(response.body));
     }
   }
 

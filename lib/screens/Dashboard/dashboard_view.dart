@@ -12,7 +12,7 @@ import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/screens/Users%20List/users_list_view.dart';
 import 'package:neerp/utils/colors.dart';
-import 'package:neerp/utils/components/activity_list_dialog.dart';
+import 'package:neerp/utils/components/custom_dialog.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/constants.dart';
 

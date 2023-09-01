@@ -10,10 +10,11 @@ class UserRepository {
     var loginDetails = await SharedService.loginDetails();
     if (_customer != null) return _customer;
     return Future.delayed(
-        const Duration(milliseconds: 300),
-        () => _customer = Customer(
-              id: loginDetails!.result!.id!,
-              token: loginDetails.result!.token,
-            ));
+      const Duration(milliseconds: 300),
+      () => _customer = Customer(
+        id: loginDetails!.result!.id!,
+        token: loginDetails.result!.token,
+      ),
+    );
   }
 }

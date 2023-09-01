@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:neerp/models/activate_model/reequest_activate_model.dart';
 import 'package:neerp/models/add_lift/add_lift_error_response_model.dart';
 import 'package:neerp/models/add_lift/add_lift_request_model.dart';
 import 'package:neerp/models/add_lift/add_lift_response_model.dart';
@@ -25,6 +26,9 @@ import 'package:neerp/models/signup/sign_up_request_model.dart';
 import 'package:neerp/models/signup/sign_up_response_model.dart';
 import 'package:neerp/models/users_list/users_request_model.dart';
 import 'package:neerp/models/users_list/users_response_model.dart';
+import 'package:neerp/models/view_activity/request_view_activity.dart';
+import 'package:neerp/models/view_activity/view_activity_response_model.dart';
+import 'package:neerp/models/view_activity/view_activty_error_respnse_model.dart';
 
 import 'shared_service.dart';
 
@@ -293,6 +297,63 @@ class APIService {
       // print(addLiftErrorResponseJson(response.body));
       print("here after 2");
       return Right(completedActivitiesErrorResponseJson(response.body));
+    }
+  }
+
+  Future<Either<ViewActivityResponseModel, ViewActivityErrorResponseModel>>
+      viewActivity(
+    RequestViewActivityModel model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.parse(
+        "https://onlinenes.co.in/webservice.php?action=activity_details");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
+      // print(addLiftResponseJson(response.body));
+      print("here after 1");
+      return Left(viewActivityResponseJson(response.body));
+    } else {
+      // print(addLiftErrorResponseJson(response.body));
+      print("here after 2");
+      return Right(viewActivityErrorResponseJson(response.body));
+    }
+  }
+
+  static Future<bool> activateUser(RequestActivateUser model) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url =
+        Uri.parse("https://onlinenes.co.in/webservice.php?action=activate_emp");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
+      return true;
+    } else {
+      return false;
     }
   }
 

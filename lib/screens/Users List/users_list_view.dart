@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
+import 'package:neerp/models/activate_model/reequest_activate_model.dart';
 import 'package:neerp/screens/Users%20List/bloc/users_list_bloc.dart';
 import 'package:neerp/screens/Users%20List/components/users_card.dart';
+import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -91,8 +93,22 @@ class UsersList extends StatelessWidget {
                                 actions: <Widget>[
                                   CupertinoActionSheetAction(
                                     child: const Text('Activate'),
-                                    onPressed: () {
-                                      Navigator.pop(context, 'One');
+                                    onPressed: () async {
+                                      await APIService.activateUser(
+                                        RequestActivateUser(
+                                          userId: state.result[index].id,
+                                        ),
+                                      )
+                                          ? showCupertinoSnackBar(
+                                              context: context,
+                                              message:
+                                                  "User Activation Successful ")
+                                          : showCupertinoSnackBar(
+                                              context: context,
+                                              message:
+                                                  "User Activation Failed");
+
+                                      Navigator.of(context).pop();
                                     },
                                   ),
                                   CupertinoActionSheetAction(

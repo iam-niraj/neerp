@@ -1,9 +1,9 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:neerp/models/lead_service/request_lead_service.dart';
+import 'package:neerp/models/view_activity/request_view_activity.dart';
+import 'package:neerp/models/view_activity/view_activity_response_model.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -29,6 +29,8 @@ class ServiceDetailsBloc
         super(const ServiceDetailsState()) {
     on<ServicesFetched>(_onServicesFetched,
         transformer: throttleDroppable(throttleDuration));
+    on<ViewActivityEvent>(_viewActivity);
+    on<LoadServices>(_loadServices);
   }
 
   Future<void> _onServicesFetched(
@@ -47,26 +49,32 @@ class ServiceDetailsBloc
             ),
           ),
         );
-        /* return emit(
-          state.copyWith(
-            status: ServicesFetchedStatus.success,
-            //result: services.result,
-            hasReachedMax: false,
-          ),
-        ); */
       }
-      /* final lifts = await _fetchPosts(state.posts.length);
-      posts.isEmpty
-          ? emit(state.copyWith(hasReachedMax: true))
-          : emit(
-              state.copyWith(
-                status: PostStatus.success,
-                posts: List.of(state.posts)..addAll(posts),
-                hasReachedMax: false,
-              ),
-            ); */
     } catch (_) {
       emit(state.copyWith(status: ServicesFetchedStatus.failure));
     }
+  }
+
+  Future<void> _viewActivity(
+      ViewActivityEvent event, Emitter<ServiceDetailsState> emit) async {
+    final result = await _apiService.viewActivity(RequestViewActivityModel(
+        activityId: event.activityId, token: event.token));
+    result.fold(
+      (l) => emit(state.copyWith(
+          status: ServicesFetchedStatus.view, viewActivity: l.result?.first)),
+      (r) => emit(
+        state.copyWith(
+          status: ServicesFetchedStatus.failure,
+        ),
+      ),
+    );
+  }
+
+  void _loadServices(LoadServices event, Emitter<ServiceDetailsState> emit) {
+    emit(
+      state.copyWith(
+        status: ServicesFetchedStatus.success,
+      ),
+    );
   }
 }

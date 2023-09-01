@@ -8,7 +8,7 @@ import 'package:neerp/screens/Lift%20List/components/lift_card.dart';
 import 'package:neerp/screens/Lift%20List/components/view_lift.dart';
 import 'package:neerp/screens/Service%20Details/service_details_screen.dart';
 import 'package:neerp/utils/colors.dart';
-import 'package:neerp/utils/components/activity_list_dialog.dart';
+import 'package:neerp/utils/components/custom_dialog.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -107,7 +107,9 @@ class LiftList extends StatelessWidget {
                                     },
                                   ),
                                   CupertinoActionSheetAction(
-                                    child: const Text('Service Details'),
+                                    child: const Text(
+                                      'Service Details',
+                                    ),
                                     onPressed: () {
                                       showCustomDialog(
                                         context,

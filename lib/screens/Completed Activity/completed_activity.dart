@@ -55,7 +55,7 @@ class CompletedActivity extends StatelessWidget {
         CupertinoSliverNavigationBar(
           largeTitle: Text(
             'Completed Activities',
-            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 30.sp),
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
           ),
           alwaysShowMiddle: false,
           middle: Text(

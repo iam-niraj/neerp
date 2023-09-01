@@ -18,3 +18,23 @@ class ServicesFetched extends ServiceDetailsEvent {
   @override
   List<Object> get props => [id, token, leadId];
 }
+
+class ViewActivityEvent extends ServiceDetailsEvent {
+  final String activityId;
+  final String token;
+
+  const ViewActivityEvent({required this.activityId, required this.token});
+
+  @override
+  List<Object> get props => [
+        activityId,
+        token,
+      ];
+}
+
+class LoadServices extends ServiceDetailsEvent {
+  const LoadServices();
+
+  @override
+  List<Object> get props => [];
+}

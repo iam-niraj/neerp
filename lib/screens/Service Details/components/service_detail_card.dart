@@ -36,13 +36,14 @@ class ServiceDetailCard extends StatelessWidget {
                 Text(
                   service.activityName!,
                   style: bigText.copyWith(
-                    fontSize: 28.sp,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 20.sp,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
-                  "from ${service.activityStartDate!} to ${service.activityEndDate!}",
+                  "${service.activityStartDate!} to ${service.activityEndDate!}",
+                  style: kBodyText2.copyWith(fontSize: 14.sp),
                   /* style: bigText.copyWith(
                     fontSize: 10.sp,
                     fontStyle: FontStyle.normal,

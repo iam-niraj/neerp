@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Service%20Details/bloc/service_details_bloc.dart';
 import 'package:neerp/screens/Service%20Details/components/service_detail_card.dart';
-import 'package:neerp/utils/components/activity_list_dialog.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
+import 'package:neerp/utils/constants.dart';
 
 import '../../models/lift_list/lift_response_model.dart';
 
@@ -58,30 +58,43 @@ class ServiceDetailsList extends StatelessWidget {
             }
             return Column(
               children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Service Details",
+                    style: kHeadline.copyWith(fontSize: 24.sp),
+                  ),
+                ),
+                SizedBox(
+                  height: 25.0.h,
+                ),
                 Expanded(
                   child: Column(
                     children: [
                       ...state.result.map(
                         (service) => Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.h),
+                          padding: EdgeInsets.symmetric(vertical: 10.h),
                           child: ServiceDetailCard(
-                              service: service,
-                              onTap: () {
-                                showCustomDialog(context, widget: Container());
-                              }),
+                            service: service,
+                            onTap: () {
+                              context.read<ServiceDetailsBloc>().add(
+                                    ViewActivityEvent(
+                                        activityId: service.id!,
+                                        token: "123456"),
+                                  );
+                            },
+                          ),
                         ),
                       ),
-                      const Spacer(
-                        flex: 1,
+                      SizedBox(
+                        height: 35.0.h,
                       ),
                       CustomFormButton(
                         innerText: "Get Report",
                         onPressed: () {},
                         fontSize: 24.sp,
                       ),
-                      const Spacer(
-                        flex: 10,
-                      ),
+                      const Spacer(),
                     ],
                   ),
                 ),
@@ -91,6 +104,167 @@ class ServiceDetailsList extends StatelessWidget {
           case ServicesFetchedStatus.initial:
             return const Center(
               child: CircularProgressIndicator(),
+            );
+          case ServicesFetchedStatus.view:
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Activity Details",
+                    style: kHeadline.copyWith(fontSize: 24.sp),
+                  ),
+                ),
+                SizedBox(
+                  height: 35.0.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 16.w),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Activity Date:",
+                          style: kHeadline.copyWith(
+                              fontSize: 18.sp, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "${state.viewActivity!.activityStartDate!} to ${state.viewActivity!.activityEndDate!}",
+                          style: kBodyText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.0.h,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Start Comment:",
+                          style: kHeadline.copyWith(
+                              fontSize: 18.sp, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          state.viewActivity!.startComment!,
+                          style: kBodyText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.0.h,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "End Comment:",
+                          style: kHeadline.copyWith(
+                              fontSize: 18.sp, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          state.viewActivity!.endComment!,
+                          style: kBodyText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.0.h,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Served Checkedlist:",
+                          style: kHeadline.copyWith(
+                              fontSize: 18.sp, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          state.viewActivity!.servedChecklist!,
+                          style: kBodyText,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.0.h,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Customer Remark:",
+                          style: kHeadline.copyWith(
+                              fontSize: 18.sp, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Good",
+                          style: kBodyText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.0.h,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Site Name:",
+                          style: kHeadline.copyWith(
+                              fontSize: 18.sp, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          state.viewActivity!.siteName!,
+                          style: kBodyText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.0.h,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Site Address:",
+                          style: kHeadline.copyWith(
+                              fontSize: 18.sp, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          state.viewActivity!.siteAddress!,
+                          style: kBodyText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.0.h,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 35.0.h,
+                ),
+                CustomFormButton(
+                  innerText: "Back",
+                  onPressed: () => context
+                      .read<ServiceDetailsBloc>()
+                      .add(const LoadServices()),
+                  fontSize: 24.sp,
+                ),
+              ],
             );
         }
       },

@@ -7,7 +7,7 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: 60.r,
+      radius: 50.r,
       backgroundColor: const Color(0xFF1A3848),
       child: ClipOval(
         child: Align(

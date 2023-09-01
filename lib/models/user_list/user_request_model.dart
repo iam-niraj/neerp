@@ -1,14 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-
-
-class UsersListRequestModel extends Equatable{
+class UserListRequestModel extends Equatable {
   String? token;
   String? userId;
 
-  UsersListRequestModel({this.token, this.userId});
+  UserListRequestModel({this.token, this.userId});
 
-  UsersListRequestModel.fromJson(Map<String, dynamic> json) {
+  UserListRequestModel.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     userId = json['user_id'];
   }

@@ -4,8 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:neerp/models/completed_activity/request_completed_activities.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:stream_transform/stream_transform.dart';
-
-import '../../../models/completed_activity/completed_activities_list_response.dart';
+import 'package:neerp/models/completed_activity/completed_activities_list_response.dart';
 
 part 'completed_activity_event.dart';
 part 'completed_activity_state.dart';

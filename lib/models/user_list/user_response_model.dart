@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-UsersListResponseModel usersListResponseJson(String str) =>
-    UsersListResponseModel.fromJson(json.decode(str));
+UserListResponseModel usersListResponseJson(String str) =>
+    UserListResponseModel.fromJson(json.decode(str));
 
-class UsersListResponseModel {
+class UserListResponseModel {
   int? success;
   List<Result>? result;
 
-  UsersListResponseModel({this.success, this.result});
+  UserListResponseModel({this.success, this.result});
 
-  UsersListResponseModel.fromJson(Map<String, dynamic> json) {
+  UserListResponseModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     if (json['result'] != null) {
       result = <Result>[];

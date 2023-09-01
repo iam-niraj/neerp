@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/models/users_list/users_response_model.dart';
+import 'package:neerp/models/user_list/user_response_model.dart';
+import 'package:neerp/utils/components/data_card.dart';
 
-import '../../../utils/components/data_card.dart';
-
-class UsersCard extends StatelessWidget {
-  const UsersCard({super.key, required this.user});
+class UserCard extends StatelessWidget {
+  const UserCard({super.key, required this.user});
 
   final Result user;
 

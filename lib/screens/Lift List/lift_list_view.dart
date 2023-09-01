@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
+import 'package:neerp/screens/Edit%20Lift/edit_lift.dart';
 import 'package:neerp/screens/Lift%20List/bloc/lift_list_bloc.dart';
 import 'package:neerp/screens/Lift%20List/components/lift_card.dart';
 import 'package:neerp/screens/Lift%20List/components/view_lift.dart';
@@ -123,7 +124,10 @@ class LiftList extends StatelessWidget {
                                   CupertinoActionSheetAction(
                                     child: const Text('Edit List'),
                                     onPressed: () {
-                                      Navigator.pop(context, 'Two');
+                                      Navigator.push(
+                                          context,
+                                          EditLiftScreen.route(
+                                              state.result[index]));
                                     },
                                   ),
                                 ],

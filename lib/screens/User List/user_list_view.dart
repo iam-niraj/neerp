@@ -4,17 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/models/activate_model/reequest_activate_model.dart';
-import 'package:neerp/screens/Users%20List/bloc/users_list_bloc.dart';
-import 'package:neerp/screens/Users%20List/components/users_card.dart';
+import 'package:neerp/screens/Edit%20User/edit_user.dart';
+import 'package:neerp/screens/User%20List/bloc/users_list_bloc.dart';
+import 'package:neerp/screens/User%20List/components/user_card.dart';
+import 'package:neerp/screens/User%20List/components/view_user.dart';
+import 'package:neerp/utils/components/custom_dialog.dart';
 import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
-class UsersListScreen extends StatelessWidget {
-  const UsersListScreen({super.key});
+class UserListScreen extends StatelessWidget {
+  const UserListScreen({super.key});
 
   static Route<void> route() {
-    return CupertinoPageRoute<void>(builder: (_) => const UsersListScreen());
+    return CupertinoPageRoute<void>(builder: (_) => const UserListScreen());
   }
 
   @override
@@ -34,7 +37,7 @@ class UsersListScreen extends StatelessWidget {
             create: (_) => UsersListBloc(
                 apiService: RepositoryProvider.of<APIService>(context))
               ..add(UsersFetched(id: userId, token: token!)),
-            child: const UsersList(),
+            child: const UserList(),
           );
         }),
       ),
@@ -42,8 +45,8 @@ class UsersListScreen extends StatelessWidget {
   }
 }
 
-class UsersList extends StatelessWidget {
-  const UsersList({super.key});
+class UserList extends StatelessWidget {
+  const UserList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +95,18 @@ class UsersList extends StatelessWidget {
                                   CupertinoActionSheet(
                                 actions: <Widget>[
                                   CupertinoActionSheetAction(
+                                    child: const Text('User Details'),
+                                    onPressed: () {
+                                      showCustomDialog(
+                                        context,
+                                        widget: ViewUserPage(
+                                          user: state.result[index],
+                                        ),
+                                      );
+                                      // Navigator.pop(context, 'One');
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
                                     child: const Text('Activate'),
                                     onPressed: () async {
                                       await APIService.activateUser(
@@ -114,7 +129,12 @@ class UsersList extends StatelessWidget {
                                   CupertinoActionSheetAction(
                                     child: const Text('Edit User'),
                                     onPressed: () {
-                                      Navigator.pop(context, 'Two');
+                                      Navigator.push(
+                                        context,
+                                        EditUserScreen.route(
+                                          state.result[index],
+                                        ),
+                                      );
                                     },
                                   ),
                                 ],
@@ -127,7 +147,7 @@ class UsersList extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            child: UsersCard(
+                            child: UserCard(
                               user: state.result[index],
                             ),
                           ),

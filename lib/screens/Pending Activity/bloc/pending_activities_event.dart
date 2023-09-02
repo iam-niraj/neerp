@@ -16,3 +16,12 @@ class PendingActivitiesFetched extends PendingActivitiesEvent {
   @override
   List<Object> get props => [id, token];
 }
+
+class FilteredPendingActivitiesFetched extends PendingActivitiesEvent {
+ 
+final List<Result> result;
+  const FilteredPendingActivitiesFetched({required this.result});
+
+  @override
+  List<Object> get props => [result];
+}

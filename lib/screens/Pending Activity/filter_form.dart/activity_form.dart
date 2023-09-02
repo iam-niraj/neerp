@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/screens/Pending%20Activity/cubit/pending_activities_cubit.dart';
+import 'package:neerp/screens/Pending%20Activity/filter_form.dart/cubit/filter_pending_activities_cubit.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/components/custom_input_field.dart';
 import 'package:neerp/utils/components/custom_snackbar.dart';
+import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
 class HeaderDelegate extends SliverPersistentHeaderDelegate {
@@ -18,23 +20,10 @@ class HeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _StartDateInput(),
-        const SizedBox(
-          height: 16,
-        ),
-        _StartDateInput(),
-        const SizedBox(
-          height: 16,
-        ),
-        _DoorOpeningInput(),
-        const SizedBox(
-          height: 20,
-        ),
-        const _SubmitButton(),
-      ],
+    return BlocProvider(
+      create: (context) =>
+          FilterPendingActivitiesCubit(context.read<APIService>()),
+      child: FormView(),
     );
 
     /* Container(height: 48, color: CupertinoColors.black); */
@@ -49,6 +38,40 @@ class HeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
       true;
+}
+
+class FormView extends StatelessWidget {
+  const FormView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<FilterPendingActivitiesCubit,
+        FilterPendingActivitiesState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _StartDateInput(),
+          const SizedBox(
+            height: 16,
+          ),
+          _StartDateInput(),
+          const SizedBox(
+            height: 16,
+          ),
+          _DoorOpeningInput(),
+          const SizedBox(
+            height: 20,
+          ),
+          const _SubmitButton(),
+        ],
+      ),
+    );
+  }
 }
 
 class _StartDateInput extends StatelessWidget {
@@ -130,13 +153,14 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PendingActivitiesCubit, PendingActivitiesState>(
+    return BlocBuilder<FilterPendingActivitiesCubit,
+        FilterPendingActivitiesState>(
       builder: (context, state) {
         return CustomFormButton(
           innerText: 'Submit',
           onPressed: () {
             context
-                .read<PendingActivitiesCubit>()
+                .read<FilterPendingActivitiesCubit>()
                 .filterAndFetchAllPendingActivities();
           },
         );

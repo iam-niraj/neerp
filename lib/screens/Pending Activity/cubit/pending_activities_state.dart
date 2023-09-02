@@ -1,4 +1,4 @@
-part of 'pending_activities_cubit.dart';
+/* part of 'pending_activities_cubit.dart';
 
 enum PendingActivitiyFilterFormStatus { initial, submitting, success }
 
@@ -62,3 +62,4 @@ class PendingActivitiesState extends Equatable {
   List<Object> get props =>
       [startDate, endDate, emp, userId, formStatus, status, errorResponse];
 }
+ */

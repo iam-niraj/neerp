@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:neerp/models/pending_activity/pending_activity_response_model.dart';
 import 'package:neerp/models/pending_activity/request_pending_activity_model.dart';
-import 'package:neerp/screens/Pending%20Activity/bloc/pending_activities_bloc.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 
 part 'filter_pending_activities_state.dart';

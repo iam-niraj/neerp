@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:neerp/screens/Pending%20Activity/cubit/pending_activities_cubit.dart';
+import 'package:neerp/screens/Pending%20Activity/bloc/pending_activities_bloc.dart';
 import 'package:neerp/screens/Pending%20Activity/filter_form.dart/cubit/filter_pending_activities_cubit.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
@@ -11,64 +11,65 @@ import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
-class HeaderDelegate extends SliverPersistentHeaderDelegate {
-  final double max;
-  final double min;
-
-  HeaderDelegate({required this.max, required this.min});
+class BuildForm extends StatelessWidget {
+  const BuildForm({super.key});
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
           FilterPendingActivitiesCubit(context.read<APIService>()),
-      child: FormView(),
+      child: const MyFlexiableAppBar(),
     );
-
-    /* Container(height: 48, color: CupertinoColors.black); */
   }
-
-  @override
-  double get maxExtent => max;
-
-  @override
-  double get minExtent => max;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      true;
 }
 
-class FormView extends StatelessWidget {
-  const FormView({
+class MyFlexiableAppBar extends StatelessWidget {
+  final double appBarHeight = 66.0;
+  const MyFlexiableAppBar({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<FilterPendingActivitiesCubit,
-        FilterPendingActivitiesState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _StartDateInput(),
-          const SizedBox(
-            height: 16,
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
+    return SizedBox(
+      height: statusBarHeight,
+      child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: BlocListener<FilterPendingActivitiesCubit,
+            FilterPendingActivitiesState>(
+          listener: (context, state) {
+            if (state.status == FilterPendingActivitiesStatus.error) {
+              showCupertinoSnackBar(
+                  context: context, message: state.errorResponse);
+            } else if (state.status == FilterPendingActivitiesStatus.success) {
+              context
+                  .read<PendingActivitiesBloc>()
+                  .add(FilteredPendingActivitiesFetched(result: state.result));
+            }
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _StartDateInput(),
+              const SizedBox(
+                height: 16,
+              ),
+              _StartDateInput(),
+              const SizedBox(
+                height: 16,
+              ),
+              _DoorOpeningInput(),
+              const SizedBox(
+                height: 20,
+              ),
+              const _SubmitButton(),
+            ],
           ),
-          _StartDateInput(),
-          const SizedBox(
-            height: 16,
-          ),
-          _DoorOpeningInput(),
-          const SizedBox(
-            height: 20,
-          ),
-          const _SubmitButton(),
-        ],
+        ),
       ),
     );
   }

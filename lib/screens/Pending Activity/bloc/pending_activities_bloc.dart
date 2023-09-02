@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:neerp/models/pending_activity/request_pending_activity_model.dart';
-import 'package:neerp/screens/Pending%20Activity/filter_form.dart/cubit/filter_pending_activities_cubit.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -23,23 +20,15 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 
 class PendingActivitiesBloc
     extends Bloc<PendingActivitiesEvent, PendingActivitiesState> {
-  final FilterPendingActivitiesCubit cubit;
   final APIService _apiService;
-  late StreamSubscription _featureSubscription;
 
-  PendingActivitiesBloc({required APIService apiService, required this.cubit})
+  PendingActivitiesBloc({required APIService apiService})
       : _apiService = apiService,
         super(const PendingActivitiesState()) {
     on<PendingActivitiesFetched>(_onPendingActivitiesFetched,
         transformer: throttleDroppable(throttleDuration));
     on<FilteredPendingActivitiesFetched>(_onFilteredPendingActivitiesFetched,
         transformer: throttleDroppable(throttleDuration));
-
-    _featureSubscription = cubit.stream.listen((event) {
-      if (event.status == FilterPendingActivitiesStatus.success) {
-        add(FilteredPendingActivitiesFetched(result: event.result));
-      }
-    });
   }
 
   _onPendingActivitiesFetched(PendingActivitiesFetched event,

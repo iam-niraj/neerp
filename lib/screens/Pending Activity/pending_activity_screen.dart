@@ -5,9 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Pending%20Activity/bloc/pending_activities_bloc.dart';
 import 'package:neerp/screens/Pending%20Activity/components/pending_activity_card.dart';
-import 'package:neerp/screens/Pending%20Activity/cubit/pending_activities_cubit.dart';
 import 'package:neerp/screens/Pending%20Activity/filter_form.dart/activity_form.dart';
-import 'package:neerp/screens/Pending%20Activity/filter_form.dart/cubit/filter_pending_activities_cubit.dart';
+import 'package:neerp/screens/Pending%20Activity/filter_form.dart/activity_form_header.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -29,14 +28,13 @@ class PendingActivitiesScreen extends StatelessWidget {
           final userId = context.select(
             (AuthBlocBloc bloc) => bloc.state.customer.id,
           );
-          final token = context.select(
+          /* final token = context.select(
             (AuthBlocBloc bloc) => bloc.state.customer.token,
-          );
+          ); */
           return BlocProvider(
             create: (context) => PendingActivitiesBloc(
-                apiService: context.read<APIService>(),
-                cubit: FilterPendingActivitiesCubit(context.read<APIService>()))
-              ..add(
+              apiService: context.read<APIService>(),
+            )..add(
                 PendingActivitiesFetched(
                   id: userId,
                   token: "123456",
@@ -55,71 +53,79 @@ class PendingActivities extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PendingActivitiesBloc, PendingActivitiesState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-      child: CustomScrollView(
-        primary: true,
-        slivers: [
-          CupertinoSliverNavigationBar(
-            largeTitle: Text(
-              'Pending Activities',
-              style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
-            ),
-            alwaysShowMiddle: false,
-            middle: Text(
-              'Pending Activities',
-              style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
-            ),
+    return CustomScrollView(
+      primary: true,
+      slivers: [
+        CupertinoSliverNavigationBar(
+          largeTitle: Text(
+            'Pending Activities',
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
           ),
-          SliverPersistentHeader(
+          alwaysShowMiddle: false,
+          middle: Text(
+            'Pending Activities',
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
+          ),
+        ),
+        /* SliverPersistentHeader(
+          pinned: false,
+          floating: true,
+          delegate: HeaderDelegate(
+              max: MediaQuery.of(context).size.height / 2,
+              min: MediaQuery.of(context).size.height / 2),
+        ), */
+        SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: 20.h),
+          sliver: SliverAppBar(
+            centerTitle: false,
+            backgroundColor: Colors.transparent,
             pinned: false,
-            floating: true,
-            delegate: HeaderDelegate(
-                max: MediaQuery.of(context).size.height / 2,
-                min: MediaQuery.of(context).size.height / 2),
+            automaticallyImplyLeading: false,
+            expandedHeight: 300.0.h,
+            flexibleSpace: const FlexibleSpaceBar(
+              background: BuildForm(),
+            ),
           ),
-          BlocBuilder<PendingActivitiesBloc, PendingActivitiesState>(
-            builder: (context, state) {
-              switch (state.status) {
-                case PendingActivitiesFetchedStatus.failure:
-                  return const SliverToBoxAdapter(child: Text("error"));
-                case PendingActivitiesFetchedStatus.success:
-                  if (state.result.isEmpty) {
-                    return const SliverToBoxAdapter(
-                      child: Center(
-                        child: Text('error fetching activities!'),
-                      ),
-                    );
-                  }
-                  return SliverPadding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 30.h, horizontal: 26.w),
-                    sliver: SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        childCount: state.result.length,
-                        (context, index) {
-                          return Material(
-                            type: MaterialType.transparency,
-                            child: PendingActivityCard(
-                                activity: state.result[index]),
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                case PendingActivitiesFetchedStatus.initial:
+        ),
+        BlocBuilder<PendingActivitiesBloc, PendingActivitiesState>(
+          builder: (context, state) {
+            switch (state.status) {
+              case PendingActivitiesFetchedStatus.failure:
+                return const SliverToBoxAdapter(child: Text("error"));
+              case PendingActivitiesFetchedStatus.success:
+                if (state.result.isEmpty) {
                   return const SliverToBoxAdapter(
                     child: Center(
-                      child: CircularProgressIndicator(),
+                      child: Text('error fetching activities!'),
                     ),
                   );
-              }
-            },
-          ),
-        ],
-      ),
+                }
+                return SliverPadding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 6.h, horizontal: 26.w),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      childCount: state.result.length,
+                      (context, index) {
+                        return Material(
+                          type: MaterialType.transparency,
+                          child: PendingActivityCard(
+                              activity: state.result[index]),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              case PendingActivitiesFetchedStatus.initial:
+                return const SliverToBoxAdapter(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+            }
+          },
+        ),
+      ],
     );
   }
 }

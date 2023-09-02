@@ -1,4 +1,6 @@
-class RequestActivateUser {
+import 'package:equatable/equatable.dart';
+
+class RequestActivateUser extends Equatable {
   String? userId;
 
   RequestActivateUser({this.userId});
@@ -12,4 +14,7 @@ class RequestActivateUser {
     data['user_id'] = userId;
     return data;
   }
+
+  @override
+  List<Object?> get props => [userId];
 }

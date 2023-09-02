@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/models/activate_model/reequest_activate_model.dart';
+import 'package:neerp/models/add_lift/add_lift_response_model.dart';
 import 'package:neerp/screens/Edit%20User/edit_user.dart';
 import 'package:neerp/screens/User%20List/bloc/users_list_bloc.dart';
+import 'package:neerp/screens/User%20List/components/activate_user/view.dart';
 import 'package:neerp/screens/User%20List/components/user_card.dart';
 import 'package:neerp/screens/User%20List/components/view_user.dart';
 import 'package:neerp/utils/components/custom_dialog.dart';
@@ -106,26 +108,19 @@ class UserList extends StatelessWidget {
                                       // Navigator.pop(context, 'One');
                                     },
                                   ),
-                                  CupertinoActionSheetAction(
-                                    child: const Text('Activate'),
-                                    onPressed: () async {
-                                      await APIService.activateUser(
-                                        RequestActivateUser(
-                                          userId: state.result[index].id,
-                                        ),
-                                      )
-                                          ? showCupertinoSnackBar(
-                                              context: context,
-                                              message:
-                                                  "User Activation Successful ")
-                                          : showCupertinoSnackBar(
-                                              context: context,
-                                              message:
-                                                  "User Activation Failed");
-
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
+                                  if (state.result[index].isDeactivated == 1)
+                                    CupertinoActionSheetAction(
+                                      child: const Text('Activate'),
+                                      onPressed: () async {
+                                        await showCupertinoDialog(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              ActivateUserDialog(
+                                                  userId:
+                                                      state.result[index].id!),
+                                        );
+                                      },
+                                    ),
                                   CupertinoActionSheetAction(
                                     child: const Text('Edit User'),
                                     onPressed: () {

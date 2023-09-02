@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
 import 'package:neerp/screens/Edit%20Lift/cubit/edit_lift_cubit.dart';
+import 'package:neerp/screens/Lift%20List/bloc/lift_list_bloc.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/components/custom_input_field.dart';
@@ -59,6 +60,14 @@ class EditLift extends StatelessWidget {
           if (state.status == EditLiftStatus.error) {
             showCupertinoSnackBar(
                 context: context, message: state.errorResponse);
+          } else if (state.status == EditLiftStatus.success) {
+            final userId = context.select(
+              (AuthBlocBloc bloc) => bloc.state.customer.id,
+            );
+            context
+                .read<LiftListBloc>()
+                .add(RefreshLiftsFetched(id: userId, token: '123456'));
+            Navigator.pop(context);
           }
         },
         child: CustomScrollView(

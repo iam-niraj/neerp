@@ -27,6 +27,8 @@ class LiftListBloc extends Bloc<LiftListEvent, LiftListState> {
         super(const LiftListState()) {
     on<LiftsFetched>(_onLiftListFetched,
         transformer: throttleDroppable(throttleDuration));
+    on<RefreshLiftsFetched>(_refresh,
+        transformer: throttleDroppable(throttleDuration));
   }
 
   Future<void> _onLiftListFetched(
@@ -44,6 +46,40 @@ class LiftListBloc extends Bloc<LiftListEvent, LiftListState> {
           ),
         );
       }
+      /* final lifts = await _fetchPosts(state.posts.length);
+      posts.isEmpty
+          ? emit(state.copyWith(hasReachedMax: true))
+          : emit(
+              state.copyWith(
+                status: PostStatus.success,
+                posts: List.of(state.posts)..addAll(posts),
+                hasReachedMax: false,
+              ),
+            ); */
+    } catch (_) {
+      emit(state.copyWith(status: LiftFetchedStatus.failure));
+    }
+  }
+
+  Future<void> _refresh(
+      RefreshLiftsFetched event, Emitter<LiftListState> emit) async {
+    if (state.status == LiftFetchedStatus.initial) return;
+    emit(
+      state.copyWith(
+        status: LiftFetchedStatus.initial,
+        hasReachedMax: false,
+      ),
+    );
+    try {
+      final lifts = await _apiService.getLiftList(
+          LiftListRequestModel(userId: event.id, token: event.token));
+      return emit(
+        state.copyWith(
+          status: LiftFetchedStatus.success,
+          result: lifts.result,
+          hasReachedMax: false,
+        ),
+      );
       /* final lifts = await _fetchPosts(state.posts.length);
       posts.isEmpty
           ? emit(state.copyWith(hasReachedMax: true))

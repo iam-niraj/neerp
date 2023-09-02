@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
+import 'package:neerp/screens/User%20List/bloc/users_list_bloc.dart';
 import 'package:neerp/screens/User%20List/components/activate_user/cubit/activate_user_cubit.dart';
 import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
@@ -34,14 +36,17 @@ class ActivateDialog extends StatelessWidget {
         .textTheme
         .apply(displayColor: Theme.of(context).colorScheme.onSurface);
     return BlocConsumer<ActivateUserCubit, ActivateUserState>(
-      buildWhen: (previous, current) => previous.userId != current.userId,
+      //buildWhen: (previous, current) => previous.userId != current.userId,
       listener: (context, state) {
         if (state.status == ActivateUserStatus.failed) {
           showCupertinoSnackBar(
               context: context, message: "Activation Failed Try Again!");
+        } else if (state.status == ActivateUserStatus.success) {
+          Navigator.pop(context, true);
         }
       },
       builder: (context, state) {
+        context.read<ActivateUserCubit>().userIdChnaged(userId);
         return CupertinoAlertDialog(
           title: TextStyleExample(
             name: 'Confirm?',
@@ -61,7 +66,7 @@ class ActivateDialog extends StatelessWidget {
                 style: textTheme.labelLarge!,
               ),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(context, false);
               },
             ),
             CupertinoDialogAction(
@@ -72,10 +77,6 @@ class ActivateDialog extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                context.read<ActivateUserCubit>().userIdChnaged(userId);
-                Navigator.of(context).pop(
-                  true,
-                );
                 context.read<ActivateUserCubit>().activateUser();
               },
             ),

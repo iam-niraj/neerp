@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
-import 'package:neerp/models/activate_model/reequest_activate_model.dart';
-import 'package:neerp/models/add_lift/add_lift_response_model.dart';
 import 'package:neerp/screens/Edit%20User/edit_user.dart';
+import 'package:neerp/screens/Lift%20List/bloc/lift_list_bloc.dart';
 import 'package:neerp/screens/User%20List/bloc/users_list_bloc.dart';
 import 'package:neerp/screens/User%20List/components/activate_user/view.dart';
 import 'package:neerp/screens/User%20List/components/user_card.dart';
 import 'package:neerp/screens/User%20List/components/view_user.dart';
 import 'package:neerp/utils/components/custom_dialog.dart';
-import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -19,7 +17,8 @@ class UserListScreen extends StatelessWidget {
   const UserListScreen({super.key});
 
   static Route<void> route() {
-    return CupertinoPageRoute<void>(builder: (_) => const UserListScreen());
+    return CupertinoPageRoute<void>(
+        builder: (_) => const UserListScreen(), maintainState: false);
   }
 
   @override
@@ -52,6 +51,9 @@ class UserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userId = context.select(
+      (AuthBlocBloc bloc) => bloc.state.customer.id,
+    );
     return CustomScrollView(
       slivers: [
         CupertinoSliverNavigationBar(
@@ -66,7 +68,7 @@ class UserList extends StatelessWidget {
           ),
         ),
         BlocBuilder<UsersListBloc, UsersListState>(
-          builder: (context, state) {
+          builder: (context2, state) {
             switch (state.status) {
               case UsersFetchedStatus.failure:
                 return const SliverToBoxAdapter(
@@ -118,12 +120,30 @@ class UserList extends StatelessWidget {
                                               ActivateUserDialog(
                                                   userId:
                                                       state.result[index].id!),
+                                        ).then(
+                                          (value) {
+                                            if (value == true) {
+                                              Navigator.pop(context);
+                                              context2
+                                                  .read<UsersListBloc>()
+                                                  .add(Refresh(
+                                                      id: userId,
+                                                      token: "123456"));
+                                            }
+                                          },
                                         );
+                                        /* if (result) {
+                                          Navigator.pop(context);
+                                          context.read<LiftListBloc>().add(
+                                              RefreshLiftsFetched(
+                                                  id: userId, token: "123456"));
+                                        } */
                                       },
                                     ),
                                   CupertinoActionSheetAction(
                                     child: const Text('Edit User'),
                                     onPressed: () {
+                                      Navigator.of(context).pop();
                                       Navigator.push(
                                         context,
                                         EditUserScreen.route(

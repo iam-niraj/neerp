@@ -11,6 +11,9 @@ import 'package:neerp/models/add_lift/add_lift_response_model.dart';
 import 'package:neerp/models/add_user/add_user_error_response_model.dart';
 import 'package:neerp/models/add_user/add_user_request_model.dart';
 import 'package:neerp/models/add_user/add_user_response_model.dart';
+import 'package:neerp/models/assigned_activity/assigned_activities__list_error_response.dart';
+import 'package:neerp/models/assigned_activity/assigned_activities_list_response.dart';
+import 'package:neerp/models/assigned_activity/request_assigned_activities.dart';
 import 'package:neerp/models/completed_activity/completed_activities__list_error_response.dart';
 import 'package:neerp/models/completed_activity/completed_activities_list_response.dart';
 import 'package:neerp/models/completed_activity/request_completed_activities.dart';
@@ -365,6 +368,39 @@ class APIService {
       // print(addLiftErrorResponseJson(response.body));
       print("here after 2");
       return Right(completedActivitiesErrorResponseJson(response.body));
+    }
+  }
+
+  Future<
+      Either<AssignedActivitiesResponseList,
+          AssignedActivitiesListErrorResponse>> getAssignedActivitiesLift(
+    RequestAssignedActivitiesList model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.parse(
+        "https://onlinenes.co.in/webservice.php?action=assign_activity_list");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
+      // print(addLiftResponseJson(response.body));
+      print("here after 1");
+      return Left(assignedActivitiesResponseJson(response.body));
+    } else {
+      // print(addLiftErrorResponseJson(response.body));
+      print("here after 2");
+      return Right(assignedActivitiesErrorResponseJson(response.body));
     }
   }
 

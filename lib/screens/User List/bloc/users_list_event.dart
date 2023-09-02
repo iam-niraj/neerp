@@ -16,4 +16,3 @@ class UsersFetched extends UsersListEvent {
   @override
   List<Object> get props => [id, token];
 }
-

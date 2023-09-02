@@ -9,6 +9,7 @@ import 'package:neerp/screens/Add%20User/add_user.dart';
 import 'package:neerp/screens/Completed%20Activity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
+import 'package:neerp/screens/Pending%20Activity/pending_activity_screen.dart';
 import 'package:neerp/screens/User%20List/user_list_view.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/custom_dialog.dart';
@@ -157,6 +158,8 @@ class DashboardView extends StatelessWidget {
                         ),
                         title: "Ongoing Activities",
                         isTextTopPadding: false,
+                        onTap: () => Navigator.push(
+                            context, PendingActivitiesScreen.route()),
                       ),
                       SizedBox(
                         width: 10.w,

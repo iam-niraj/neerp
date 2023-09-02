@@ -31,6 +31,9 @@ import 'package:neerp/models/lift_list/lift_request_model.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
 import 'package:neerp/models/login/login_request_model.dart';
 import 'package:neerp/models/login/login_response_model.dart';
+import 'package:neerp/models/pending_activity/pending_activity_error_response_model.dart';
+import 'package:neerp/models/pending_activity/pending_activity_response_model.dart';
+import 'package:neerp/models/pending_activity/request_pending_activity_model.dart';
 import 'package:neerp/models/signup/sign_up_request_model.dart';
 import 'package:neerp/models/signup/sign_up_response_model.dart';
 import 'package:neerp/models/view_activity/request_view_activity.dart';
@@ -436,7 +439,7 @@ class APIService {
     }
   }
 
-  static Future<bool> activateUser(RequestActivateUser model) async {
+  Future<bool> activateUser(RequestActivateUser model) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
     };
@@ -458,6 +461,39 @@ class APIService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<
+      Either<PendingActivityResponseModel,
+          PendingActivityErrorResponseModel>> getPendingActivitiesLift(
+    PendingActivityRequestModel model,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.parse(
+        "https://onlinenes.co.in/webservice.php?action=pending_activity");
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
+      // print(addLiftResponseJson(response.body));
+      print("here after 1");
+      return Left(pendingActivityResponseJson(response.body));
+    } else {
+      // print(addLiftErrorResponseJson(response.body));
+      print("here after 2");
+      return Right(pendingActivityErrorResponseJson(response.body));
     }
   }
 

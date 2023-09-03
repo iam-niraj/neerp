@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Edit%20User/edit_user.dart';
-import 'package:neerp/screens/Lift%20List/bloc/lift_list_bloc.dart';
 import 'package:neerp/screens/User%20List/bloc/users_list_bloc.dart';
 import 'package:neerp/screens/User%20List/components/activate_user/view.dart';
 import 'package:neerp/screens/User%20List/components/user_card.dart';
@@ -126,9 +125,11 @@ class UserList extends StatelessWidget {
                                               Navigator.pop(context);
                                               context2
                                                   .read<UsersListBloc>()
-                                                  .add(Refresh(
-                                                      id: userId,
-                                                      token: "123456"));
+                                                  .add(
+                                                    Refresh(
+                                                        id: userId,
+                                                        token: "123456"),
+                                                  );
                                             }
                                           },
                                         );

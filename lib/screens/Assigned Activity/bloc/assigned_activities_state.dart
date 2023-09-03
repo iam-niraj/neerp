@@ -1,9 +1,9 @@
-part of 'assigned_activity_bloc.dart';
+part of 'assigned_activities_bloc.dart';
 
 enum AssignedActivitiesFetchedStatus { initial, success, failure }
 
-class AssignedActivityState extends Equatable {
-  const AssignedActivityState(
+class AssignedActivitiesState extends Equatable {
+  const AssignedActivitiesState(
       {this.status = AssignedActivitiesFetchedStatus.initial,
       this.result = const [],
       this.hasReachedMax = false,
@@ -14,12 +14,12 @@ class AssignedActivityState extends Equatable {
   final bool hasReachedMax;
   final String errorMsg;
 
-  AssignedActivityState copyWith(
+  AssignedActivitiesState copyWith(
       {AssignedActivitiesFetchedStatus? status,
       List<Result>? result,
       bool? hasReachedMax,
       String? errorMsg}) {
-    return AssignedActivityState(
+    return AssignedActivitiesState(
         status: status ?? this.status,
         result: result ?? this.result,
         hasReachedMax: hasReachedMax ?? this.hasReachedMax,

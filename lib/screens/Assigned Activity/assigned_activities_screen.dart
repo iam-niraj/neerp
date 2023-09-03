@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
-import 'package:neerp/screens/Assigned%20Activity/bloc/assigned_activity_bloc.dart';
+import 'package:neerp/screens/Assigned%20Activity/bloc/assigned_activities_bloc.dart';
 import 'package:neerp/screens/Assigned%20Activity/components/assigned_activity_card.dart';
-import 'package:neerp/screens/Completed%20Activity/activity_form.dart';
+import 'package:neerp/screens/Assigned%20Activity/filter_form/activity_form_header.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
-class AssignedctivityScreen extends StatelessWidget {
-  const AssignedctivityScreen({super.key});
+class AssignedActivitiesScreen extends StatelessWidget {
+  const AssignedActivitiesScreen({super.key});
 
   static Route<void> route() {
     return CupertinoPageRoute<void>(
-        builder: (_) => const AssignedctivityScreen());
+        builder: (_) => const AssignedActivitiesScreen());
   }
 
   @override
@@ -27,16 +27,19 @@ class AssignedctivityScreen extends StatelessWidget {
           final userId = context.select(
             (AuthBlocBloc bloc) => bloc.state.customer.id,
           );
-          final token = context.select(
+          /* final token = context.select(
             (AuthBlocBloc bloc) => bloc.state.customer.token,
-          );
+          ); */
           return BlocProvider(
-            create: (context) => AssignedActivityBloc(
-                apiService: RepositoryProvider.of<APIService>(context))
-              ..add(
-                AssignedActivitiesFetched(id: userId, token: token!),
+            create: (context) => AssignedActivitiesBloc(
+              apiService: context.read<APIService>(),
+            )..add(
+                AssignedActivitiesFetched(
+                  id: userId,
+                  token: "123456",
+                ),
               ),
-            child: const AssignedActivity(),
+            child: const AssignedActivities(),
           );
         }),
       ),
@@ -44,8 +47,8 @@ class AssignedctivityScreen extends StatelessWidget {
   }
 }
 
-class AssignedActivity extends StatelessWidget {
-  const AssignedActivity({super.key});
+class AssignedActivities extends StatelessWidget {
+  const AssignedActivities({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +66,27 @@ class AssignedActivity extends StatelessWidget {
             style: bigText.copyWith(fontFamily: "Poppins", fontSize: 20.sp),
           ),
         ),
-        SliverPersistentHeader(
+        /* SliverPersistentHeader(
           pinned: false,
           floating: true,
           delegate: HeaderDelegate(
               max: MediaQuery.of(context).size.height / 2,
               min: MediaQuery.of(context).size.height / 2),
+        ), */
+        SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: 20.h),
+          sliver: SliverAppBar(
+            centerTitle: false,
+            backgroundColor: Colors.transparent,
+            pinned: false,
+            automaticallyImplyLeading: false,
+            expandedHeight: 300.0.h,
+            flexibleSpace: const FlexibleSpaceBar(
+              background: BuildForm(),
+            ),
+          ),
         ),
-        BlocBuilder<AssignedActivityBloc, AssignedActivityState>(
+        BlocBuilder<AssignedActivitiesBloc, AssignedActivitiesState>(
           builder: (context, state) {
             switch (state.status) {
               case AssignedActivitiesFetchedStatus.failure:
@@ -79,13 +95,13 @@ class AssignedActivity extends StatelessWidget {
                 if (state.result.isEmpty) {
                   return const SliverToBoxAdapter(
                     child: Center(
-                      child: Text('no assigned activities'),
+                      child: Text('error fetching activities!'),
                     ),
                   );
                 }
                 return SliverPadding(
                   padding:
-                      EdgeInsets.symmetric(vertical: 30.h, horizontal: 26.w),
+                      EdgeInsets.symmetric(vertical: 6.h, horizontal: 26.w),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       childCount: state.result.length,

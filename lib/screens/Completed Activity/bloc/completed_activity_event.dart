@@ -1,13 +1,13 @@
 part of 'completed_activity_bloc.dart';
 
-class CompletedActivityEvent extends Equatable {
-  const CompletedActivityEvent();
+class CompletedActivitiesEvent extends Equatable {
+  const CompletedActivitiesEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class CompletedActivitiesFetched extends CompletedActivityEvent {
+class CompletedActivitiesFetched extends CompletedActivitiesEvent {
   final String id;
   final String token;
 
@@ -15,4 +15,13 @@ class CompletedActivitiesFetched extends CompletedActivityEvent {
 
   @override
   List<Object> get props => [id, token];
+}
+
+class FilteredCompletedActivitiesFetched extends CompletedActivitiesEvent {
+ 
+final List<Result> result;
+  const FilteredCompletedActivitiesFetched({required this.result});
+
+  @override
+  List<Object> get props => [result];
 }

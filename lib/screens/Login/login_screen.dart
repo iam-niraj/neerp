@@ -2,13 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/components/custom_input_field.dart';
+import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/components/page_header.dart';
 import 'package:neerp/utils/components/page_heading.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/screens/Login/cubit/login_cubit.dart';
 import 'package:neerp/screens/Register/register_screen.dart';
+import 'package:neerp/utils/constants.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -40,7 +44,10 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state.status == LoginStatus.error) {}
+        if (state.status == LoginStatus.error) {
+          showCupertinoSnackBar(
+              context: context, message: "Invalid Credentials !");
+        }
       },
       child: Expanded(
         child: Container(
@@ -118,9 +125,10 @@ class LoginForm extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 50.h,
                 ),
+                SvgPicture.asset("assets/images/nexa.svg"),
               ],
             ),
           ),

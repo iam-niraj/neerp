@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Add%20Lift/add_lift.dart';
 import 'package:neerp/screens/Add%20User/add_user.dart';
+import 'package:neerp/screens/Assigned%20Activity/assigned_activity.dart';
 import 'package:neerp/screens/Completed%20Activity/completed_activity.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
@@ -45,8 +46,13 @@ class DashboardView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () =>
-                      showCustomDialog(context, widget: const _SubmitButton()),
+                  onTap: () => showCustomDialog(context,
+                      widget: Column(
+                        children: [
+                          const _SubmitButton(),
+                          Spacer(),
+                        ],
+                      )),
                   child: ListTile(
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 12.h,
@@ -159,7 +165,7 @@ class DashboardView extends StatelessWidget {
                         title: "Ongoing Activities",
                         isTextTopPadding: false,
                         onTap: () => Navigator.push(
-                            context, PendingActivitiesScreen.route()),
+                            context, AssignedctivityScreen.route()),
                       ),
                       SizedBox(
                         width: 10.w,
@@ -182,6 +188,8 @@ class DashboardView extends StatelessWidget {
                         ),
                         title: "Assign Activities",
                         isTextTopPadding: false,
+                        onTap: () => Navigator.push(
+                            context, PendingActivitiesScreen.route()),
                       ),
                       SizedBox(
                         width: 10.w,

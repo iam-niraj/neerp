@@ -90,7 +90,7 @@ class MyAppView extends StatelessWidget {
         themeMode: themeMode,
         theme: theme(ThemeMode.light, settings),
         darkTheme: theme(ThemeMode.dark, settings),
-        // home: DashboardView(),
+        // home: LoginScreen(),
         builder: (context, child) {
           return BlocListener<AuthBlocBloc, AuthBlocState>(
             listener: (context, state) {

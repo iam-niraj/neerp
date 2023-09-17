@@ -17,16 +17,15 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xffEEF1F3),
         body: Column(
-          children: [
-            const PageHeader(),
-            BlocProvider<SignupCubit>(
-              create: (context) => SignupCubit(context.read<APIService>()),
-              child: const RegisterForm(),
-            ),
-          ],
-        ));
+      children: [
+        const PageHeader(),
+        BlocProvider<SignupCubit>(
+          create: (context) => SignupCubit(context.read<APIService>()),
+          child: const RegisterForm(),
+        ),
+      ],
+    ));
   }
 }
 
@@ -42,7 +41,7 @@ class RegisterForm extends StatelessWidget {
       child: Expanded(
         child: Container(
           decoration: const BoxDecoration(
-            color: Colors.white,
+            // color: Colors.white,
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(20),
             ),

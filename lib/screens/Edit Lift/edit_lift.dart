@@ -32,7 +32,7 @@ class EditLiftScreen extends StatelessWidget {
         top: false,
         child: BlocProvider(
           create: (context) => EditLiftCubit(context.read<APIService>()),
-          child: const EditLift(),
+          child: EditLift(lift: lift),
         ),
       ),
     );
@@ -40,21 +40,16 @@ class EditLiftScreen extends StatelessWidget {
 }
 
 class EditLift extends StatelessWidget {
-  const EditLift({super.key});
+  const EditLift({super.key, required this.lift});
+
+  final Result lift;
 
   @override
   Widget build(BuildContext context) {
-    // final custId =
-    //     context.select((AuthBlocBloc bloc) => bloc.state.customer.parentId);
-
-    final userId =
-        context.select((AuthBlocBloc bloc) => bloc.state.customer.id);
-    final token =
-        context.select((AuthBlocBloc bloc) => bloc.state.customer.token);
     return Builder(builder: (context) {
-      // context.read<EditLiftCubit>().custIdChanged(custId!);
-      context.read<EditLiftCubit>().userIdChanged(userId);
-      context.read<EditLiftCubit>().tokenChanged(token!);
+      context.read<EditLiftCubit>().custIdChanged(lift.custId!);
+      context.read<EditLiftCubit>().userIdChanged(lift.userId!);
+      context.read<EditLiftCubit>().tokenChanged("123456");
       return BlocListener<EditLiftCubit, EditLiftState>(
         listener: (context, state) {
           if (state.status == EditLiftStatus.error) {

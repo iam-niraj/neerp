@@ -76,9 +76,9 @@ class AddLift extends StatelessWidget {
             ),
             SliverPadding(
               padding: EdgeInsets.symmetric(vertical: 30.h),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate(
-                  [
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: [
                     const _SiteNameInput(),
                     const SizedBox(
                       height: 16,

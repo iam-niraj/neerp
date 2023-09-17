@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/user_list/user_response_model.dart';
 import 'package:neerp/utils/components/avatar.dart';
+import 'package:neerp/utils/constants.dart';
 
 class ViewUserPage extends StatelessWidget {
   const ViewUserPage({required this.user, super.key});
@@ -13,6 +14,7 @@ class ViewUserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Spacer(),
         const Align(
           alignment: Alignment.topCenter,
           child: Avatar(),
@@ -20,72 +22,78 @@ class ViewUserPage extends StatelessWidget {
         SizedBox(
           height: 24.0.h,
         ),
-        const Align(
+        Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Full Name:",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: kHeadline.copyWith(
+                fontSize: 20.sp, fontWeight: FontWeight.bold),
           ),
         ),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
             user.fullName!,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: kBodyText.copyWith(fontSize: 18.sp),
           ),
         ),
         SizedBox(
           height: 12.0.h,
         ),
-        const Align(
+        Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Email:",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: kHeadline.copyWith(
+                fontSize: 20.sp, fontWeight: FontWeight.bold),
           ),
         ),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
             user.email!,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: kBodyText.copyWith(fontSize: 18.sp),
           ),
         ),
         SizedBox(
           height: 12.0.h,
         ),
-        const Align(
+        Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Mobile Number:",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: kHeadline.copyWith(
+                fontSize: 20.sp, fontWeight: FontWeight.bold),
           ),
         ),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
             user.phone!,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: kBodyText.copyWith(fontSize: 18.sp),
           ),
         ),
         SizedBox(
           height: 12.0.h,
         ),
-        const Align(
+        Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Username:",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: kHeadline.copyWith(
+                fontSize: 20.sp, fontWeight: FontWeight.bold),
           ),
         ),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
             user.username!,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: kBodyText.copyWith(fontSize: 18.sp),
           ),
         ),
-        const Spacer(),
+        const Spacer(
+          flex: 5,
+        ),
       ],
     );
   }

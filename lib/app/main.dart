@@ -9,7 +9,7 @@ import 'package:neerp/utils/config/routes.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/config/services/customer_repository.dart';
 import 'package:neerp/screens/Add%20Lift/add_lift.dart';
-import 'package:neerp/screens/Completed%20Activity/completed_activity.dart';
+import 'package:neerp/screens/Completed%20Activity/completed_activity_screen.dart';
 import 'package:neerp/screens/Dashboard/dashboard_view.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/screens/Login/login_screen.dart';

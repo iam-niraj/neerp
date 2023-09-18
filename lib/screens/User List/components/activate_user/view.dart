@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
-import 'package:neerp/screens/User%20List/bloc/users_list_bloc.dart';
 import 'package:neerp/screens/User%20List/components/activate_user/cubit/activate_user_cubit.dart';
 import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';

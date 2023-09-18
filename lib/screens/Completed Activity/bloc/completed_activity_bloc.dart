@@ -17,19 +17,21 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
   };
 }
 
-class CompletedActivityBloc
-    extends Bloc<CompletedActivityEvent, CompletedActivityState> {
+class CompletedActivitiesBloc
+    extends Bloc<CompletedActivitiesEvent, CompletedActivitiesState> {
   final APIService _apiService;
-  CompletedActivityBloc({
+  CompletedActivitiesBloc({
     required APIService apiService,
   })  : _apiService = apiService,
-        super((const CompletedActivityState())) {
+        super((const CompletedActivitiesState())) {
     on<CompletedActivitiesFetched>(_onCompletedActivitiesFetched,
+        transformer: throttleDroppable(throttleDuration));
+        on<FilteredCompletedActivitiesFetched>(_onFilteredCompletedActivitiesFetched,
         transformer: throttleDroppable(throttleDuration));
   }
 
   _onCompletedActivitiesFetched(CompletedActivitiesFetched event,
-      Emitter<CompletedActivityState> emit) async {
+      Emitter<CompletedActivitiesState> emit) async {
     if (state.hasReachedMax) return;
 
     if (state.status == CompletedActivitiesFetchedStatus.initial) {
@@ -49,6 +51,26 @@ class CompletedActivityBloc
             errorMsg: r.errorMsg,
             hasReachedMax: false,
           ),
+        ),
+      );
+    }
+  }
+
+   _onFilteredCompletedActivitiesFetched(FilteredCompletedActivitiesFetched event,
+      Emitter<CompletedActivitiesState> emit) async {
+    if (state.hasReachedMax) return;
+    emit(
+      state.copyWith(
+        status: CompletedActivitiesFetchedStatus.initial,
+      ),
+    );
+    if (state.status == CompletedActivitiesFetchedStatus.initial) {
+      print("heeeere");
+      emit(
+        state.copyWith(
+          status: CompletedActivitiesFetchedStatus.success,
+          result: event.result,
+          hasReachedMax: false,
         ),
       );
     }

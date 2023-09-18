@@ -15,7 +15,7 @@ class ActivityModel extends Equatable {
       required this.customerPhone});
 
   @override
-  // TODO: implement props
+ 
   List<Object?> get props =>
       [activityNo, activityDate, customerName, customerEmail, customerPhone];
 }

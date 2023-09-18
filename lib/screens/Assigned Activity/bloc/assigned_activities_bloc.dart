@@ -6,8 +6,8 @@ import 'package:neerp/models/assigned_activity/request_assigned_activities.dart'
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:stream_transform/stream_transform.dart';
 
-part 'assigned_activity_event.dart';
-part 'assigned_activity_state.dart';
+part 'assigned_activities_event.dart';
+part 'assigned_activities_state.dart';
 
 const throttleDuration = Duration(milliseconds: 100);
 
@@ -17,19 +17,21 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
   };
 }
 
-class AssignedActivityBloc
-    extends Bloc<AssignedActivityEvent, AssignedActivityState> {
+class AssignedActivitiesBloc
+    extends Bloc<AssignedActivitiesEvent, AssignedActivitiesState> {
   final APIService _apiService;
-  AssignedActivityBloc({
-    required APIService apiService,
+  AssignedActivitiesBloc({
+    required APIService apiService
   })  : _apiService = apiService,
-        super((const AssignedActivityState())) {
+        super((const AssignedActivitiesState())) {
     on<AssignedActivitiesFetched>(_onAssignedActivitiesFetched,
+        transformer: throttleDroppable(throttleDuration));
+         on<FilteredAssignedActivitiesFetched>(_onFilteredAssignedActivitiesFetched,
         transformer: throttleDroppable(throttleDuration));
   }
 
   _onAssignedActivitiesFetched(AssignedActivitiesFetched event,
-      Emitter<AssignedActivityState> emit) async {
+      Emitter<AssignedActivitiesState> emit) async {
     if (state.hasReachedMax) return;
 
     if (state.status == AssignedActivitiesFetchedStatus.initial) {
@@ -49,6 +51,26 @@ class AssignedActivityBloc
             errorMsg: r.errorMsg,
             hasReachedMax: false,
           ),
+        ),
+      );
+    }
+  }
+
+  _onFilteredAssignedActivitiesFetched(FilteredAssignedActivitiesFetched event,
+      Emitter<AssignedActivitiesState> emit) async {
+    if (state.hasReachedMax) return;
+    emit(
+      state.copyWith(
+        status: AssignedActivitiesFetchedStatus.initial,
+      ),
+    );
+    if (state.status == AssignedActivitiesFetchedStatus.initial) {
+    
+      emit(
+        state.copyWith(
+          status: AssignedActivitiesFetchedStatus.success,
+          result: event.result,
+          hasReachedMax: false,
         ),
       );
     }

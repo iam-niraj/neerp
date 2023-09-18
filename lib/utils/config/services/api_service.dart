@@ -39,6 +39,7 @@ import 'package:neerp/models/pending_activity/pending_activity_response_model.da
 import 'package:neerp/models/pending_activity/request_pending_activity_model.dart';
 import 'package:neerp/models/signup/sign_up_request_model.dart';
 import 'package:neerp/models/signup/sign_up_response_model.dart';
+import 'package:neerp/models/signup/signup_error_response_model.dart';
 import 'package:neerp/models/view_activity/request_view_activity.dart';
 import 'package:neerp/models/view_activity/view_activity_response_model.dart';
 import 'package:neerp/models/view_activity/view_activty_error_respnse_model.dart';
@@ -131,10 +132,11 @@ class APIService {
 
   Future<void> logout() async {
     await SharedService.logout();
-    _controller.add(AuthenticationStatus.unauthenticated);
+    await Future.delayed(const Duration(milliseconds: 300),
+        () => _controller.add(AuthenticationStatus.unauthenticated));
   }
 
-  Future<SignUpResponseModel> register(
+  Future<Either<SignUpResponseModel, SignUpErrorResponseModel>> register(
     SignUpRequestModel model,
   ) async {
     Map<String, String> requestHeaders = {
@@ -148,16 +150,23 @@ class APIService {
       headers: requestHeaders,
       body: jsonEncode(model.toJson()),
     );
-    print(registerResponseJson(
-      response.body,
-    ));
-    var r = registerResponseJson(
-      response.body,
-    );
-    print(r.success);
-    return registerResponseJson(
-      response.body,
-    );
+
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    print(data['success']);
+
+    print("here after response");
+    if (data['success'] == 1) {
+      // print(addLiftResponseJson(response.body));
+      print("here after 1");
+      return Left(registerResponseJson(
+        response.body,
+      ));
+    } else {
+      // print(addLiftErrorResponseJson(response.body));
+      print("here after 2");
+      return Right(registerErrorResponseJson(response.body));
+    }
   }
 
   Future<LiftListResponseModel> getLiftList(

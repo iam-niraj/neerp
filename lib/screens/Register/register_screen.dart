@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/components/custom_input_field.dart';
+import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/components/page_header.dart';
 import 'package:neerp/utils/components/page_heading.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
@@ -36,7 +38,12 @@ class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SignupCubit, SignupState>(
       listener: (context, state) {
-        if (state.status == SignUpStatus.error) {}
+        if (state.status == SignUpStatus.error) {
+          showCupertinoSnackBar(context: context, message: state.errorMsg);
+        }
+        if (state.status == SignUpStatus.success) {
+          Navigator.pop(context);
+        }
       },
       child: Expanded(
         child: Container(
@@ -421,7 +428,6 @@ class _SignUpButton extends StatelessWidget {
                   //   );
                   // }
                   context.read<SignupCubit>().signUpFormSubmitted();
-                  Navigator.pop(context);
                 },
               );
       },

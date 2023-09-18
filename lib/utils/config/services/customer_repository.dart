@@ -12,9 +12,12 @@ class UserRepository {
     return Future.delayed(
       const Duration(milliseconds: 300),
       () => _customer = Customer(
-        id: loginDetails!.result!.id!,
-        token: loginDetails.result!.token,
-      ),
+          id: loginDetails!.result!.id!,
+          token: loginDetails.result!.token,
+          fullName: loginDetails.result!.fullName,
+          email: loginDetails.result!.email,
+          phone: loginDetails.result!.phone,
+          username: loginDetails.result!.username),
     );
   }
 }

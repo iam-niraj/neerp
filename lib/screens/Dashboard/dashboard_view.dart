@@ -9,6 +9,7 @@ import 'package:neerp/screens/Add%20User/add_user.dart';
 import 'package:neerp/screens/Assigned%20Activity/assigned_activities_screen.dart';
 import 'package:neerp/screens/Completed%20Activity/completed_activity_screen.dart';
 import 'package:neerp/screens/Dashboard/components/dashboard_item.dart';
+import 'package:neerp/screens/Dashboard/components/view_customer.dart';
 import 'package:neerp/screens/Lift%20List/lift_list_view.dart';
 import 'package:neerp/screens/Pending%20Activity/pending_activity_screen.dart';
 import 'package:neerp/screens/User%20List/user_list_view.dart';
@@ -28,6 +29,9 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final username = context.select(
+      (AuthBlocBloc bloc) => bloc.state.customer.username,
+    );
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -46,13 +50,10 @@ class DashboardView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () => showCustomDialog(context,
-                      widget: Column(
-                        children: [
-                          const _SubmitButton(),
-                          Spacer(),
-                        ],
-                      )),
+                  onTap: () => showCustomDialog(
+                    context,
+                    widget: ViewDashboardUserPage(),
+                  ),
                   child: ListTile(
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 12.h,
@@ -63,7 +64,7 @@ class DashboardView extends StatelessWidget {
                         fontSize: 20.sp,
                       ),
                     ),
-                    subtitle: Text('Amelia Barlow',
+                    subtitle: Text(username ?? "",
                         style: mediumText.copyWith(
                           fontSize: 25.sp,
                           fontFamily: "Poppins",
@@ -252,20 +253,6 @@ class DashboardView extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _SubmitButton extends StatelessWidget {
-  const _SubmitButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomFormButton(
-      innerText: 'Logout',
-      onPressed: () {
-        context.read<AuthBlocBloc>().add(AppLogoutRequested());
-      },
     );
   }
 }

@@ -20,8 +20,8 @@ ThemeData theme(ThemeMode mode, ThemeSettings settings) {
       mode == ThemeMode.light ? schemeLight : schemeDark;
 
   return ThemeData(
-    cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
-      barBackgroundColor: Color(0xFFe7eefb),
+    cupertinoOverrideTheme: NoDefaultCupertinoThemeData(
+      barBackgroundColor: kGlassyColor,
       scaffoldBackgroundColor: Color(0xFFe7eefb),
     ),
     scaffoldBackgroundColor: const Color(0xFFe7eefb),

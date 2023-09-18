@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
-import 'package:neerp/screens/Completed%20Activity/filter_form/activity_form_header.dart';
 import 'package:neerp/screens/Completed%20Activity/bloc/completed_activity_bloc.dart';
 import 'package:neerp/screens/Completed%20Activity/components/completed_activity_card.dart';
+import 'package:neerp/screens/Completed%20Activity/filter_form/activity_form_header.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -81,7 +81,7 @@ class PendingActivities extends StatelessWidget {
             pinned: false,
             automaticallyImplyLeading: false,
             expandedHeight: 300.0.h,
-            flexibleSpace: const FlexibleSpaceBar(
+            flexibleSpace: FlexibleSpaceBar(
               background: BuildForm(),
             ),
           ),

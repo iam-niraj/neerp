@@ -36,13 +36,17 @@ class SignupCubit extends Cubit<SignupState> {
     emit(state.copyWith(status: SignUpStatus.submitting));
 
     try {
-      await _apiService.register(SignUpRequestModel(
+      var result = await _apiService.register(SignUpRequestModel(
           fullname: state.fullname,
           email: state.email,
           phone: state.phone,
           username: state.username,
           password: state.password));
-      emit(state.copyWith(status: SignUpStatus.success));
+
+      result.fold(
+          (l) => emit(state.copyWith(status: SignUpStatus.success)),
+          (r) => emit(state.copyWith(
+              status: SignUpStatus.error, errorMsg: r.errorMsg)));
     } catch (_) {}
   }
 }

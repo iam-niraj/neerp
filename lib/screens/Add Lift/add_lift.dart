@@ -23,12 +23,18 @@ class AddLiftScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userId =
+        context.select((AuthBlocBloc bloc) => bloc.state.customer.id);
+    final token =
+        context.select((AuthBlocBloc bloc) => bloc.state.customer.token);
     return CupertinoPageScaffold(
       resizeToAvoidBottomInset: false,
       child: SafeArea(
         top: false,
         child: BlocProvider(
-          create: (context) => AddLiftCubit(context.read<APIService>()),
+          create: (context) => AddLiftCubit(context.read<APIService>())
+            ..userIdChanged(userId)
+            ..tokenChanged(token!),
           child: const AddLift(),
         ),
       ),
@@ -41,13 +47,7 @@ class AddLift extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userId =
-        context.select((AuthBlocBloc bloc) => bloc.state.customer.id);
-    final token =
-        context.select((AuthBlocBloc bloc) => bloc.state.customer.token);
     return Builder(builder: (context) {
-      context.read<AddLiftCubit>().userIdChanged(userId);
-      context.read<AddLiftCubit>().tokenChanged(token!);
       return BlocListener<AddLiftCubit, AddLiftState>(
         listener: (context, state) {
           if (state.status == AddLiftStatus.error) {

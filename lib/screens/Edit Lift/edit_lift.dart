@@ -31,7 +31,8 @@ class EditLiftScreen extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: BlocProvider(
-          create: (context) => EditLiftCubit(context.read<APIService>()),
+          create: (context) => EditLiftCubit(context.read<APIService>())
+            ..siteNameChanged(lift.siteAddress!),
           child: EditLift(lift: lift),
         ),
       ),
@@ -47,6 +48,18 @@ class EditLift extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
+      // context.read<EditLiftCubit>().siteNameChanged(lift.siteName!);
+      context.read<EditLiftCubit>().siteAddressChanged(lift.siteAddress!);
+      context.read<EditLiftCubit>().customerNameChanged(lift.customerName!);
+      context.read<EditLiftCubit>().emailChanged(lift.email!);
+      context.read<EditLiftCubit>().phoneChanged(lift.phone!);
+      context.read<EditLiftCubit>().noOfLiftsChanged(lift.noOfLifts!);
+      context
+          .read<EditLiftCubit>()
+          .floorDesignationChanged(lift.floorDesignation!);
+      context.read<EditLiftCubit>().amcTypeChanged(lift.amcType!);
+      context.read<EditLiftCubit>().liftTypeChanged(lift.liftType!);
+      context.read<EditLiftCubit>().amountChanged(lift.amount!);
       context.read<EditLiftCubit>().custIdChanged(lift.custId!);
       context.read<EditLiftCubit>().userIdChanged(lift.userId!);
       context.read<EditLiftCubit>().tokenChanged("123456");
@@ -56,12 +69,6 @@ class EditLift extends StatelessWidget {
             showCupertinoSnackBar(
                 context: context, message: state.errorResponse);
           } else if (state.status == EditLiftStatus.success) {
-            final userId = context.select(
-              (AuthBlocBloc bloc) => bloc.state.customer.id,
-            );
-            context
-                .read<LiftListBloc>()
-                .add(RefreshLiftsFetched(id: userId, token: '123456'));
             Navigator.pop(context);
           }
         },

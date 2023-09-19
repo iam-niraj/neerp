@@ -17,7 +17,8 @@ class LiftListScreen extends StatelessWidget {
   const LiftListScreen({super.key});
 
   static Route<void> route() {
-    return CupertinoPageRoute<void>(builder: (_) => const LiftListScreen());
+    return CupertinoPageRoute<void>(
+        builder: (_) => const LiftListScreen(), maintainState: false);
   }
 
   @override
@@ -122,8 +123,9 @@ class LiftList extends StatelessWidget {
                                     },
                                   ),
                                   CupertinoActionSheetAction(
-                                    child: const Text('Edit List'),
+                                    child: const Text('Edit Lift'),
                                     onPressed: () {
+                                      Navigator.of(context).pop();
                                       Navigator.push(
                                           context,
                                           EditLiftScreen.route(

@@ -21,7 +21,7 @@ class AddLiftState extends Equatable {
       required this.liftType,
       required this.doorOpening,
       required this.status,
-      required this.errorResponse });
+      required this.errorResponse});
 
   final String siteName;
   final String siteAddress;
@@ -44,67 +44,64 @@ class AddLiftState extends Equatable {
 
   factory AddLiftState.initial() {
     return const AddLiftState(
-      siteName: '',
-      siteAddress: '',
-      customerName: '',
-      email: '',
-      phone: '',
-      noOfLifts: '',
-      floorDesignation: '',
-      amcType: '',
-      startDate: '',
-      endDate: '',
-      noOfServices: '',
-      amount: '',
-      userId: '',
-      token: '',
-      liftType: '',
-      doorOpening: '',
-      errorResponse: '',
-      status: AddLiftStatus.initial
-    );
+        siteName: '',
+        siteAddress: '',
+        customerName: '',
+        email: '',
+        phone: '',
+        noOfLifts: '',
+        floorDesignation: '',
+        amcType: '',
+        startDate: '',
+        endDate: '',
+        noOfServices: '',
+        amount: '',
+        userId: '',
+        token: '',
+        liftType: '',
+        doorOpening: '',
+        errorResponse: '',
+        status: AddLiftStatus.initial);
   }
 
-  AddLiftState copyWith({
-    String? siteName,
-    String? siteAddress,
-    String? customerName,
-    String? email,
-    String? phone,
-    String? noOfLifts,
-    String? floorDesignation,
-    String? amcType,
-    String? startDate,
-    String? endDate,
-    String? noOfServices,
-    String? amount,
-    String? userId,
-    String? token,
-    String? liftType,
-    String? doorOpening,
-    String? errorResponse,
-    AddLiftStatus? status
-  }) {
+  AddLiftState copyWith(
+      {String? siteName,
+      String? siteAddress,
+      String? customerName,
+      String? email,
+      String? phone,
+      String? noOfLifts,
+      String? floorDesignation,
+      String? amcType,
+      String? startDate,
+      String? endDate,
+      String? noOfServices,
+      String? amount,
+      String? userId,
+      String? token,
+      String? liftType,
+      String? doorOpening,
+      String? errorResponse,
+      AddLiftStatus? status}) {
     return AddLiftState(
-      siteName: siteName ?? this.siteName,
-      siteAddress: siteAddress ?? this.siteAddress,
-      customerName: customerName ?? this.customerName,
-      email: email ?? this.email,
-      phone: phone ?? this.phone,
-      noOfLifts: noOfLifts ?? this.noOfLifts,
-      floorDesignation: floorDesignation ?? this.floorDesignation,
-      amcType: amcType ?? this.amcType,
-      startDate: startDate ?? this.startDate,
-      endDate: endDate ?? this.endDate,
-      noOfServices: noOfServices ?? this.noOfServices,
-      amount: amount ?? this.amount,
-      userId: userId ?? this.userId,
-      token: token ?? this.token,
-      liftType: liftType ?? this.liftType,
-      doorOpening: doorOpening ?? this.doorOpening,
-      status: status ?? this.status, 
-      errorResponse: errorResponse ?? this.errorResponse
-    );
+        siteName: siteName ?? this.siteName,
+        siteAddress: siteAddress ?? this.siteAddress,
+        customerName: customerName ?? this.customerName,
+        email: email ?? this.email,
+        phone: phone ?? this.phone,
+        noOfLifts: noOfLifts ?? this.noOfLifts,
+        floorDesignation: floorDesignation ?? this.floorDesignation,
+        amcType: amcType ?? this.amcType,
+        startDate: startDate ?? this.startDate,
+        endDate: endDate ?? this.endDate,
+        noOfServices: noOfServices ?? this.noOfServices,
+        amount: amount ?? this.amount,
+        userId: userId ?? this.userId,
+        token: token ?? this.token,
+        liftType: liftType ?? this.liftType,
+        doorOpening: doorOpening ?? this.doorOpening,
+        status: status ?? this.status,
+        errorResponse: errorResponse ?? this.errorResponse);
   }
 
   @override

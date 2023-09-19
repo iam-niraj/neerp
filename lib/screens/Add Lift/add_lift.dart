@@ -54,6 +54,9 @@ class AddLift extends StatelessWidget {
             showCupertinoSnackBar(
                 context: context, message: state.errorResponse);
           }
+          if (state.status == AddLiftStatus.success) {
+            Navigator.of(context).pop();
+          }
         },
         child: CustomScrollView(
           primary: true,
@@ -442,8 +445,8 @@ class _LiftTypeInput extends StatelessWidget {
 }
 
 class _StartDateInput extends StatelessWidget {
-  _StartDateInput();
-  final TextEditingController _textEditingController = TextEditingController();
+  const _StartDateInput();
+
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
@@ -453,29 +456,47 @@ class _StartDateInput extends StatelessWidget {
             previous.startDate != current.startDate,
         builder: (context, state) {
           return TextField(
-            controller: _textEditingController,
+            // controller: _textEditingController,
             readOnly: true,
-            decoration: const InputDecoration(
-              hintText: "Select start date",
+            decoration: InputDecoration(
+              hintText:
+                  state.startDate == '' ? "Select Start Date" : state.startDate,
               contentPadding: EdgeInsets.zero,
             ),
-            onTap: () async {
-              DateTime? pickerDate = await showDatePicker(
+            onTap: () {
+              /*  DateTime? pickerDate = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime(2015),
                   lastDate: DateTime(2121));
               if (pickerDate != null) {
                 _textEditingController
-                  ..text = DateFormat.yMMMMd().format(pickerDate)
+                  ..text = DateFormat('yyyy-MM-dd').format(pickerDate)
                   ..selection = TextSelection.fromPosition(TextPosition(
                       offset: _textEditingController.text.length,
                       affinity: TextAffinity.upstream));
-              } else {}
+              } else {} */
+              showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2015),
+                lastDate: DateTime(2121),
+              ).then((selectedDate) {
+                //TODO: handle selected date
+                if (selectedDate != null) {
+                  /* _textEditingController
+                    ..text = DateFormat('yyyy-MM-dd').format(selectedDate)
+                    ..selection = TextSelection.fromPosition(TextPosition(
+                        offset: _textEditingController.text.length,
+                        affinity: TextAffinity.upstream)); */
+                  context.read<AddLiftCubit>().startDateChanged(
+                      DateFormat('yyyy-MM-dd').format(selectedDate));
+                }
+              });
             },
-            onChanged: (startDate) {
+            /*  onChanged: (startDate) {
               context.read<AddLiftCubit>().startDateChanged(startDate);
-            },
+            }, */
           );
         },
       ),
@@ -484,8 +505,8 @@ class _StartDateInput extends StatelessWidget {
 }
 
 class _EndDateInput extends StatelessWidget {
-  _EndDateInput();
-  final TextEditingController _textEditingController = TextEditingController();
+  const _EndDateInput();
+
   @override
   Widget build(BuildContext context) {
     return CustomInputField(
@@ -494,29 +515,33 @@ class _EndDateInput extends StatelessWidget {
         buildWhen: (previous, current) => previous.endDate != current.endDate,
         builder: (context, state) {
           return TextField(
-            controller: _textEditingController,
             readOnly: true,
-            decoration: const InputDecoration(
-              hintText: "Select end date",
+            decoration: InputDecoration(
+              hintText: state.endDate == '' ? "Select End Date" : state.endDate,
               contentPadding: EdgeInsets.zero,
             ),
-            onTap: () async {
-              DateTime? pickerDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2015),
-                  lastDate: DateTime(2121));
-              if (pickerDate != null) {
-                _textEditingController
-                  ..text = DateFormat.yMMMMd().format(pickerDate)
-                  ..selection = TextSelection.fromPosition(TextPosition(
-                      offset: _textEditingController.text.length,
-                      affinity: TextAffinity.upstream));
-              } else {}
+            onTap: () {
+              showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2015),
+                lastDate: DateTime(2121),
+              ).then((selectedDate) {
+                //TODO: handle selected date
+                if (selectedDate != null) {
+                  /* _textEditingController
+                    ..text = DateFormat('yyyy-MM-dd').format(selectedDate)
+                    ..selection = TextSelection.fromPosition(TextPosition(
+                        offset: _textEditingController.text.length,
+                        affinity: TextAffinity.upstream)); */
+                  context.read<AddLiftCubit>().endDateChanged(
+                      DateFormat('yyyy-MM-dd').format(selectedDate));
+                }
+              });
             },
-            onChanged: (endDate) {
+            /*  onChanged: (endDate) {
               context.read<AddLiftCubit>().endDateChanged(endDate);
-            },
+            }, */
           );
         },
       ),

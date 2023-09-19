@@ -7,6 +7,7 @@ import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/models/user_list/user_response_model.dart';
 import 'package:neerp/screens/Pending%20Activity/bloc/pending_activities_bloc.dart';
 import 'package:neerp/screens/Pending%20Activity/components/pending_activity_card.dart';
+import 'package:neerp/screens/Pending%20Activity/components/view_details.dart';
 import 'package:neerp/screens/Pending%20Activity/filter_form.dart/activity_form_header.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/assign_activity_form/cubit/assign_activity_cubit.dart';
@@ -82,14 +83,14 @@ class PendingActivities extends StatelessWidget {
               min: MediaQuery.of(context).size.height / 2),
         ), */
         SliverPadding(
-          padding: EdgeInsets.symmetric(vertical: 20.h),
-          sliver: SliverAppBar(
+          padding: EdgeInsets.only(top: 20.h),
+          sliver: const SliverAppBar(
             centerTitle: false,
             backgroundColor: Colors.transparent,
             pinned: false,
             automaticallyImplyLeading: false,
-            expandedHeight: 300.0.h,
-            flexibleSpace: const FlexibleSpaceBar(
+            expandedHeight: 350,
+            flexibleSpace: FlexibleSpaceBar(
               background: BuildForm(),
             ),
           ),
@@ -127,7 +128,9 @@ class PendingActivities extends StatelessWidget {
                                     onPressed: () {
                                       showCustomDialog(
                                         context,
-                                        widget: Container(),
+                                        widget: ViewDetails(
+                                          result: state.result[index],
+                                        ),
                                       );
                                       // Navigator.pop(context, 'One');
                                     },
@@ -243,8 +246,7 @@ class PendingActivities extends StatelessWidget {
 }
 
 class _AssignDate extends StatelessWidget {
-  _AssignDate();
-  final TextEditingController _textEditingController = TextEditingController();
+  const _AssignDate();
   @override
   Widget build(BuildContext context) {
     return DialogCutsomField(
@@ -252,33 +254,36 @@ class _AssignDate extends StatelessWidget {
         widget: BlocBuilder<AssignActivityCubit, AssignActivityState>(
           builder: (context, state) {
             return TextField(
-              controller: _textEditingController,
               readOnly: true,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 filled: true,
-                fillColor: white,
-                hintText: "Select start date",
+                fillColor: Colors.transparent,
+                hintText:
+                    state.assignDate == '' ? "Select Date" : state.assignDate,
                 contentPadding: EdgeInsets.zero,
               ),
-              onTap: () async {
-                DateTime? pickerDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2015),
-                    lastDate: DateTime(2121));
-                if (pickerDate != null) {
-                  _textEditingController
-                    ..text = DateFormat.yMMMMd().format(pickerDate)
-                    ..selection = TextSelection.fromPosition(
-                      TextPosition(
-                          offset: _textEditingController.text.length,
-                          affinity: TextAffinity.upstream),
-                    );
-                } else {}
+              onTap: () {
+                showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2015),
+                  lastDate: DateTime(2121),
+                ).then((selectedDate) {
+                  //TODO: handle selected date
+                  if (selectedDate != null) {
+                    /* _textEditingController
+                    ..text = DateFormat('yyyy-MM-dd').format(selectedDate)
+                    ..selection = TextSelection.fromPosition(TextPosition(
+                        offset: _textEditingController.text.length,
+                        affinity: TextAffinity.upstream)); */
+                    context.read<AssignActivityCubit>().startDateChanged(
+                        DateFormat('yyyy-MM-dd').format(selectedDate));
+                  }
+                });
               },
-              onChanged: (startDate) {
+              /* onChanged: (startDate) {
                 context.read<AssignActivityCubit>().startDateChanged(startDate);
-              },
+              }, */
             );
           },
         ));
@@ -286,7 +291,7 @@ class _AssignDate extends StatelessWidget {
 }
 
 class _EmployeeDropDown extends StatelessWidget {
-  _EmployeeDropDown({required this.values});
+  const _EmployeeDropDown({required this.values});
   final List<Result> values;
   @override
   Widget build(BuildContext context) {
@@ -302,7 +307,7 @@ class _EmployeeDropDown extends StatelessWidget {
             style: mediumText,
             decoration: const InputDecoration(
               filled: true,
-              fillColor: white,
+              fillColor: Colors.transparent,
               hintText: "Select Employee",
               contentPadding: EdgeInsets.zero,
             ),

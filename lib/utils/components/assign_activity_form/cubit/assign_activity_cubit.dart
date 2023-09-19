@@ -41,7 +41,7 @@ class AssignActivityCubit extends Cubit<AssignActivityState> {
                 status: PostStatus.success,
                 posts: List.of(state.posts)..addAll(posts),
                 hasReachedMax: false,
-              ),
+              ),`
             ); */
     } catch (_) {
       emit(state.copyWith(status: AssignActivityStatus.failure));

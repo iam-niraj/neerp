@@ -4,10 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
 import 'package:neerp/screens/Edit%20Lift/cubit/edit_lift_cubit.dart';
-import 'package:neerp/screens/Lift%20List/bloc/lift_list_bloc.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/components/custom_input_field.dart';
@@ -32,7 +30,19 @@ class EditLiftScreen extends StatelessWidget {
         top: false,
         child: BlocProvider(
           create: (context) => EditLiftCubit(context.read<APIService>())
-            ..siteNameChanged(lift.siteAddress!),
+            ..siteNameChanged(lift.siteName!)
+            ..siteAddressChanged(lift.siteAddress!)
+            ..customerNameChanged(lift.customerName!)
+            ..emailChanged(lift.email!)
+            ..phoneChanged(lift.phone!)
+            ..noOfLiftsChanged(lift.noOfLifts!)
+            ..floorDesignationChanged(lift.floorDesignation!)
+            ..amcTypeChanged(lift.amcType!)
+            ..liftTypeChanged(lift.liftType!)
+            ..amountChanged(lift.amount!)
+            ..custIdChanged(lift.custId!)
+            ..userIdChanged(lift.userId!)
+            ..tokenChanged("123456"),
           child: EditLift(lift: lift),
         ),
       ),
@@ -48,21 +58,6 @@ class EditLift extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
-      // context.read<EditLiftCubit>().siteNameChanged(lift.siteName!);
-      context.read<EditLiftCubit>().siteAddressChanged(lift.siteAddress!);
-      context.read<EditLiftCubit>().customerNameChanged(lift.customerName!);
-      context.read<EditLiftCubit>().emailChanged(lift.email!);
-      context.read<EditLiftCubit>().phoneChanged(lift.phone!);
-      context.read<EditLiftCubit>().noOfLiftsChanged(lift.noOfLifts!);
-      context
-          .read<EditLiftCubit>()
-          .floorDesignationChanged(lift.floorDesignation!);
-      context.read<EditLiftCubit>().amcTypeChanged(lift.amcType!);
-      context.read<EditLiftCubit>().liftTypeChanged(lift.liftType!);
-      context.read<EditLiftCubit>().amountChanged(lift.amount!);
-      context.read<EditLiftCubit>().custIdChanged(lift.custId!);
-      context.read<EditLiftCubit>().userIdChanged(lift.userId!);
-      context.read<EditLiftCubit>().tokenChanged("123456");
       return BlocListener<EditLiftCubit, EditLiftState>(
         listener: (context, state) {
           if (state.status == EditLiftStatus.error) {
@@ -93,46 +88,46 @@ class EditLift extends StatelessWidget {
             ),
             SliverPadding(
               padding: EdgeInsets.symmetric(vertical: 30.h),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    const _SiteNameInput(),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    _SiteNameInput(hintText: lift.siteName!),
                     const SizedBox(
                       height: 16,
                     ),
-                    const _SiteAddressInput(),
+                    _SiteAddressInput(hintText: lift.siteAddress!),
                     const SizedBox(
                       height: 16,
                     ),
-                    const _CustomerNameInput(),
+                    _CustomerNameInput(hintText: lift.customerName!),
                     const SizedBox(
                       height: 16,
                     ),
-                    const _EmailInput(),
+                    _EmailInput(hintText: lift.email!),
                     const SizedBox(
                       height: 16,
                     ),
-                    const _PhoneInput(),
+                    _PhoneInput(hintText: lift.phone!),
                     const SizedBox(
                       height: 16,
                     ),
-                    const _NoOfLiftsInput(),
+                    _NoOfLiftsInput(hintText: lift.noOfLifts!),
                     const SizedBox(
                       height: 16,
                     ),
-                    const _FloorDesignationInput(),
+                    _FloorDesignationInput(hintText: lift.floorDesignation!),
                     const SizedBox(
                       height: 16,
                     ),
-                    _AMCTypeInput(),
+                    _AMCTypeInput(hintText: lift.amcType!),
                     const SizedBox(
                       height: 16,
                     ),
-                    _LiftTypeInput(),
+                    _LiftTypeInput(hintText: lift.liftType!),
                     const SizedBox(
                       height: 16,
                     ),
-                    const _AmountInput(),
+                    _AmountInput(hintText: lift.amount!),
                     const SizedBox(
                       height: 20,
                     ),
@@ -152,7 +147,8 @@ class EditLift extends StatelessWidget {
 }
 
 class _SiteNameInput extends StatelessWidget {
-  const _SiteNameInput();
+  const _SiteNameInput({required this.hintText});
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -162,8 +158,8 @@ class _SiteNameInput extends StatelessWidget {
         buildWhen: (previous, current) => previous.siteName != current.siteName,
         builder: (context, state) {
           return TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter site name",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             onChanged: (siteName) {
@@ -177,7 +173,8 @@ class _SiteNameInput extends StatelessWidget {
 }
 
 class _SiteAddressInput extends StatelessWidget {
-  const _SiteAddressInput();
+  const _SiteAddressInput({required this.hintText});
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -189,8 +186,8 @@ class _SiteAddressInput extends StatelessWidget {
         builder: (context, state) {
           return TextField(
             // obscureText: (widget.obscureText && _obscureText),
-            decoration: const InputDecoration(
-              hintText: "Enter site address",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             onChanged: (siteAddress) {
@@ -204,7 +201,8 @@ class _SiteAddressInput extends StatelessWidget {
 }
 
 class _CustomerNameInput extends StatelessWidget {
-  const _CustomerNameInput();
+  const _CustomerNameInput({required this.hintText});
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -215,8 +213,8 @@ class _CustomerNameInput extends StatelessWidget {
             previous.customerName != current.customerName,
         builder: (context, state) {
           return TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter customer name",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             onChanged: (customerName) {
@@ -230,7 +228,8 @@ class _CustomerNameInput extends StatelessWidget {
 }
 
 class _EmailInput extends StatelessWidget {
-  const _EmailInput();
+  const _EmailInput({required this.hintText});
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -240,8 +239,8 @@ class _EmailInput extends StatelessWidget {
         buildWhen: (previous, current) => previous.email != current.email,
         builder: (context, state) {
           return TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter email",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             onChanged: (email) {
@@ -255,7 +254,8 @@ class _EmailInput extends StatelessWidget {
 }
 
 class _PhoneInput extends StatelessWidget {
-  const _PhoneInput();
+  const _PhoneInput({required this.hintText});
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -265,8 +265,8 @@ class _PhoneInput extends StatelessWidget {
         buildWhen: (previous, current) => previous.phone != current.phone,
         builder: (context, state) {
           return TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter phone number",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             onChanged: (phone) {
@@ -280,7 +280,8 @@ class _PhoneInput extends StatelessWidget {
 }
 
 class _NoOfLiftsInput extends StatelessWidget {
-  const _NoOfLiftsInput();
+  const _NoOfLiftsInput({required this.hintText});
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -291,8 +292,8 @@ class _NoOfLiftsInput extends StatelessWidget {
             previous.noOfLifts != current.noOfLifts,
         builder: (context, state) {
           return TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter  no. of lifts",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             onChanged: (noOfLifts) {
@@ -306,7 +307,8 @@ class _NoOfLiftsInput extends StatelessWidget {
 }
 
 class _FloorDesignationInput extends StatelessWidget {
-  const _FloorDesignationInput();
+  const _FloorDesignationInput({required this.hintText});
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -317,8 +319,8 @@ class _FloorDesignationInput extends StatelessWidget {
             previous.floorDesignation != current.floorDesignation,
         builder: (context, state) {
           return TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter no. of floors",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             onChanged: (floorDesignation) {
@@ -334,7 +336,8 @@ class _FloorDesignationInput extends StatelessWidget {
 }
 
 class _AMCTypeInput extends StatelessWidget {
-  _AMCTypeInput();
+  _AMCTypeInput({required this.hintText});
+  final String hintText;
   final values = ["Comprehensive", "Non-Comprehensive", "Semi-Comprehensive"];
   @override
   Widget build(BuildContext context) {
@@ -349,8 +352,8 @@ class _AMCTypeInput extends StatelessWidget {
             iconDisabledColor: Colors.grey,
             iconEnabledColor: black,
             style: mediumText,
-            decoration: const InputDecoration(
-              hintText: "Select AMC type",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             borderRadius: BorderRadius.all(Radius.circular(20.r)),
@@ -376,7 +379,8 @@ class _AMCTypeInput extends StatelessWidget {
 }
 
 class _LiftTypeInput extends StatelessWidget {
-  _LiftTypeInput();
+  _LiftTypeInput({required this.hintText});
+  final String hintText;
   final values = [
     "Passenger Lift",
     "Goods Lift",
@@ -397,8 +401,8 @@ class _LiftTypeInput extends StatelessWidget {
             iconDisabledColor: Colors.grey,
             iconEnabledColor: black,
             style: mediumText,
-            decoration: const InputDecoration(
-              hintText: "Select Lift type",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             borderRadius: BorderRadius.all(Radius.circular(20.r)),
@@ -424,7 +428,8 @@ class _LiftTypeInput extends StatelessWidget {
 }
 
 class _AmountInput extends StatelessWidget {
-  const _AmountInput();
+  const _AmountInput({required this.hintText});
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -434,8 +439,8 @@ class _AmountInput extends StatelessWidget {
         buildWhen: (previous, current) => previous.amount != current.amount,
         builder: (context, state) {
           return TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter the amount",
+            decoration: InputDecoration(
+              hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
             onChanged: (amount) {

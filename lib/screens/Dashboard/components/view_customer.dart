@@ -18,7 +18,7 @@ class ViewDashboardUserPage extends StatelessWidget {
     final phone =
         context.select((AuthBlocBloc bloc) => bloc.state.customer.phone);
     final username =
-        context.select((AuthBlocBloc bloc) => bloc.state.customer.email);
+        context.select((AuthBlocBloc bloc) => bloc.state.customer.username);
 
     return Column(
       children: [

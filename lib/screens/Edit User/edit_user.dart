@@ -28,7 +28,11 @@ class EditUserScreen extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: BlocProvider(
-          create: (context) => EditUserCubit(context.read<APIService>()),
+          create: (context) => EditUserCubit(context.read<APIService>())
+            ..fullNameChanged(user.fullName!)
+            ..emailChanged(user.email!)
+            ..phoneChanged(user.phone!)
+            ..userIdChanged(user.id!),
           child: EditUser(user: user),
         ),
       ),
@@ -43,8 +47,6 @@ class EditUser extends StatelessWidget {
   Widget build(BuildContext context) {
     // final custId =
     //     context.select((AuthBlocBloc bloc) => bloc.state.customer.parentId);
-
-    context.read<EditUserCubit>().userIdChanged(user.id!);
 
     return BlocListener<EditUserCubit, EditUserState>(
       listener: (context, state) {

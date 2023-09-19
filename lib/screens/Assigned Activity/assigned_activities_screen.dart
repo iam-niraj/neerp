@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Assigned%20Activity/bloc/assigned_activities_bloc.dart';
 import 'package:neerp/screens/Assigned%20Activity/components/assigned_activity_card.dart';
+import 'package:neerp/screens/Assigned%20Activity/components/view_details.dart';
 import 'package:neerp/screens/Assigned%20Activity/filter_form/activity_form_header.dart';
+import 'package:neerp/utils/components/custom_dialog.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
 
@@ -74,14 +76,14 @@ class AssignedActivities extends StatelessWidget {
               min: MediaQuery.of(context).size.height / 2),
         ), */
         SliverPadding(
-          padding: EdgeInsets.symmetric(vertical: 20.h),
-          sliver: SliverAppBar(
+          padding: EdgeInsets.only(top: 20.h),
+          sliver: const SliverAppBar(
             centerTitle: false,
             backgroundColor: Colors.transparent,
             pinned: false,
             automaticallyImplyLeading: false,
-            expandedHeight: 300.0.h,
-            flexibleSpace: const FlexibleSpaceBar(
+            expandedHeight: 350,
+            flexibleSpace: FlexibleSpaceBar(
               background: BuildForm(),
             ),
           ),
@@ -108,8 +110,16 @@ class AssignedActivities extends StatelessWidget {
                       (context, index) {
                         return Material(
                           type: MaterialType.transparency,
-                          child: AssignedActivityCard(
-                              activity: state.result[index]),
+                          child: GestureDetector(
+                            onTap: () => showCustomDialog(
+                              context,
+                              widget: ViewDetails(
+                                result: state.result[index],
+                              ),
+                            ),
+                            child: AssignedActivityCard(
+                                activity: state.result[index]),
+                          ),
                         );
                       },
                     ),

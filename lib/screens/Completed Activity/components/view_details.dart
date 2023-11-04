@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/completed_activity/completed_activities_list_response.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ViewDetails extends StatelessWidget {
   const ViewDetails({super.key, required this.result});

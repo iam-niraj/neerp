@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Assigned%20Activity/bloc/assigned_activities_bloc.dart';
 import 'package:neerp/screens/Assigned%20Activity/components/assigned_activity_card.dart';
@@ -10,6 +9,7 @@ import 'package:neerp/screens/Assigned%20Activity/filter_form/activity_form_head
 import 'package:neerp/utils/components/custom_dialog.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AssignedActivitiesScreen extends StatelessWidget {
   const AssignedActivitiesScreen({super.key});
@@ -60,7 +60,7 @@ class AssignedActivities extends StatelessWidget {
         CupertinoSliverNavigationBar(
           largeTitle: Text(
             'Assigned Activities',
-            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 25.sp),
           ),
           alwaysShowMiddle: false,
           middle: Text(
@@ -76,15 +76,16 @@ class AssignedActivities extends StatelessWidget {
               min: MediaQuery.of(context).size.height / 2),
         ), */
         SliverPadding(
-          padding: EdgeInsets.only(top: 20.h),
-          sliver: const SliverAppBar(
+          padding: EdgeInsets.symmetric(vertical: 2.h),
+          sliver: SliverAppBar(
             centerTitle: false,
             backgroundColor: Colors.transparent,
             pinned: false,
+            primary: false,
             automaticallyImplyLeading: false,
-            expandedHeight: 350,
+            expandedHeight: 40.h,
             flexibleSpace: FlexibleSpaceBar(
-              background: BuildForm(),
+              background: Container(child: BuildForm()),
             ),
           ),
         ),
@@ -102,8 +103,7 @@ class AssignedActivities extends StatelessWidget {
                   );
                 }
                 return SliverPadding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 6.h, horizontal: 26.w),
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       childCount: state.result.length,

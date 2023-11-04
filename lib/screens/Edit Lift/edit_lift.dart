@@ -3,7 +3,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
 import 'package:neerp/screens/Edit%20Lift/cubit/edit_lift_cubit.dart';
 import 'package:neerp/utils/colors.dart';
@@ -12,6 +11,7 @@ import 'package:neerp/utils/components/custom_input_field.dart';
 import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EditLiftScreen extends StatelessWidget {
   const EditLiftScreen({required this.lift, super.key});
@@ -73,7 +73,7 @@ class EditLift extends StatelessWidget {
             CupertinoSliverNavigationBar(
               largeTitle: Text(
                 'Edit Lift',
-                style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+                style: bigText.copyWith(fontFamily: "Poppins", fontSize: 25.sp),
               ),
               alwaysShowMiddle: false,
               middle: Text(
@@ -87,7 +87,7 @@ class EditLift extends StatelessWidget {
               ), */
             ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 30.h),
+              padding: EdgeInsets.symmetric(vertical: 2.h),
               sliver: SliverToBoxAdapter(
                 child: Column(
                   children: [
@@ -356,7 +356,7 @@ class _AMCTypeInput extends StatelessWidget {
               hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20.r)),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
             onChanged: (amcType) {
               context.read<EditLiftCubit>().amcTypeChanged(amcType!);
             },
@@ -405,7 +405,7 @@ class _LiftTypeInput extends StatelessWidget {
               hintText: hintText,
               contentPadding: EdgeInsets.zero,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20.r)),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
             onChanged: (liftType) {
               context.read<EditLiftCubit>().liftTypeChanged(liftType!);
             },

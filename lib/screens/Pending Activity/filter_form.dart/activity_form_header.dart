@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/screens/Pending%20Activity/bloc/pending_activities_bloc.dart';
 import 'package:neerp/screens/Pending%20Activity/filter_form.dart/cubit/filter_pending_activities_cubit.dart';
@@ -129,7 +128,7 @@ class _DoorOpeningInput extends StatelessWidget {
           hintText: "Select door opening type",
           contentPadding: EdgeInsets.zero,
         ),
-        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         onChanged: (doorOpening) {
           //  context.read<AddLiftCubit>().doorOpeningChanged(doorOpening!);
         },

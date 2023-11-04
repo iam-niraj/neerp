@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/components/data_card.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../models/completed_activity/completed_activities_list_response.dart';
 
@@ -21,7 +21,7 @@ class CompletedActivityCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.transparent,
         border: Border.all(color: const Color(0xFF797F8A), width: 1.w),
-        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Column(
         children: [

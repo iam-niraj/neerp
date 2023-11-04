@@ -3,7 +3,6 @@
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/utils/config/routes.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
@@ -17,6 +16,7 @@ import 'package:neerp/screens/Welcome/welcomePage.dart';
 import 'package:neerp/screens/splash/splash.dart';
 import 'package:neerp/utils/scrollBehaviour.dart';
 import 'package:neerp/utils/theme/theme.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'bloc_observer.dart';
 import 'package:neerp/utils/theme/theme_settings.dart';
 
@@ -78,11 +78,8 @@ class MyAppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(428, 882),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) => MaterialApp(
+    return ResponsiveSizer(
+      builder: (context, orientation, screenType) => MaterialApp(
         navigatorKey: _navigatorKey,
         debugShowCheckedModeBanner: false,
         scrollBehavior: MyBehavior(),
@@ -90,7 +87,7 @@ class MyAppView extends StatelessWidget {
         themeMode: themeMode,
         theme: theme(ThemeMode.light, settings),
         darkTheme: theme(ThemeMode.dark, settings),
-        // home: LoginScreen(),
+        // home: DashboardView(),
         builder: (context, child) {
           return BlocListener<AuthBlocBloc, AuthBlocState>(
             listener: (context, state) {

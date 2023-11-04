@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Avatar extends StatelessWidget {
   const Avatar({super.key});
@@ -7,7 +6,7 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: 50.r,
+      radius: 50,
       backgroundColor: const Color(0xFF1A3848),
       child: ClipOval(
         child: Align(

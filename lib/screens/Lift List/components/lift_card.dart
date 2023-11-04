@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../utils/components/data_card.dart';
 
@@ -52,16 +52,16 @@ class LiftCard extends StatelessWidget {
     ); */
 
         Container(
-      margin: EdgeInsets.only(bottom: 18.h),
+      margin: EdgeInsets.only(bottom: 2.h),
       padding: EdgeInsets.symmetric(
-        vertical: 10.h,
-        horizontal: 15.w,
+        vertical: 1.h,
+        horizontal: 2.w,
       ),
       //width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Colors.transparent,
         border: Border.all(color: const Color(0xff262626)),
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         children: [

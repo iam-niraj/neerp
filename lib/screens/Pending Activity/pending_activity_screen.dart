@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/models/user_list/user_response_model.dart';
@@ -17,6 +16,7 @@ import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/components/dialog_custom_field.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PendingActivitiesScreen extends StatelessWidget {
   const PendingActivitiesScreen({super.key});
@@ -311,7 +311,7 @@ class _EmployeeDropDown extends StatelessWidget {
               hintText: "Select Employee",
               contentPadding: EdgeInsets.zero,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20.r)),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
             onChanged: (empId) {
               context.read<AssignActivityCubit>().empChanged(empId!);
             },

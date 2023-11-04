@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 final bigText = TextStyle(
   fontFamily: 'Intel',
@@ -13,7 +13,7 @@ final description = TextStyle(
 
 final mediumText = TextStyle(
   fontFamily: 'Intel',
-  fontSize: 18.0.sp,
+  fontSize: 17.sp,
 );
 
 final smallText = TextStyle(

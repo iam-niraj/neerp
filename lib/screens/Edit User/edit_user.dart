@@ -3,7 +3,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/user_list/user_response_model.dart';
 import 'package:neerp/screens/Edit%20User/cubit/edit_user_cubit.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
@@ -11,6 +10,7 @@ import 'package:neerp/utils/components/custom_input_field.dart';
 import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EditUserScreen extends StatelessWidget {
   const EditUserScreen({required this.user, super.key});
@@ -62,7 +62,7 @@ class EditUser extends StatelessWidget {
           CupertinoSliverNavigationBar(
             largeTitle: Text(
               'Edit User',
-              style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+              style: bigText.copyWith(fontFamily: "Poppins", fontSize: 25.sp),
             ),
             alwaysShowMiddle: false,
             middle: Text(
@@ -76,10 +76,10 @@ class EditUser extends StatelessWidget {
               ), */
           ),
           SliverPadding(
-            padding: EdgeInsets.symmetric(vertical: 30.h),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                [
+            padding: EdgeInsets.symmetric(vertical: 2.h),
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                children: [
                   _FullNameInput(hintText: user.fullName!),
                   const SizedBox(
                     height: 16,

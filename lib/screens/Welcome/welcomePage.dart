@@ -2,12 +2,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/screens/Login/login_screen.dart';
 import 'package:neerp/screens/Register/register_screen.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/textButton.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WelcomePage extends StatelessWidget {
   @override

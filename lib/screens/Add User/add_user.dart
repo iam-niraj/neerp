@@ -3,9 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Add%20User/cubit/add_user_cubit.dart';
 import 'package:neerp/utils/components/appBar.dart';
@@ -16,6 +14,7 @@ import 'package:neerp/utils/components/error_dialog.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AddUserScreen extends StatelessWidget {
   const AddUserScreen({super.key});
@@ -64,7 +63,7 @@ class AddUser extends StatelessWidget {
             CupertinoSliverNavigationBar(
               largeTitle: Text(
                 'Add User',
-                style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+                style: bigText.copyWith(fontFamily: "Poppins", fontSize: 25.sp),
               ),
               alwaysShowMiddle: false,
               middle: Text(
@@ -73,10 +72,10 @@ class AddUser extends StatelessWidget {
               ),
             ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 30.h),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate(
-                  [
+              padding: EdgeInsets.symmetric(vertical: 2.h),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: [
                     const _FullNameInput(),
                     const SizedBox(
                       height: 16,

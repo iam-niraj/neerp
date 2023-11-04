@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/lift_list/lift_response_model.dart';
 import 'package:neerp/utils/components/avatar.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ViewLiftPage extends StatelessWidget {
   const ViewLiftPage({required this.lift, super.key});
@@ -20,7 +20,7 @@ class ViewLiftPage extends StatelessWidget {
             child: Avatar(),
           ),
           SizedBox(
-            height: 24.0.h,
+            height: 3.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -38,7 +38,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -56,7 +56,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -74,7 +74,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -92,7 +92,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -110,7 +110,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -128,7 +128,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -146,7 +146,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -164,7 +164,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -182,7 +182,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -200,7 +200,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -218,7 +218,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -236,7 +236,7 @@ class ViewLiftPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 12.0.h,
+            height: 2.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,

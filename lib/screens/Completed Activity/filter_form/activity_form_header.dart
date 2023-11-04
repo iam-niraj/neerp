@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/screens/Completed%20Activity/bloc/completed_activity_bloc.dart';
 import 'package:neerp/screens/Completed%20Activity/filter_form/cubit/filter_completed_activities_cubit.dart';
@@ -44,10 +43,10 @@ class MyFlexiableAppBar extends StatelessWidget {
             if (state.status == FilterCompletedActivitiesStatus.error) {
               showCupertinoSnackBar(
                   context: context, message: state.errorResponse);
-            } else if (state.status == FilterCompletedActivitiesStatus.success) {
-              context
-                  .read<CompletedActivitiesBloc>()
-                  .add(FilteredCompletedActivitiesFetched(result: state.result));
+            } else if (state.status ==
+                FilterCompletedActivitiesStatus.success) {
+              context.read<CompletedActivitiesBloc>().add(
+                  FilteredCompletedActivitiesFetched(result: state.result));
             }
           },
           child: Column(
@@ -129,7 +128,7 @@ class _DoorOpeningInput extends StatelessWidget {
           hintText: "Select door opening type",
           contentPadding: EdgeInsets.zero,
         ),
-        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         onChanged: (doorOpening) {
           //  context.read<AddLiftCubit>().doorOpeningChanged(doorOpening!);
         },

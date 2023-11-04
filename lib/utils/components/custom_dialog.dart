@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void showCustomDialog(BuildContext context, {required Widget widget}) {
   showGeneralDialog(
@@ -11,9 +11,9 @@ void showCustomDialog(BuildContext context, {required Widget widget}) {
     pageBuilder: (_, __, ___) {
       return Center(
         child: Container(
-          height: 750.h,
-          margin: EdgeInsets.symmetric(horizontal: 16.w),
-          padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20),
+          height: 75.5.h,
+          margin: EdgeInsets.symmetric(horizontal: 4.w),
+          padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 2.w),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.95),
             borderRadius: BorderRadius.circular(40),

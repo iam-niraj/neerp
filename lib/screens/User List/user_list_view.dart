@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Edit%20User/edit_user.dart';
 import 'package:neerp/screens/User%20List/bloc/users_list_bloc.dart';
@@ -11,6 +10,7 @@ import 'package:neerp/screens/User%20List/components/view_user.dart';
 import 'package:neerp/utils/components/custom_dialog.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class UserListScreen extends StatelessWidget {
   const UserListScreen({super.key});
@@ -58,7 +58,7 @@ class UserList extends StatelessWidget {
         CupertinoSliverNavigationBar(
           largeTitle: Text(
             'Users List',
-            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+            style: bigText.copyWith(fontFamily: "Poppins", fontSize: 25.sp),
           ),
           alwaysShowMiddle: false,
           middle: Text(
@@ -84,8 +84,7 @@ class UserList extends StatelessWidget {
                   );
                 }
                 return SliverPadding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 30.h, horizontal: 26.w),
+                  padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {

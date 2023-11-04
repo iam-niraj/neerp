@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/components/data_card.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../models/pending_activity/pending_activity_response_model.dart';
 
@@ -21,7 +21,7 @@ class PendingActivityCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.transparent,
         border: Border.all(color: const Color(0xFF797F8A), width: 1.w),
-        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Column(
         children: [

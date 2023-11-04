@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/models/assigned_activity/assigned_activities_list_response.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ViewDetails extends StatelessWidget {
   const ViewDetails({super.key, required this.result});
@@ -22,7 +22,7 @@ class ViewDetails extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 35.0.h,
+          height: 1.h,
         ),
         Padding(
           padding: EdgeInsets.only(left: 16.w),
@@ -33,7 +33,7 @@ class ViewDetails extends StatelessWidget {
                 child: Text(
                   "Activity Date:",
                   style: kHeadline.copyWith(
-                      fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      fontSize: 18.dp, fontWeight: FontWeight.bold),
                 ),
               ),
               Align(
@@ -51,7 +51,7 @@ class ViewDetails extends StatelessWidget {
                 child: Text(
                   "Start Comment:",
                   style: kHeadline.copyWith(
-                      fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      fontSize: 18.dp, fontWeight: FontWeight.bold),
                 ),
               ),
               Align(
@@ -69,7 +69,7 @@ class ViewDetails extends StatelessWidget {
                 child: Text(
                   "End Comment:",
                   style: kHeadline.copyWith(
-                      fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      fontSize: 18.dp, fontWeight: FontWeight.bold),
                 ),
               ),
               Align(
@@ -87,7 +87,7 @@ class ViewDetails extends StatelessWidget {
                 child: Text(
                   "Served Checkedlist:",
                   style: kHeadline.copyWith(
-                      fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      fontSize: 18.dp, fontWeight: FontWeight.bold),
                 ),
               ),
               Align(
@@ -107,7 +107,7 @@ class ViewDetails extends StatelessWidget {
                 child: Text(
                   "Customer Remark:",
                   style: kHeadline.copyWith(
-                      fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      fontSize: 18.dp, fontWeight: FontWeight.bold),
                 ),
               ),
               const Align(
@@ -125,7 +125,7 @@ class ViewDetails extends StatelessWidget {
                 child: Text(
                   "Employee:",
                   style: kHeadline.copyWith(
-                      fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      fontSize: 18.dp, fontWeight: FontWeight.bold),
                 ),
               ),
               Align(
@@ -143,7 +143,7 @@ class ViewDetails extends StatelessWidget {
                 child: Text(
                   "Customer Remark:",
                   style: kHeadline.copyWith(
-                      fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      fontSize: 18.dp, fontWeight: FontWeight.bold),
                 ),
               ),
               Align(
@@ -165,7 +165,7 @@ class ViewDetails extends StatelessWidget {
         CustomFormButton(
           innerText: "Back",
           onPressed: () => Navigator.pop(context),
-          fontSize: 24.sp,
+          fontSize: 24.dp,
         ),
       ],
     );

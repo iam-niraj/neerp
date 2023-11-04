@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Item extends StatelessWidget {
   Item(
@@ -27,18 +27,27 @@ class Item extends StatelessWidget {
         onTap: onTap,
         child: Stack(
           children: [
-            Positioned.fill(child: Image.asset("assets/images/glass.png")),
+            /* Positioned(
+              left: -50,
+              top: 0,
+              height: 10.h,
+              child: Image.asset(
+                "assets/images/glow.png",
+              ),
+            ), */
             Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: isTextTopPadding ? 10.h : 0,
+                  padding: EdgeInsets.only(
+                    bottom: isTextTopPadding ? 0.5.h : 0,
                   ),
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: SvgPicture.asset(
-                      icon,
+                  child: Opacity(
+                    opacity: 0.9,
+                    child: AspectRatio(
+                      aspectRatio: 1.2,
+                      child: SvgPicture.asset(
+                        icon,
+                      ),
                     ),
                   ),
                 ),

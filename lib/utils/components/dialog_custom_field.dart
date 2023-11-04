@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DialogCutsomField extends StatelessWidget {
   final String labelText;
@@ -20,7 +20,7 @@ class DialogCutsomField extends StatelessWidget {
       type: MaterialType.transparency,
       child: UnconstrainedBox(
         child: Container(
-          width: (size.width * 0.8).h,
+          width: 80.h,
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
           child: Column(
             children: [

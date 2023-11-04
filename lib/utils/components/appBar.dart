@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({
@@ -15,11 +15,11 @@ class MyAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 24.w),
-      title: Text('Welcome', style: mediumText.copyWith(fontSize: 16.sp)),
+      title: Text('Welcome', style: mediumText.copyWith(fontSize: 16.dp)),
       subtitle:
-          Text('Amelia Barlow', style: mediumText.copyWith(fontSize: 20.sp)),
+          Text('Amelia Barlow', style: mediumText.copyWith(fontSize: 20.dp)),
       leading: CircleAvatar(
-        radius: 30.r,
+        radius: 30,
         backgroundColor: const Color(0xFF1A3848),
         child: ClipOval(
           child: Align(

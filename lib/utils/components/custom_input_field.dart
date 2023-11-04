@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomInputField extends StatelessWidget {
   final String labelText;
@@ -17,28 +18,23 @@ class CustomInputField extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Material(
       type: MaterialType.transparency,
-      child: UnconstrainedBox(
-        child: Container(
-          width: size.width * 0.9,
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-          child: Column(
-            children: [
-              // if (prefix != null) ...[
-              //   prefix!,
-              //   const SizedBox(width: 10),
-              // ],
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  labelText,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-              widget,
-            ],
+      child: Container(
+        width: size.width * 0.9,
+        padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+        child: Column(children: [
+          // if (prefix != null) ...[
+          //   prefix!,
+          //   const SizedBox(width: 10),
+          // ],
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              labelText,
+              style: TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
+          widget,
+        ]),
       ),
     );
   }

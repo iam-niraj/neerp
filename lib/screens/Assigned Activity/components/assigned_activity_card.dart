@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/assigned_activity/assigned_activities_list_response.dart';
 import 'package:neerp/utils/components/data_card.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AssignedActivityCard extends StatelessWidget {
   const AssignedActivityCard({super.key, required this.activity});
@@ -11,16 +11,16 @@ class AssignedActivityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 18.h),
+      margin: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
       padding: EdgeInsets.symmetric(
-        vertical: 10.h,
-        horizontal: 15.w,
+        vertical: 1.h,
+        horizontal: 2.w,
       ),
       //width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Colors.transparent,
-        border: Border.all(color: const Color(0xFF797F8A), width: 1.w),
-        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+        border: Border.all(color: const Color(0xFF797F8A), width: 0.3.w),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Column(
         children: [

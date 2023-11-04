@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/utils/components/avatar.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ViewDashboardUserPage extends StatelessWidget {
   const ViewDashboardUserPage({super.key});

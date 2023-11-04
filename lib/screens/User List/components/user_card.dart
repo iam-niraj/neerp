@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/models/user_list/user_response_model.dart';
 import 'package:neerp/utils/components/data_card.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class UserCard extends StatelessWidget {
   const UserCard({super.key, required this.user});
@@ -51,16 +51,16 @@ class UserCard extends StatelessWidget {
     ); */
 
         Container(
-      margin: EdgeInsets.only(bottom: 18.h),
+      margin: EdgeInsets.only(bottom: 2.h),
       padding: EdgeInsets.symmetric(
-        vertical: 10.h,
-        horizontal: 15.w,
+        vertical: 1.h,
+        horizontal: 2.w,
       ),
       //width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Colors.transparent,
-        border: Border.all(color: const Color(0xFF797F8A), width: 1.w),
-        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+        border: Border.all(color: const Color(0xff262626)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Column(
         children: [

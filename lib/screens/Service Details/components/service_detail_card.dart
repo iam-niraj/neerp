@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../models/lead_service/response_lead_service.dart';
 
@@ -20,14 +20,14 @@ class ServiceDetailCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(8),
             child: Container(
-              width: 64.r,
-              height: 64.r,
+              width: 64,
+              height: 64,
               color: const Color(0xffC4C4C4),
             ),
           ),
-          SizedBox(width: 30.w),
+          SizedBox(width: 4.w),
           Expanded(
             flex: 3,
             child: Column(
@@ -36,14 +36,14 @@ class ServiceDetailCard extends StatelessWidget {
                 Text(
                   service.activityName!,
                   style: bigText.copyWith(
-                    fontSize: 20.sp,
+                    fontSize: 18.sp,
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
                   "${service.activityStartDate!} to ${service.activityEndDate!}",
-                  style: kBodyText2.copyWith(fontSize: 14.sp),
+                  style: kBodyText2.copyWith(fontSize: 16.sp),
                   /* style: bigText.copyWith(
                     fontSize: 10.sp,
                     fontStyle: FontStyle.normal,
@@ -65,16 +65,16 @@ class ServiceDetailCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: const Color(0xff262626),
                         borderRadius: BorderRadius.all(
-                          Radius.circular(48.r),
+                          Radius.circular(48),
                         ),
                       ),
-                      margin: EdgeInsets.only(top: 16.w),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                      margin: EdgeInsets.only(top: 2.w),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 5.w, vertical: 1.5.h),
                       child: Text(
                         "View Activity",
                         style: smallText.copyWith(
-                          fontSize: 10.sp,
+                          fontSize: 12.sp,
                           color: white,
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w400,

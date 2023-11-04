@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void showCupertinoSnackBar({
   required BuildContext context,
@@ -61,9 +61,9 @@ class _CupertinoSnackBarState extends State<_CupertinoSnackBar> {
   @override
   Widget build(BuildContext context) {
     return AnimatedPositioned(
-      bottom: _show ? 8.0.h : -50.0.h,
-      left: 8.0.w,
-      right: 8.0.w,
+      bottom: _show ? 1.0.h : -50.0.h,
+      left: 2.0.w,
+      right: 2.0.w,
       curve: _show ? Curves.linearToEaseOut : Curves.easeInToLinear,
       duration: Duration(milliseconds: widget.animationDurationMillis),
       child: CupertinoPopupSurface(
@@ -73,8 +73,8 @@ class _CupertinoSnackBarState extends State<_CupertinoSnackBar> {
             color: Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: 8.0.w,
-                vertical: 8.0.h,
+                horizontal: 1.0.w,
+                vertical: 1.0.h,
               ),
               child: Row(
                 children: [
@@ -84,7 +84,7 @@ class _CupertinoSnackBarState extends State<_CupertinoSnackBar> {
                     size: 30,
                   ),
                   SizedBox(
-                    width: 20.w,
+                    width: 5.w,
                   ),
                   Text(
                     widget.message,

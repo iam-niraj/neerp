@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Service%20Details/bloc/service_details_bloc.dart';
 import 'package:neerp/screens/Service%20Details/components/service_detail_card.dart';
 import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../models/lift_list/lift_response_model.dart';
 
@@ -66,14 +66,14 @@ class ServiceDetailsList extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 25.0.h,
+                  height: 4.0.h,
                 ),
                 Expanded(
                   child: Column(
                     children: [
                       ...state.result.map(
                         (service) => Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10.h),
+                          padding: EdgeInsets.symmetric(vertical: 2.h),
                           child: ServiceDetailCard(
                             service: service,
                             onTap: () {
@@ -87,12 +87,11 @@ class ServiceDetailsList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 35.0.h,
+                        height: 2.0.h,
                       ),
                       CustomFormButton(
                         innerText: "Get Report",
                         onPressed: () {},
-                        fontSize: 24.sp,
                       ),
                       const Spacer(),
                     ],
@@ -117,10 +116,10 @@ class ServiceDetailsList extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 35.0.h,
+                  height: 3.0.h,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 16.w),
+                  padding: EdgeInsets.only(left: 2.w),
                   child: Column(
                     children: [
                       Align(
@@ -139,7 +138,7 @@ class ServiceDetailsList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 12.0.h,
+                        height: 2.0.h,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -157,7 +156,7 @@ class ServiceDetailsList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 12.0.h,
+                        height: 2.0.h,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -175,7 +174,7 @@ class ServiceDetailsList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 12.0.h,
+                        height: 2.0.h,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -195,7 +194,7 @@ class ServiceDetailsList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 12.0.h,
+                        height: 2.0.h,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -213,7 +212,7 @@ class ServiceDetailsList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 12.0.h,
+                        height: 2.0.h,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -231,7 +230,7 @@ class ServiceDetailsList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 12.0.h,
+                        height: 2.0.h,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -249,20 +248,16 @@ class ServiceDetailsList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 12.0.h,
+                        height: 3.0.h,
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 35.0.h,
                 ),
                 CustomFormButton(
                   innerText: "Back",
                   onPressed: () => context
                       .read<ServiceDetailsBloc>()
                       .add(const LoadServices()),
-                  fontSize: 24.sp,
                 ),
               ],
             );

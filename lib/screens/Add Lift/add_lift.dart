@@ -3,7 +3,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Add%20Lift/cubit/add_lift_cubit.dart';
@@ -13,6 +12,7 @@ import 'package:neerp/utils/components/custom_input_field.dart';
 import 'package:neerp/utils/components/custom_snackbar.dart';
 import 'package:neerp/utils/config/services/api_service.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AddLiftScreen extends StatelessWidget {
   const AddLiftScreen({super.key});
@@ -64,7 +64,7 @@ class AddLift extends StatelessWidget {
             CupertinoSliverNavigationBar(
               largeTitle: Text(
                 'Add Lift',
-                style: bigText.copyWith(fontFamily: "Poppins", fontSize: 40.sp),
+                style: bigText.copyWith(fontFamily: "Poppins", fontSize: 25.sp),
               ),
               alwaysShowMiddle: false,
               middle: Text(
@@ -78,7 +78,7 @@ class AddLift extends StatelessWidget {
               ), */
             ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 30.h),
+              padding: EdgeInsets.symmetric(vertical: 2.h),
               sliver: SliverToBoxAdapter(
                 child: Column(
                   children: [
@@ -118,11 +118,11 @@ class AddLift extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    _StartDateInput(),
+                    const _StartDateInput(),
                     const SizedBox(
                       height: 16,
                     ),
-                    _EndDateInput(),
+                    const _EndDateInput(),
                     const SizedBox(
                       height: 16,
                     ),
@@ -365,7 +365,7 @@ class _AMCTypeInput extends StatelessWidget {
               hintText: "Select AMC type",
               contentPadding: EdgeInsets.zero,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20.r)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             onChanged: (amcType) {
               context.read<AddLiftCubit>().amcTypeChanged(amcType!);
             },
@@ -394,7 +394,7 @@ class _LiftTypeInput extends StatelessWidget {
     "Goods Lift",
     "Capsule Lift",
     "Dumbwaiter Lift",
-    "Hospital Lift"
+    "Hodpital Lift"
   ];
   @override
   Widget build(BuildContext context) {
@@ -422,7 +422,7 @@ class _LiftTypeInput extends StatelessWidget {
               hintText: "Select Lift type",
               contentPadding: EdgeInsets.zero,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20.r)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             onChanged: (liftType) {
               context.read<AddLiftCubit>().liftTypeChanged(liftType!);
             },
@@ -621,7 +621,7 @@ class _DoorOpeningInput extends StatelessWidget {
               hintText: "Select door opening type",
               contentPadding: EdgeInsets.zero,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20.r)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             onChanged: (doorOpening) {
               context.read<AddLiftCubit>().doorOpeningChanged(doorOpening!);
             },

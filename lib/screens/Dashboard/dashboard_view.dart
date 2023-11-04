@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:neerp/app/bloc/auth_bloc_bloc.dart';
 import 'package:neerp/screens/Add%20Lift/add_lift.dart';
 import 'package:neerp/screens/Add%20User/add_user.dart';
@@ -15,8 +14,8 @@ import 'package:neerp/screens/Pending%20Activity/pending_activity_screen.dart';
 import 'package:neerp/screens/User%20List/user_list_view.dart';
 import 'package:neerp/utils/colors.dart';
 import 'package:neerp/utils/components/custom_dialog.dart';
-import 'package:neerp/utils/components/custom_form_button.dart';
 import 'package:neerp/utils/constants.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DashboardView extends StatelessWidget {
   DashboardView({super.key});
@@ -56,21 +55,22 @@ class DashboardView extends StatelessWidget {
                   ),
                   child: ListTile(
                     contentPadding: EdgeInsets.symmetric(
-                      vertical: 12.h,
+                      vertical: 1.h,
                     ),
                     title: Text(
                       'Welcome,',
                       style: mediumText.copyWith(
-                        fontSize: 20.sp,
+                        fontSize: 18.sp,
+                        fontFamily: "Poppins",
                       ),
                     ),
                     subtitle: Text(username ?? "",
                         style: mediumText.copyWith(
-                          fontSize: 25.sp,
+                          fontSize: 20.sp,
                           fontFamily: "Poppins",
                         )),
                     leading: CircleAvatar(
-                      radius: 40.r,
+                      radius: 40,
                       backgroundColor: const Color(0xFF1A3848),
                       child: ClipOval(
                         child: Align(
@@ -83,7 +83,7 @@ class DashboardView extends StatelessWidget {
                 ),
                 const Spacer(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -143,7 +143,7 @@ class DashboardView extends StatelessWidget {
                 ),
                 const Spacer(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -189,8 +189,8 @@ class DashboardView extends StatelessWidget {
                         ),
                         title: "Assign Activities",
                         isTextTopPadding: false,
-                        onTap: () => Navigator.push(
-                            context, PendingActivitiesScreen.route()),
+                        /* onTap: () => Navigator.push(
+                            context, PendingActivitiesScreen.route()), */
                       ),
                       SizedBox(
                         width: 10.w,
@@ -213,15 +213,15 @@ class DashboardView extends StatelessWidget {
                         ),
                         title: "Completed Activities",
                         isTextTopPadding: false,
-                        onTap: () => Navigator.push(
-                            context, CompletedActivitiesScreen.route()),
+                        /* onTap: () => Navigator.push(
+                            context, CompletedActivitiesScreen.route()), */
                       )
                     ],
                   ),
                 ),
                 const Spacer(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
